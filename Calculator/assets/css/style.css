@@ -1,0 +1,142 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  font-family: "Poppins", sans-serif;
+  user-select: none;
+}
+
+body {
+  margin: 0px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: white;
+}
+
+.bg-circle-1 {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  left: 50%;
+  border-radius: 50%;
+  filter: blur(10px);
+  background: rgb(2, 0, 36);
+  background: linear-gradient(90deg, rgb(2, 0, 36) 0%, rgb(0, 212, 255) 100%);
+}
+
+.bg-circle-2 {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  right: 60%;
+  top: 0;
+  border-radius: 50%;
+  filter: blur(10px);
+  background: rgb(2, 0, 36);
+  background: rgb(2, 0, 36);
+  background: linear-gradient(90deg, rgb(2, 0, 36) 0%, rgb(134, 255, 0) 100%);
+}
+
+.calculator {
+  width: 30%;
+  height: 90%;
+  z-index: 1;
+  backdrop-filter: blur(10px);
+}
+.calculator form {
+  display: grid;
+  grid-gap: 5px;
+  height: 100%;
+  grid-template-areas: "in in in in" "bC bC bB bX" "b7 b8 b9 bD" "b4 b5 b6 bP" "b1 b2 b3 bM" "b0 bT bE bE";
+}
+.calculator form input:nth-child(1) {
+  grid-area: in;
+  outline: none;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: end;
+  border-radius: 12px;
+  background: transparent;
+  background-color: rgba(253, 253, 253, 0.1);
+  color: rgb(75, 209, 200);
+}
+.calculator form button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 24px;
+  border-radius: 12px;
+  transition: all 0.4s ease-in-out;
+  transform: scale(1);
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0px 0px 5px rgba(253, 253, 253, 0.3);
+}
+.calculator form button:hover {
+  transition: all 0.4s ease-in-out;
+  background: rgba(255, 255, 255, 0.3);
+}
+.calculator form button:nth-child(2) {
+  grid-area: bC;
+}
+.calculator form button:nth-child(3) {
+  grid-area: bB;
+}
+.calculator form button:nth-child(4) {
+  grid-area: bX;
+}
+.calculator form button:nth-child(5) {
+  grid-area: bD;
+}
+.calculator form button:nth-child(6) {
+  grid-area: bM;
+}
+.calculator form button:nth-child(7) {
+  grid-area: bE;
+}
+.calculator form button:nth-child(8) {
+  grid-area: bP;
+}
+.calculator form button:nth-child(9) {
+  grid-area: b9;
+}
+.calculator form button:nth-child(10) {
+  grid-area: b8;
+}
+.calculator form button:nth-child(11) {
+  grid-area: b7;
+}
+.calculator form button:nth-child(12) {
+  grid-area: b6;
+}
+.calculator form button:nth-child(13) {
+  grid-area: b5;
+}
+.calculator form button:nth-child(14) {
+  grid-area: b4;
+}
+.calculator form button:nth-child(15) {
+  grid-area: b3;
+}
+.calculator form button:nth-child(16) {
+  grid-area: b2;
+}
+.calculator form button:nth-child(17) {
+  grid-area: b1;
+}
+.calculator form button:nth-child(18) {
+  grid-area: b0;
+}
+.calculator form button:nth-child(19) {
+  grid-area: bT;
+}
+
+/*# sourceMappingURL=style.css.map */

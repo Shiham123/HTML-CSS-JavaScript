@@ -1,0 +1,74 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffc0cb;
+  cursor: none;
+
+  .cursor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 62.5px;
+    height: 100px;
+    border: 1px solid black;
+    background-image: url(../assets/img/baguette-magique.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .title {
+    background-image: linear-gradient(to right, #0000ff, #000000);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    isolation: isolate;
+
+    span {
+      display: inline-block;
+      font-size: 3rem;
+      text-transform: uppercase;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      min-width: 15px;
+
+      &:hover {
+        animation: jello 1s ease forwards;
+        color: blue;
+
+        @keyframes jello {
+          0% {
+            transform: scale(1.1);
+          }
+          30% {
+            transform: scale(1.5, 0.75);
+          }
+          40% {
+            transform: scale(0.75, 1.5);
+          }
+          50% {
+            transform: scale(1.5, 0.85);
+          }
+          65% {
+            transform: scale(0.95, 1.05);
+          }
+          75% {
+            transform: scale(1.05, 0.95);
+          }
+          100% {
+            transform: scale(1, 1);
+          }
+        }
+      }
+    }
+  }
+}

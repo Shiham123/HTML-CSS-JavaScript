@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML CSS JS Calculator</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome 6.2.0 CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="bg-circle-1"></div>
+    <div class="bg-circle-2"></div>
+    <div class="calculator">
+      <form name="f">
+        <input type="text" name="in" />
+        <button type="button" onclick="f.in.value = ''">C</button>
+        <button
+          type="button"
+          onclick="f.in.value = f.in.value.substring(0,f.in.value.length -1 )"
+        >
+          <i class="fa fa-chevron-left"></i>
+        </button>
+        <button type="button" onclick="f.in.value += '*'">X</button>
+
+        <button type="button" onclick="f.in.value += '/'">/</button>
+        <button type="button" onclick="f.in.value += '-'">-</button>
+        <button type="button" onclick="f.in.value = eval(f.in.value)">=</button>
+        <button type="button" onclick="f.in.value += '+'">+</button>
+
+        <button type="button" onclick="f.in.value += '9'">9</button>
+        <button type="button" onclick="f.in.value += '8'">8</button>
+        <button type="button" onclick="f.in.value += '7'">7</button>
+        <button type="button" onclick="f.in.value += '6'">6</button>
+
+        <button type="button" onclick="f.in.value += '5'">5</button>
+        <button type="button" onclick="f.in.value += '4'">4</button>
+        <button type="button" onclick="f.in.value += '3'">3</button>
+        <button type="button" onclick="f.in.value += '2'">2</button>
+
+        <button type="button" onclick="f.in.value += '1'">1</button>
+        <button type="button" onclick="f.in.value += '0'">0</button>
+        <button type="button" onclick="f.in.value += '.'">.</button>
+      </form>
+    </div>
+
+    <!-- #################################################### -->
+    <!-- (Optional) Use CSS or JS implementation -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"
+      integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </body>
+</html>

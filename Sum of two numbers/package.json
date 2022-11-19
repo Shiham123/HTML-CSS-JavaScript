@@ -1,0 +1,18 @@
+{
+  "name": "sum-of-two-numbers",
+  "version": "1.0.0",
+  "description": "Sum of two numbers",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "sass --watch scss:assets/css"
+  },
+  "keywords": [
+    "sumOfTwo",
+    "numbers"
+  ],
+  "author": "SHiham",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.56.1"
+  }
+}

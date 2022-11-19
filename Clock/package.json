@@ -1,0 +1,17 @@
+{
+  "name": "clock",
+  "version": "1.0.0",
+  "description": "HTML CSS javaScript clock practice",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "sass --watch scss:assets/css"
+  },
+  "keywords": [
+    "clock"
+  ],
+  "author": "Shiham",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.56.0"
+  }
+}

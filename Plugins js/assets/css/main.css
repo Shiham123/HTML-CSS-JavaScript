@@ -1,0 +1,81 @@
+:root {
+    --modally-transition-in: cubic-bezier(0.65, 0.14, 0.14, 0.91);
+    --modally-transition-out: cubic-bezier(0.98, 0.03, 0.66, 0.9);
+}
+
+.modally-container {
+    --modally-padding: 4rem;
+
+    position: fixed;
+    inset: 0;
+    padding: var(--modally-padding);
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity linear .2s .4s, visibility linear .1s .5s;
+}
+
+.modally-container.show-modal {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity linear .2s .1s, visibility linear .1s;
+}
+
+.modally-backdrop {
+    --modally-backdrop-filter: 6px;
+    --modally-bg: rgba(0,0,0,.2);
+
+    position: fixed;
+    inset: 0;
+    background: var(--modally-bg);
+    z-index: 0;
+}
+
+.modal-blur .modally-backdrop {
+    backdrop-filter: blur(var(--modally-backdrop-filter));
+}
+
+
+.modally-content {
+    --modally-content-bg: white;
+    --modally-content-width: 600px;
+    --modally-content-padding: 4rem;
+    --modally-content-border-radius: 6px;
+    --modally-box-shadow: box-shadow: 0px 0px 29px 17px rgba(0,0,0,0.17);
+    --modally-transform-Y-distance: 30px;
+
+
+    background: var(--modally-content-bg);
+    padding: var(--modally-content-padding);
+    border-radius: var(--modally-content-border-radius);
+    width: var(--modally-content-width);
+    opacity: 0;
+    align-self: start;
+    visibility: hidden;
+    position: relative;
+    z-index: 1;
+    transition: opacity var(--modally-transition-out) .2s .1s, transform var(--modally-transition-out) .2s .1s, visibility linear .1s .2s;
+}
+
+.modally-container.show-modal .modally-content {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity var(--modally-transition-in) .2s .3s, transform var(--modally-transition-in) .2s .3s, visibility linear .1s;
+}
+
+.fade-up .modally-content {
+    transform: translate3d(0, var(--modally-transform-Y-distance), 0);
+}
+
+.fade-down .modally-content {
+    transform: translate3d(0, calc(var(--modally-transform-Y-distance) * -1), 0);
+}
+
+.modally-container.show-modal .modally-content {
+    transform: none;
+}
+
+.modal-centered .modally-content {
+    align-self: center;
+}

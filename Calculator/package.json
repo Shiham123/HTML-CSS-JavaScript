@@ -1,0 +1,14 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "html css javaScript calculator",
+  "main": "main.js",
+  "scripts": {
+    "compile:sass": "sass --watch scss:assets/css"
+  },
+  "author": "Shiham",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.55.0"
+  }
+}

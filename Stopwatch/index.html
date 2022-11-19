@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>stopwatch</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="./main.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container container-timer">
+      <div class="timer">
+        <span class="timer-minutes number">00</span>
+        :
+        <span class="timer-seconds number">00</span>
+        .
+        <span class="timer-seconds-parts number">00</span>
+      </div>
+      <div class="buttons">
+        <button id="reset" disabled>
+          <i class="fa-solid fa-arrow-rotate-left"></i>
+        </button>
+        <button id="start"><i class="fa-solid fa-play"></i></button>
+        <button id="lap" disabled><i class="fa-regular fa-clock"></i></button>
+      </div>
+    </div>
+    <div class="laps"></div>
+  </body>
+</html>

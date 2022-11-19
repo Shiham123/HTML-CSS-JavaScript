@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modally Demo</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+      integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+  </head>
+  <body>
+    <div class="mx-auto my-20 w-1/2 flex items-center gap-6">
+      <a
+        href=""
+        class="bg-blue-500 text-white text-medium px-6 py-4 rounded"
+        data-modally-trigger="modal-one"
+      >
+        Click Me for modal one.
+      </a>
+      <a
+        href=""
+        class="bg-blue-500 text-white text-medium px-6 py-4 rounded"
+        data-modally-trigger="modal-two"
+      >
+        Click Me for modal two.
+      </a>
+    </div>
+
+    <!-- Modal One -->
+    <div class="modally-container" data-modally-id="modal-one">
+      <div class="modally-backdrop"></div>
+      <div class="modally-content">
+        <p>Here goes our modal content for <span>modal one</span>.</p>
+        <div class="mt-20 flex items-center gap-x-6">
+          <a
+            href="#"
+            class="bg-gray-500 px-4 py-3 font-medium text-white"
+            data-modally-close="modal-one"
+            >Close</a
+          >
+          <a
+            href=""
+            class="bg-blue-500 text-white text-medium px-6 py-4 rounded"
+            data-modally-trigger="modal-two"
+          >
+            Click Me for modal two.
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Two -->
+    <div class="modally-container" data-modally-id="modal-two">
+      <div class="modally-backdrop"></div>
+      <div class="modally-content">
+        Here goes our modal content for modal two
+        <div class="mt-20 flex items-center gap-x-6">
+          <a
+            href="#"
+            class="bg-gray-500 px-4 py-3 font-medium text-white"
+            data-modally-close="modal-two"
+            >Close</a
+          >
+          <a
+            href=""
+            class="bg-blue-500 text-white text-medium px-6 py-4 rounded"
+            data-modally-trigger="modal-one"
+          >
+            Click Me for modal one.
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script src="./assets/js/classes/modally.js"></script>
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+body {
+  background-color: #22223b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Open Sans", sans-serif;
+}
+
+.container {
+  margin-top: 5rem;
+  width: 800px;
+  height: 500px;
+  border-radius: 22px;
+  background-color: white;
+  position: relative;
+}
+.container .game .content {
+  padding: 50px;
+}
+.container .game .content .question {
+  font-size: 40px;
+}
+.container .game .content .answers {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+.container .game .submit {
+  background-color: rebeccapurple;
+  color: white;
+  border: none;
+  width: 100%;
+  height: 50px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+}
+.container .result {
+  display: none;
+  padding: 50px;
+  text-align: center;
+}
+.container .result h1 {
+  font-size: 50px;
+}
+.container .result .correct {
+  color: green;
+}
+.container .result .wrong {
+  color: red;
+}
+.container .result .play {
+  color: white;
+  background-color: rebeccapurple;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 22px;
+  border: none;
+}
+
+/*# sourceMappingURL=style.css.map */
