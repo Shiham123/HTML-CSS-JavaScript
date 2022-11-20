@@ -1,75 +1,63 @@
-const leftArrow = document.querySelector('.left'),
-  rightArrow = document.querySelector('.right'),
-  slider = document.querySelector('.slider'),
-  images = document.querySelectorAll('.image'),
-  bottom = document.querySelector('.bottom');
+const leftArrow = document.querySelector('.left-arrow'),
+  rightArrow = document.querySelector('.right-arrow'),
+  sliderContainer = document.querySelector('.slider'),
+  allSliderImg = document.querySelectorAll('.image'),
+  bottomContainer = document.querySelector('.bottom-container');
 
-let slideNumber = 1;
-const length = images.length;
+let sliderNumber = 1;
+let sliderLength = allSliderImg.length;
 
-// creating div
-for (let i = 0; i < length; i++) {
+for (let i = 0; i < sliderLength; i++) {
   const div = document.createElement('div');
-  div.classList.add('button');
-  bottom.appendChild(div);
+  div.className = 'button';
+  bottomContainer.appendChild(div);
 }
 
-// default background set
 const buttons = document.querySelectorAll('.button');
 buttons[0].style.backgroundColor = 'white';
 
-// changing background dot
-const resetDot = () => {
+const resetBgColor = () => {
   buttons.forEach((button) => {
-    button.style.backgroundColor = 'transparent';
+    button.style.backgroundColor = `transparent`;
   });
 };
 
-// sliding dot with image
 buttons.forEach((button, index) => {
   button.addEventListener('click', () => {
-    resetDot();
-    slider.style.transform = `translateX(-${index * 800}px)`;
-    slideNumber = index + 1;
-    button.style.backgroundColor = 'white';
+    resetBgColor();
+    sliderContainer.style.transform = `translateX(-${index * 700}px)`;
+    button.style.backgroundColor = `white`;
   });
 });
 
-// event listeners
 const nextSlide = () => {
-  slider.style.transform = `translateX(-${slideNumber * 800}px)`;
-  slideNumber++;
+  sliderContainer.style.transform = `translateX(-${sliderNumber * 700}px)`;
+  sliderNumber++;
 };
 
 const prevSlide = () => {
-  slider.style.transform = `translateX(-${(slideNumber - 2) * 800}px)`;
-  slideNumber--;
+  sliderContainer.style.transform = `translateX(-${
+    (sliderNumber - 2) * 700
+  }px)`;
+  sliderNumber--;
 };
 
 const getFirstSlide = () => {
-  slider.style.transform = `translateX(0px)`;
-  slideNumber = 1;
+  sliderContainer.style.transform = `translateX(0px)`;
+  sliderNumber = 1;
 };
 
 const getLastSlide = () => {
-  slider.style.transform = `translateX(-${(length - 1) * 800}px)`;
-  slideNumber = length;
+  sliderContainer.style.transform = `translateX(-${
+    (sliderLength - 1) * 700
+  }px)`;
+  sliderNumber = sliderLength;
 };
 
-// dot color changing
-const changingDotColor = () => {
-  resetDot();
-  buttons[slideNumber - 1].style.backgroundColor = 'white';
-};
-
-// right side Listener
 rightArrow.addEventListener('click', () => {
-  slideNumber < length ? nextSlide() : getFirstSlide();
-  changingDotColor();
+  sliderNumber < sliderLength ? nextSlide() : getFirstSlide();
 });
 
-// left side listener
 leftArrow.addEventListener('click', () => {
-  slideNumber > 1 ? prevSlide() : getLastSlide();
-  changingDotColor();
+  sliderNumber > 1 ? prevSlide() : getLastSlide();
 });
