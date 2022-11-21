@@ -1,5 +1,5 @@
 body {
-  background-color: #22223b;
+  background-color: rgba(59, 108, 124, 0.998);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,60 +7,80 @@ body {
 }
 
 .container {
-  margin-top: 5rem;
+  background-color: rgba(29, 149, 189, 0.9);
   width: 800px;
   height: 500px;
-  border-radius: 22px;
-  background-color: white;
   position: relative;
 
   .game {
+    // display: none;
     .content {
       padding: 50px;
 
       .question {
         font-size: 40px;
+        color: white;
+        text-transform: capitalize;
       }
+
       .answers {
-        font-size: 24px;
-        margin-bottom: 20px;
-        color: #333;
+        .answer {
+          font-size: 24px;
+          color: white;
+          cursor: pointer;
+        }
       }
     }
-
     .submit {
-      background-color: rebeccapurple;
-      color: white;
+      padding: 20px;
+      background-color: gray;
       border: none;
+      font-size: 24px;
+      color: white;
+      text-transform: capitalize;
       width: 100%;
-      height: 50px;
       cursor: pointer;
       position: absolute;
       bottom: 0;
     }
   }
-
-  .result {
+  .result-container {
     display: none;
     padding: 50px;
     text-align: center;
+
     h1 {
-      font-size: 50px;
+      font-size: 40px;
+      color: white;
+      text-transform: capitalize;
     }
 
     .correct {
+      font-size: 24px;
       color: green;
+      text-transform: capitalize;
     }
+
     .wrong {
+      font-size: 24px;
       color: red;
+      text-transform: capitalize;
     }
+
+    .score {
+      font-size: 24px;
+      color: rgba(255, 255, 255, 0.609);
+      text-transform: capitalize;
+    }
+
     .play {
-      color: white;
-      background-color: rebeccapurple;
-      padding: 10px 20px;
-      cursor: pointer;
-      border-radius: 22px;
+      padding: 25px 35px;
+      background-color: gray;
       border: none;
+      font-size: 24px;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
     }
   }
 }

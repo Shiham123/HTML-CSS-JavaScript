@@ -1,11 +1,11 @@
-const leftArrow = document.querySelector('.left-arrow'),
-  rightArrow = document.querySelector('.right-arrow'),
+const rightArrow = document.querySelector('.right-arrow'),
+  leftArrow = document.querySelector('.left-arrow'),
   sliderContainer = document.querySelector('.slider'),
-  allSliderImg = document.querySelectorAll('.image'),
+  allImg = document.querySelectorAll('.image'),
   bottomContainer = document.querySelector('.bottom-container');
 
-let sliderNumber = 1;
-let sliderLength = allSliderImg.length;
+let sliderNumber = 0;
+let sliderLength = allImg.length;
 
 for (let i = 0; i < sliderLength; i++) {
   const div = document.createElement('div');
@@ -14,9 +14,9 @@ for (let i = 0; i < sliderLength; i++) {
 }
 
 const buttons = document.querySelectorAll('.button');
-buttons[0].style.backgroundColor = 'white';
+buttons[0].style.backgroundColor = `white`;
 
-const resetBgColor = () => {
+const removeBg = () => {
   buttons.forEach((button) => {
     button.style.backgroundColor = `transparent`;
   });
@@ -24,7 +24,7 @@ const resetBgColor = () => {
 
 buttons.forEach((button, index) => {
   button.addEventListener('click', () => {
-    resetBgColor();
+    removeBg();
     sliderContainer.style.transform = `translateX(-${index * 700}px)`;
     button.style.backgroundColor = `white`;
   });
@@ -54,10 +54,17 @@ const getLastSlide = () => {
   sliderNumber = sliderLength;
 };
 
+const changeBgColor = () => {
+  removeBg();
+  buttons[sliderNumber - 1].style.backgroundColor = `white`;
+};
+
 rightArrow.addEventListener('click', () => {
   sliderNumber < sliderLength ? nextSlide() : getFirstSlide();
+  changeBgColor();
 });
 
 leftArrow.addEventListener('click', () => {
   sliderNumber > 1 ? prevSlide() : getLastSlide();
+  changeBgColor();
 });

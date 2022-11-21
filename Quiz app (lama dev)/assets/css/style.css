@@ -1,5 +1,5 @@
 body {
-  background-color: #22223b;
+  background-color: rgba(59, 108, 124, 0.998);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,11 +7,9 @@ body {
 }
 
 .container {
-  margin-top: 5rem;
+  background-color: rgba(29, 149, 189, 0.9);
   width: 800px;
   height: 500px;
-  border-radius: 22px;
-  background-color: white;
   position: relative;
 }
 .container .game .content {
@@ -19,43 +17,59 @@ body {
 }
 .container .game .content .question {
   font-size: 40px;
+  color: white;
+  text-transform: capitalize;
 }
-.container .game .content .answers {
+.container .game .content .answers .answer {
   font-size: 24px;
-  margin-bottom: 20px;
-  color: #333;
+  color: white;
+  cursor: pointer;
 }
 .container .game .submit {
-  background-color: rebeccapurple;
-  color: white;
+  padding: 20px;
+  background-color: gray;
   border: none;
+  font-size: 24px;
+  color: white;
+  text-transform: capitalize;
   width: 100%;
-  height: 50px;
   cursor: pointer;
   position: absolute;
   bottom: 0;
 }
-.container .result {
+.container .result-container {
   display: none;
   padding: 50px;
   text-align: center;
 }
-.container .result h1 {
-  font-size: 50px;
-}
-.container .result .correct {
-  color: green;
-}
-.container .result .wrong {
-  color: red;
-}
-.container .result .play {
+.container .result-container h1 {
+  font-size: 40px;
   color: white;
-  background-color: rebeccapurple;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 22px;
+  text-transform: capitalize;
+}
+.container .result-container .correct {
+  font-size: 24px;
+  color: green;
+  text-transform: capitalize;
+}
+.container .result-container .wrong {
+  font-size: 24px;
+  color: red;
+  text-transform: capitalize;
+}
+.container .result-container .score {
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.609);
+  text-transform: capitalize;
+}
+.container .result-container .play {
+  padding: 25px 35px;
+  background-color: gray;
   border: none;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */
