@@ -4,30 +4,42 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Filer clock project</title>
+    <title>Filer project</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link
-      href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,regular,500,600,700,800,300italic,italic,500italic,600italic,700italic,800italic"
       rel="stylesheet"
     />
   </head>
   <body>
     <div class="container">
-      <div class="left-menu">
+      <div class="left-content">
+        <h1>categories</h1>
         <input type="text" placeholder="search" class="search" />
-        <h1>Categories</h1>
-        <div class="categories"></div>
-        <h1>Maximum price</h1>
+        <div class="categories">
+          <!-- <div class="category">All</div> -->
+        </div>
+        <h1>maximum price</h1>
         <div class="price">
-          <input type="range" class="priceRange" />
-          <span class="priceValue"></span>
+          <input type="range" class="price-range" />
+          <span class="price-value">$200</span>
         </div>
       </div>
 
       <div class="content">
-        <div class="products"></div>
+        <div class="products">
+          <!-- <div class="product">
+            <img
+              src="https://m.media-amazon.com/images/I/81xCpb+RC1L._AC_UL320_.jpg"
+              alt=""
+            />
+            <span class="name">Anne Klein Women</span>
+            <span class="text">$20</span>
+          </div> -->
+        </div>
       </div>
     </div>
+    <!-- ################################# -->
     <script src="./assets/js/main.js"></script>
   </body>
 </html>
