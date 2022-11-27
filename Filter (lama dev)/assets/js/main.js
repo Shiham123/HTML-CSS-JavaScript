@@ -101,7 +101,7 @@ const displayProduct = (filterProduct) => {
     .join('');
 };
 
-searchInput.addEventListener('input', (e) => {
+searchInput.addEventListener('keyup', (e) => {
   const value = e.target.value.toLowerCase();
 
   if (value) {
