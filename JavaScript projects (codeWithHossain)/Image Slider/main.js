@@ -9,7 +9,7 @@ const changeSlide = (e) => {
 };
 
 const showSlide = (e) => {
-  const images = document.querySelectorAll('img');
+  const images = document.querySelectorAll('.slider-items img');
   const indicators = document.querySelectorAll('.slider-indicators span');
   const contents = document.querySelectorAll('.slider-content h3');
 
@@ -28,7 +28,6 @@ const showSlide = (e) => {
   for (let content of contents) {
     content.style.scale = '0';
     content.style.opacity = '0';
-    content.style.transitionDaley = '0.2s';
   }
 
   images[index - 1].style.opacity = '1';
