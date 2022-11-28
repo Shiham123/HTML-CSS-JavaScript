@@ -1,0 +1,20 @@
+{
+  "name": "image-slider",
+  "version": "1.0.0",
+  "description": "this is my second img slider project",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "sass --watch scss:assets/css"
+  },
+  "keywords": [
+    "javaScript",
+    "html",
+    "css",
+    "img-slider"
+  ],
+  "author": "shiham owner",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.56.1"
+  }
+}

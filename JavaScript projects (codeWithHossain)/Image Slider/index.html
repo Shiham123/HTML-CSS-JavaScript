@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image slider project</title>
+    <!-- Icon box icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css"
+      integrity="sha512-cn16Qw8mzTBKpu08X0fwhTSv02kK/FojjNLz0bwp2xJ4H+yalwzXKFw/5cLzuBZCxGWIA+95X4skzvo8STNtSg=="
+      crossorigin="anonymous"
+    />
+    <!-- Font google font kanit -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Kanit:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+      rel="stylesheet"
+    />
+    <!-- CSS and JS file -->
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <script src="./main.js" defer></script>
+  </head>
+  <body>
+    <div class="slider">
+      <div class="slider-items">
+        <img class="slider-item" src="./img/01.jpg" alt="..." />
+        <img class="slider-item" src="./img/02.jpg" alt="..." />
+        <img class="slider-item" src="./img/03.jpg" alt="..." />
+      </div>
+
+      <div class="slider-controls">
+        <span class="bx bxs-chevron-left prev" onclick="changeSlide(-1)"></span>
+        <span class="bx bxs-chevron-right next" onclick="changeSlide(1)"></span>
+      </div>
+
+      <div class="slider-indicators">
+        <span onclick="moveTo(1)"></span>
+        <span onclick="moveTo(2)"></span>
+        <span onclick="moveTo(3)"></span>
+      </div>
+
+      <div class="slider-content">
+        <h3>Ocean View</h3>
+        <h3>Green Valley</h3>
+        <h3>Lake Reflection</h3>
+      </div>
+    </div>
+  </body>
+</html>

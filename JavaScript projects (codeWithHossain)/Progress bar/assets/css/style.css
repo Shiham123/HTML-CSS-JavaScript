@@ -1,0 +1,73 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightcoral;
+}
+
+.container {
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 440px;
+  width: 560px;
+  border-radius: 22px;
+  position: relative;
+  padding: 32px 28px;
+  text-align: center;
+}
+.container h1 {
+  position: absolute;
+  top: 20px;
+  letter-spacing: 2px;
+}
+.container .column {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+.container .column img {
+  position: absolute;
+  bottom: 0;
+  width: 40px;
+}
+.container .column .progress-bar {
+  position: absolute;
+  bottom: 50px;
+  width: 15px;
+  height: 60%;
+  border-radius: 30px;
+  background: #aaa;
+  transform: rotateX(180deg);
+}
+.container .column .progress-bar .progress {
+  background: #ff0055;
+  border-radius: 3px;
+}
+.container .column .progress-bar .circle {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background: #fff;
+  border: 6px solid #ff0055;
+  border-radius: 50%;
+  transform: translateY(-8px) translateX(-13px);
+}
+.container .column .progress-bar .percent {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 22px -12px;
+  transform: rotateX(180deg);
+}
+
+/*# sourceMappingURL=style.css.map */
