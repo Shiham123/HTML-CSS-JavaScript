@@ -1,0 +1,20 @@
+{
+  "name": "glass-sidebar",
+  "version": "1.0.0",
+  "description": "project practice to learn javaScript",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "sass --watch scss:assets/css"
+  },
+  "keywords": [
+    "javaScript",
+    "html",
+    "css",
+    "sass"
+  ],
+  "author": "shiham-owner",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.56.1"
+  }
+}
