@@ -1,0 +1,109 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  outline: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f2f6f9;
+  overflow: hidden;
+}
+
+.list {
+  width: 30%;
+}
+.list .list-item {
+  margin: 30px 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.list .list-item button {
+  cursor: pointer;
+  position: absolute;
+  width: 50%;
+  height: 80%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 18px;
+  transition: 0.3s all ease-in-out;
+}
+.list .list-item button .list-icon {
+  width: 100px;
+  font-size: 30px;
+}
+.list .list-item .settings {
+  left: 0px;
+  color: #010101;
+  background: #e7eaed;
+  justify-content: flex-start;
+}
+.list .list-item .delete {
+  right: 0px;
+  color: #fff;
+  background: #ec395e;
+  justify-content: flex-end;
+}
+.list .list-item .list-content {
+  display: flex;
+  width: 100%;
+  z-index: 1;
+  padding: 16px;
+  background: #fff;
+  border-radius: 25px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.04);
+}
+.list .list-item .list-content .profile {
+  width: 25%;
+  pointer-events: none;
+}
+.list .list-item .list-content .profile img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.list .list-item .list-content .caption {
+  width: 75%;
+  padding-left: 50px;
+  display: grid;
+  align-items: center;
+  justify-content: flex-start;
+  pointer-events: none;
+}
+.list .list-item .list-content .caption h3 {
+  color: #2e3e50;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  text-transform: capitalize;
+}
+.list .list-item .list-content .caption p {
+  color: #3e5165;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: -45px;
+}
+
+@media (min-width: 768px) {
+  .list .list-item:hover .settings {
+    transform: translateX(-70px);
+  }
+  .list .list-item:hover .delete {
+    transform: translateX(70px);
+  }
+  .list .list-item button .list-icon {
+    width: 65px;
+    font-size: 28px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
