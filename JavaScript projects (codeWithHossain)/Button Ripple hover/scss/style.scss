@@ -34,13 +34,15 @@ button {
   }
 }
 
-span {
-  position: absolute;
-  border-radius: 50%;
-  background: #ffffff;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  animation: animate 1s linear infinite;
+button {
+  span {
+    position: absolute;
+    border-radius: 50%;
+    background: #ffffff;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    animation: animate 1s linear infinite;
+  }
 }
 
 @keyframes animate {

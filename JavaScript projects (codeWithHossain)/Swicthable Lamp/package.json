@@ -1,0 +1,20 @@
+{
+  "name": "swicthable-lamp",
+  "version": "1.0.0",
+  "description": "swichable lamp",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "sass --watch scss:assets/css"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "javaScript",
+    "sass"
+  ],
+  "author": "shiham",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.56.1"
+  }
+}
