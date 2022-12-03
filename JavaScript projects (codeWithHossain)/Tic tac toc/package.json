@@ -1,0 +1,21 @@
+{
+  "name": "tic-tac-toc",
+  "version": "1.0.0",
+  "description": "this is a tic toc game discription",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "sass --watch scss:assets/css"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "scss",
+    "sass",
+    "javascript"
+  ],
+  "author": "shiham owner",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.56.1"
+  }
+}

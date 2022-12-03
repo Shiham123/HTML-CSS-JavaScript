@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic toc game project</title>
+    <!-- Font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=DynaPuff:regular,500,600,700"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="./main.js" defer></script>
+  </head>
+  <body>
+    <div class="selection">
+      <h2>Tic Tac Toe</h2>
+      <p>Select Your Player</p>
+      <div class="players">
+        <button class="player" onClick="playerSelect('X')">X</button>
+        <button class="player" onClick="playerSelect('O')">O</button>
+      </div>
+    </div>
+
+    <!-- Playing Board -->
+    <div class="play-board">
+      <table>
+        <tr>
+          <td class="cell" id="0"></td>
+          <td class="cell" id="1"></td>
+          <td class="cell" id="2"></td>
+        </tr>
+        <tr>
+          <td class="cell" id="3"></td>
+          <td class="cell" id="4"></td>
+          <td class="cell" id="5"></td>
+        </tr>
+        <tr>
+          <td class="cell" id="6"></td>
+          <td class="cell" id="7"></td>
+          <td class="cell" id="8"></td>
+        </tr>
+      </table>
+
+      <!-- Reset Button -->
+      <button class="reset" onclick="startGame()">Reset</button>
+    </div>
+
+    <!-- Winner Declaration -->
+    <div class="winner">
+      <h3></h3>
+
+      <button class="reset" onclick="startGame()">Play Again</button>
+    </div>
+  </body>
+</html>
