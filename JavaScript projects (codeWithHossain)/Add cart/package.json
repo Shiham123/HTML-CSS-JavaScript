@@ -1,0 +1,21 @@
+{
+  "name": "add-cart",
+  "version": "1.0.0",
+  "description": "this is adding cart project",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "sass --watch scss:assets/css"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "scss",
+    "sass",
+    "javaScript"
+  ],
+  "author": "shiham owner",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.56.1"
+  }
+}
