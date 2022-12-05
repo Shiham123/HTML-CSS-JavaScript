@@ -1,0 +1,95 @@
+/*
+    -- General Styles --
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+input {
+  display: none;
+}
+
+.toggle {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 120px;
+  height: 60px;
+  border-radius: 50px;
+  transition: 0.2s;
+
+  i {
+    width: 50%;
+    line-height: 60px;
+    text-align: center;
+    font-size: 30px;
+    z-index: 1;
+  }
+
+  .ball {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    margin: 7.5px;
+    border-radius: 50%;
+    transition: 0.3s ease-out;
+  }
+}
+
+/*
+    -- Light Mode --
+*/
+
+.light {
+  background: #fafafa;
+
+  .toggle {
+    background: linear-gradient(145deg, #e1e1e1, #fff);
+    box-shadow: 3px 3px 4px #e6e6e6, -3px -3px 4px #ffffff;
+
+    .bx-sun {
+      color: #fafafa;
+    }
+
+    .bx-moon {
+      color: #151d2a;
+    }
+
+    .ball {
+      background: #151d2a;
+    }
+  }
+}
+
+.dark {
+  background: #151d2a;
+
+  .toggle {
+    background: #151d2a;
+    box-shadow: 3px 3px 3px #0e131b, -3px -3px 3px #1c2739;
+  }
+
+  .bx-sun {
+    color: #fafafa;
+  }
+
+  .bx-moon {
+    color: #151d2a;
+  }
+  .ball {
+    background: #fafafa;
+    transform: translateX(60px);
+  }
+}
