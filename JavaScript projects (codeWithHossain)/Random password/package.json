@@ -1,0 +1,19 @@
+{
+  "name": "random-password",
+  "version": "1.0.0",
+  "description": "this is random password generator",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "sass --watch scss:assets/css"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "shiham owner",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.56.1"
+  }
+}
