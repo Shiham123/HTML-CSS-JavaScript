@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #282828;
+}
+
+.countdown {
+  text-align: center;
+}
+.countdown h1 {
+  color: cyan;
+  font: 800 7.5rem "Montserrat";
+  margin-bottom: 50px;
+}
+.countdown .countdown-item {
+  color: #ffffff;
+  width: 200px;
+  height: 200px;
+  margin: 0 15px;
+  text-align: center;
+  display: inline-block;
+  box-shadow: -3px -3px 7px rgba(255, 255, 255, 0.05), 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+.countdown .countdown-item span {
+  font: 800 7.5rem "Roboto";
+}
+.countdown .countdown-item div {
+  font: 500 1.5rem "Montserrat";
+}
+.countdown .colored {
+  color: cyan;
+}/*# sourceMappingURL=style.css.map */
