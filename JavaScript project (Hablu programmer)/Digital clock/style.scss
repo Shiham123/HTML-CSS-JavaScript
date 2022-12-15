@@ -1,0 +1,18 @@
+body {
+  background-color: rgba(83, 11, 11, 0.53);
+  font-family: 'Poppins', sans-serif;
+}
+
+.my-watch {
+  top: 30%;
+  left: 20%;
+  position: fixed;
+  background-color: aliceblue;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+
+  span {
+    font-size: 50px;
+  }
+}
