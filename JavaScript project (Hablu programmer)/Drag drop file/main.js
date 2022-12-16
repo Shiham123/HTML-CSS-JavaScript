@@ -1,7 +1,7 @@
-const DragArea = document.querySelector('.app-body'),
-  DragText = DragArea.querySelector('h3'),
-  button = DragArea.querySelector('button'),
-  input = DragArea.querySelector('input');
+const DragArea = document.getElementsByClassName('app-body')[0],
+  DragText = DragArea.getElementsByTagName('h3')[0],
+  button = DragArea.getElementsByTagName('button')[0],
+  input = DragArea.getElementsByTagName('input')[0];
 let Myfile;
 
 button.onclick = () => {
@@ -14,18 +14,18 @@ input.addEventListener('change', function () {
   ShowMe();
 });
 
-DragArea.addEventListener('dragover', (event) => {
+DragArea.addEventListener('dragover', function (event) {
   event.preventDefault();
   DragArea.classList.add('active');
   DragText.textContent = 'Release to Upload File';
 });
 
-DragArea.addEventListener('dragleave', () => {
+DragArea.addEventListener('dragleave', function () {
   DragArea.classList.remove('active');
   DragText.textContent = 'Drag & Drop';
 });
 
-DragArea.addEventListener('drop', (event) => {
+DragArea.addEventListener('drop', function (event) {
   event.preventDefault();
   Myfile = event.dataTransfer.files[0];
   ShowMe();

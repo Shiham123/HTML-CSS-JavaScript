@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz app with hablu</title>
+    <!-- Font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Scheherazade+New:regular,700"
+      rel="stylesheet"
+    />
+    <!-- Font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+    />
+    <!-- CSS and js file -->
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="/main.js" defer></script>
+  </head>
+  <body>
+    <!-- <div class="my-quiz-app">
+      <div class="img">
+        <img src="/Img/undraw_Questions_re_1fy7.png" alt="" />
+      </div>
+      <div class="text">
+        <h3>Quiz app with fixed time</h3>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos
+          veritatis, magni nulla voluptate veniam libero recusandae in debitis
+          assumenda? Corporis?
+        </p>
+        <h3>Quiz app with fixed time</h3>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, eaque.
+        </p>
+      </div>
+      <div class="my-btn">
+        <button>Start quiz</button>
+      </div>
+    </div> -->
+
+    <!-- ---------------------- -->
+    <!-- <div class="rules-box">
+      <div class="rules-title">some rules of this quiz</div>
+
+      <div class="rules-list">
+        <ol>
+          <li>you will have only <span>15 seconds</span> per each question</li>
+          <li>once you select your answer, it can't be undone</li>
+          <li>you can't select any option once time goes off</li>
+          <li>you can't exit from the quiz while you're playing</li>
+          <li>you'll get points on the basis of your correct answer</li>
+        </ol>
+      </div>
+
+      <div class="rules-btn">
+        <button>Exit quiz</button>
+        <button>continue</button>
+      </div>
+    </div> -->
+    <!-- ---------------------- -->
+
+    <div class="question">
+      <div class="question-header">
+        <h3>Start exam</h3>
+        <div class="time-count">
+          <div class="time-left">Time left</div>
+          <div class="seconds">15</div>
+        </div>
+
+        <div class="time-line"></div>
+      </div>
+
+      <div class="answer-section">
+        <h4>what does HTML stands for?</h4>
+
+        <div class="my-options">
+          <div class="option">
+            <span>hyper text markup language</span>
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-"></i>
+          </div>
+
+          <div class="option">
+            <span>hyper text processor</span>
+            <i class="fas fa-times-circle"></i>
+          </div>
+
+          <div class="option">
+            <span>hyper text multiple language</span>
+            <i class="fas fa-times-circle"></i>
+          </div>
+
+          <div class="option">
+            <span>hyper tool multi language</span>
+            <i class="fas fa-times-circle"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-footer">
+        <div class="total-question">
+          <p>1 of 5 question</p>
+        </div>
+        <button class="next-btn">next</button>
+      </div>
+    </div>
+  </body>
+</html>
