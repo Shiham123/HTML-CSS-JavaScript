@@ -1,0 +1,31 @@
+const myBtn = document.querySelector('.my-btn button'),
+  rulesBox = document.querySelector('.rules-box'),
+  questionSection = document.querySelector('.question'),
+  exitRulesButton = document.querySelectorAll('.rules-btn button')[0],
+  continueRulesButton = document.querySelectorAll('.rules-btn button')[1];
+
+myBtn.addEventListener('click', () => {
+  rulesBox.classList.add('activeInfo');
+});
+
+exitRulesButton.addEventListener('click', () => {
+  rulesBox.classList.remove('activeInfo');
+});
+
+continueRulesButton.addEventListener('click', () => {
+  rulesBox.classList.remove('activeInfo');
+  questionSection.classList.add('activeQue');
+  showQuestion(0);
+});
+
+const showQuestion = (index) => {
+  const questionText = document.querySelector('.answer-section');
+  const optionList = document.querySelector('.my-options');
+
+  const questionTag = `<h3>${questionsArray[index].num} . ${questionsArray[index].question}</h3>`;
+
+  const optionTag = `<span">${questionsArray[index].options}</span>`;
+
+  questionText.innerHTML = questionTag;
+  optionList.innerHTML = optionTag;
+};

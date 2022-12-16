@@ -11,6 +11,8 @@ body {
   background-color: #f1f1f1;
 }
 
+// -------------------
+
 .my-quiz-app {
   width: 320px;
   height: 580px;
@@ -73,6 +75,8 @@ body {
   box-shadow: rgb(0 0 0 / 10%) 0px 10px 50px;
   transform: translate(-50%, -50%);
   border-radius: 48px;
+  opacity: 0;
+  pointer-events: none;
 
   .rules-title {
     text-align: center;
@@ -138,6 +142,14 @@ body {
     }
   }
 }
+// js class
+
+.activeInfo {
+  opacity: 1;
+  z-index: 5;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
 
 // ------------------------------------------
 
@@ -151,6 +163,8 @@ body {
   box-shadow: rgb(0 0 0 / 10%) 0px 10px 50px;
   transform: translate(-50%, -50%);
   border-radius: 48px;
+  opacity: 0;
+  pointer-events: none;
 
   .question-header {
     position: relative;
@@ -263,4 +277,11 @@ body {
       }
     }
   }
+}
+
+.activeQue {
+  opacity: 1;
+  z-index: 11;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
 }

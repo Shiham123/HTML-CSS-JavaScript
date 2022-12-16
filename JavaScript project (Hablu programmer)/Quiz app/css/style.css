@@ -66,6 +66,8 @@ body {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
   transform: translate(-50%, -50%);
   border-radius: 48px;
+  opacity: 0;
+  pointer-events: none;
 }
 .rules-box .rules-title {
   text-align: center;
@@ -125,6 +127,13 @@ body {
   background-color: rgb(29, 194, 194);
 }
 
+.activeInfo {
+  opacity: 1;
+  z-index: 5;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
 .question {
   width: 320px;
   height: 580px;
@@ -135,6 +144,8 @@ body {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
   transform: translate(-50%, -50%);
   border-radius: 48px;
+  opacity: 0;
+  pointer-events: none;
 }
 .question .question-header {
   position: relative;
@@ -238,4 +249,11 @@ body {
 }
 .question .question-footer button:hover {
   background-color: rgb(29, 194, 194);
+}
+
+.activeQue {
+  opacity: 1;
+  z-index: 11;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
 }/*# sourceMappingURL=style.css.map */
