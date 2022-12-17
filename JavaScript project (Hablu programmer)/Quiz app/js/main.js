@@ -20,12 +20,12 @@ continueRulesButton.addEventListener('click', () => {
 
 const showQuestion = (index) => {
   const questionText = document.querySelector('.answer-section');
-  const optionList = document.querySelector('.my-options');
-
+  const answerList = document.querySelector('.my-options');
   const questionTag = `<h3>${questionsArray[index].num} . ${questionsArray[index].question}</h3>`;
-
-  const optionTag = `<span">${questionsArray[index].options}</span>`;
+  const answerTag = `<div class="option">
+   <span>${questionsArray[index].options}</span>
+  </div>`;
 
   questionText.innerHTML = questionTag;
-  optionList.innerHTML = optionTag;
+  answerList.innerHTML = answerTag;
 };
