@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+  background-color: black;
+  color: lightgray;
+  font-family: cursive;
+}
+
+.container {
+  text-align: center;
+  width: 400px;
+  position: relative;
+}
+.container .counter {
+  font-size: 40px;
+}
+.container .loading-bar-back {
+  position: absolute;
+  height: 8px;
+  background-color: lightgray;
+  width: 100%;
+  border-radius: 5px;
+}
+.container .loading-bar-front {
+  position: absolute;
+  height: 8px;
+  background-color: orangered;
+  width: 0%;
+  border-radius: 5px;
+}/*# sourceMappingURL=style.css.map */
