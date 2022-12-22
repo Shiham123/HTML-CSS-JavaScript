@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+}
+
+body {
+  font-family: "Poppins", cursive;
+  text-align: center;
+}
+body main div h1 {
+  font-size: 4rem;
+}
+body main .btn button {
+  padding: 1rem;
+  border-radius: 12px;
+  margin: 0.5rem;
+  cursor: pointer;
+  text-transform: capitalize;
+  color: white;
+}
+body main .btn button:nth-child(1) {
+  background-color: red;
+  transition: all 0.3s linear;
+}
+body main .btn button:nth-child(1):hover {
+  background-color: rgba(255, 0, 0, 0.616);
+}
+body main .btn button:nth-child(2) {
+  background-color: yellowgreen;
+  transition: all 0.3s linear;
+}
+body main .btn button:nth-child(2):hover {
+  background-color: rgba(153, 205, 50, 0.712);
+}
+body main .btn button:nth-child(3) {
+  background-color: green;
+  transition: all 0.3s linear;
+}
+body main .btn button:nth-child(3):hover {
+  background-color: rgba(0, 128, 0, 0.835);
+}
+
+.value {
+  font-size: 6rem;
+}/*# sourceMappingURL=style.css.map */

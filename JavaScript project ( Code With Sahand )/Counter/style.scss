@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+}
+
+body {
+  font-family: 'Poppins', cursive;
+  text-align: center;
+
+  main {
+    div {
+      h1 {
+        font-size: 4rem;
+      }
+    }
+
+    .btn {
+      button {
+        padding: 1rem;
+        border-radius: 12px;
+        margin: 0.5rem;
+        cursor: pointer;
+        text-transform: capitalize;
+        color: white;
+
+        &:nth-child(1) {
+          background-color: red;
+          transition: all 0.3s linear;
+
+          &:hover {
+            background-color: rgba(255, 0, 0, 0.616);
+          }
+        }
+
+        &:nth-child(2) {
+          background-color: yellowgreen;
+          transition: all 0.3s linear;
+
+          &:hover {
+            background-color: rgba(153, 205, 50, 0.712);
+          }
+        }
+
+        &:nth-child(3) {
+          background-color: green;
+          transition: all 0.3s linear;
+
+          &:hover {
+            background-color: rgba(0, 128, 0, 0.835);
+          }
+        }
+      }
+    }
+  }
+}
+
+.value {
+  font-size: 6rem;
+}

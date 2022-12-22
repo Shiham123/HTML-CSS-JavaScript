@@ -5,11 +5,6 @@ body {
   background: #ebebeb;
 }
 
-p {
-  margin-bottom: 1.25rem;
-  color: grey;
-}
-
 .section-center {
   width: 90vw;
   margin: 50px auto 0;
@@ -45,6 +40,10 @@ p {
 .question .question-text {
   padding: 1rem 0 1.5rem 0;
   border-top: 1px solid grey;
+}
+.question .question-text p {
+  margin-bottom: 1.25rem;
+  color: grey;
 }
 
 /* hide text */
