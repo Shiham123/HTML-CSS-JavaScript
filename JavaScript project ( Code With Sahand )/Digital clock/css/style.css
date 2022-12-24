@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+  background-image: url("/Img/pexels-jaime-reimer-2662116.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+h2 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 14px;
+  text-align: center;
+  color: white;
+  font-weight: 700;
+}
+
+.clock {
+  display: flex;
+}
+.clock div {
+  margin: 5px;
+  position: relative;
+}
+.clock div span {
+  width: 100px;
+  height: 80px;
+  background-color: slateblue;
+  opacity: 0.8;
+  color: wheat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.8);
+}
+.clock div .text {
+  height: 30px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: darkblue;
+  opacity: 0.8;
+}
+.clock div #am-pm {
+  bottom: 0;
+  position: absolute;
+  width: 60px;
+  height: 30px;
+  font-size: 20px;
+  background: green;
+}/*# sourceMappingURL=style.css.map */
