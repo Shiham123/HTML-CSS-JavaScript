@@ -3,11 +3,16 @@ const numOne = Math.ceil(Math.random() * 10),
 
 const questionElement = document.getElementById('question'),
   formElement = document.getElementById('form'),
-  inputElement = document.getElementById('input');
+  inputElement = document.getElementById('input'),
+  scoreElement = document.getElementById('score');
 
 let score = JSON.parse(localStorage.getItem('score'));
-questionElement.innerText = `what is ${numOne} multiply by ${numTwo}?`;
+if (!score) {
+  score = 0;
+}
 
+scoreElement.innerText = `Score : ${score}`;
+questionElement.innerText = `what is ${numOne} multiply by ${numTwo}?`;
 const correctAnswer = numOne * numTwo;
 
 formElement.addEventListener('submit', () => {
