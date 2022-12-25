@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+}
+body div:nth-child(1) {
+  display: flex;
+  position: fixed;
+  background-color: white;
+  width: 100%;
+  height: 10%;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.4s;
+}
+body div:nth-child(1) ul {
+  display: flex;
+  list-style-type: none;
+}
+body div:nth-child(1) ul li a {
+  text-decoration: none;
+  margin: 0 10px;
+  color: black;
+  font-family: cursive;
+}
+body div:nth-child(1) ul li a:hover {
+  color: red;
+}
+body div:nth-child(2) {
+  background-image: url("/Logo/photo-1547394765-185e1e68f34e.jfif");
+  height: 100vh;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+body div:nth-child(2) h1 {
+  color: white;
+  font-size: 50px;
+  font-family: "Alexandria", sans-serif;
+  letter-spacing: 2px;
+}
+body div:nth-child(3) p {
+  margin: 50px 5%;
+  font-family: sans-serif;
+}
+body .active {
+  background-color: black !important;
+}
+body .active ul li a {
+  color: white !important;
+}/*# sourceMappingURL=style.css.map */
