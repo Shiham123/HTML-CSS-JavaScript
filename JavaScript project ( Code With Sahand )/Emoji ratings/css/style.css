@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+  background-color: yellow;
+}
+
+.feedback-container {
+  background-color: white;
+  width: 400px;
+  height: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  position: relative;
+}
+.feedback-container .emoji-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 20%;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  overflow: hidden;
+}
+.feedback-container .emoji-container .far {
+  margin: 1px;
+  transform: translateX(0);
+  transition: transform 0.2s;
+}
+.feedback-container .rating-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 20%;
+}
+.feedback-container .rating-container .fa-star {
+  color: lightgray;
+  cursor: pointer;
+}
+.feedback-container .rating-container .fa-star.active {
+  color: gold;
+}/*# sourceMappingURL=style.css.map */
