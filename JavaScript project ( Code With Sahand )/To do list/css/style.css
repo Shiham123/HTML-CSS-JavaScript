@@ -59,10 +59,10 @@ body {
   transform: translateY(-50%);
   cursor: pointer;
 }
-.form .list .list li.checked {
+.form .list .checked {
   color: darkgray;
   text-decoration: line-through;
 }
-.form .list .list li.checked .fa-check-square {
+.form .list .checked .fa-check-square {
   color: darkgray;
 }/*# sourceMappingURL=style.css.map */
