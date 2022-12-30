@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  background-color: greenyellow;
+}
+
+.form {
+  position: absolute;
+  top: 30%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 400px;
+  background-color: yellow;
+  border-radius: 10px;
+}
+.form .input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  border-radius: 10px 10px 0 0;
+  border: none;
+  font-size: 20px;
+  font-family: cursive;
+}
+.form .input::-moz-placeholder {
+  color: lightgray;
+}
+.form .input:-ms-input-placeholder {
+  color: lightgray;
+}
+.form .input::placeholder {
+  color: lightgray;
+}
+.form .list {
+  padding: 0;
+  margin: 0;
+}
+.form .list li {
+  list-style-type: none;
+  padding: 20px;
+  font-family: cursive;
+  border-top: dotted;
+  border-color: darkgray;
+  position: relative;
+}
+.form .list li .fa-trash {
+  color: red;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.form .list li .fa-check-square {
+  color: green;
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.form .list .list li.checked {
+  color: darkgray;
+  text-decoration: line-through;
+}
+.form .list .list li.checked .fa-check-square {
+  color: darkgray;
+}/*# sourceMappingURL=style.css.map */
