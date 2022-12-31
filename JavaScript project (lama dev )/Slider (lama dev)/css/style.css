@@ -36,7 +36,8 @@ body {
 .container .top .frame .slider img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .container .bottom-container {
   display: flex;
@@ -51,6 +52,4 @@ body {
   height: 20px;
   border: 2px solid white;
   border-radius: 50%;
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
