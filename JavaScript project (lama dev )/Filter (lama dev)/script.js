@@ -88,15 +88,15 @@ const displayProduct = (filterProduct) => {
   productContainer.innerHTML = filterProduct
     .map(
       (product) => `
-  <div class="product">
-    <img
-      src=${product.img}
-      alt=""
-    />
-    <span class="name">${product.name}</span>
-    <span class="text">${product.price}</span>
-  </div>
-  `
+    <div class="product">
+      <img
+        src=${product.img}
+        alt=""
+      />
+      <span class="name">${product.name}</span>
+      <span class="text">${product.price}</span>
+    </div>
+    `
     )
     .join('');
 };
@@ -125,9 +125,9 @@ const setCategories = () => {
   categoriesContainer.innerHTML = addCategories
     .map(
       (category) => `
-  <div class="category">${category}</div>
+    <div class="category">${category}</div>
 
-  `
+    `
     )
     .join('');
 
