@@ -17,7 +17,7 @@
 
 body {
   font-size: 10px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 p {
@@ -47,37 +47,31 @@ img {
   color: var(--white);
   text-align: center;
   border-radius: 5px;
-
-  > * {
-    margin-bottom: 2rem;
-  }
-
-  .count {
-    font-size: 4rem;
-  }
-
-  .buttons {
-    button {
-      padding: 1rem;
-      margin: 0 1rem;
-      font-size: 1.5rem;
-      color: var(--white);
-      font-weight: 700;
-      border: none;
-      outline: none;
-      border-radius: 3px;
-      cursor: pointer;
-    }
-
-    .subtract {
-      background-color: orangered;
-    }
-    .reset {
-      background-color: var(--white);
-      color: var(--black);
-    }
-    .add {
-      background-color: green;
-    }
-  }
 }
+.counter-div > * {
+  margin-bottom: 2rem;
+}
+.counter-div .count {
+  font-size: 4rem;
+}
+.counter-div .buttons button {
+  padding: 1rem;
+  margin: 0 1rem;
+  font-size: 1.5rem;
+  color: var(--white);
+  font-weight: 700;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.counter-div .buttons .subtract {
+  background-color: orangered;
+}
+.counter-div .buttons .reset {
+  background-color: var(--white);
+  color: var(--black);
+}
+.counter-div .buttons .add {
+  background-color: green;
+}/*# sourceMappingURL=style.css.map */
