@@ -2,9 +2,9 @@ const inputTextEl = document.querySelector('.input-text'),
   btnEl = document.querySelector('.btn'),
   resultEl = document.querySelector('.result');
 
-btnEl.addEventListener('click', countVowel);
+btnEl.addEventListener('click', countVowelFun);
 
-function countVowel() {
+function countVowelFun() {
   let count = 0,
     inputVal = inputTextEl.value.toLowerCase();
 
