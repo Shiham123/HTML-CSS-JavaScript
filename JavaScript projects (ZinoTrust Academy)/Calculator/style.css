@@ -40,9 +40,6 @@ img {
   padding: 0 20px;
 }
 
-/* SECTION */
-/* SECTION */
-/* SECTION */
 section {
   height: 100vh;
   background-color: var(--light-blue);
@@ -106,6 +103,7 @@ select {
 .error {
   color: red;
   display: none;
+  border-bottom: none;
 }
 
 .result {
