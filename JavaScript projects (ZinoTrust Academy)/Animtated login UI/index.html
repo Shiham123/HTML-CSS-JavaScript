@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Bootstrap CSS CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+      integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+      crossorigin="anonymous"
+    />
+    <!-- Icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+    />
+
+    <!-- Bootstrap JS CDN  -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js"
+      defer
+      integrity="sha512-i9cEfJwUwViEPFKdC1enz4ZRGBj8YQo6QByFTF92YXHi7waCqyexvRD75S5NVTsSiTv7rKWqG9Y5eFxmRsOn0A=="
+      crossorigin="anonymous"
+    ></script>
+    <!-- CSS and JS file -->
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <section class="main">
+      <div class="container box">
+        <!-- Login section -->
+        <div class="login main-container">
+          <div class="login-img img-container">
+            <img src="./Img/login.svg" alt="login" />
+          </div>
+
+          <div class="login-form form-container">
+            <form action="">
+              <h2 class="text-center pb-3">Login</h2>
+              <input
+                type="text"
+                class="form-control form-control-lg mb-3"
+                placeholder="Username"
+              />
+
+              <input
+                type="password"
+                class="form-control form-control-lg mb-3"
+                placeholder="Password"
+              />
+
+              <div class="d-grid">
+                <button class="btn btn-primary btn-lg">Login</button>
+              </div>
+              <a href="#" class="forgot-link">Forgot password?</a>
+
+              <span>
+                Don't have an account?
+                <a href="#" class="register-link">Register</a>
+              </span>
+            </form>
+          </div>
+        </div>
+
+        <!-- Register section -->
+        <div class="register main-container">
+          <div class="register-form form-container">
+            <form action="">
+              <h2 class="text-center pb-3">Register</h2>
+
+              <input
+                type="text"
+                class="form-control form-control-lg mb-3"
+                placeholder="Username"
+              />
+
+              <input
+                type="email"
+                class="form-control form-control-lg mb-3"
+                placeholder="Email"
+              />
+
+              <input
+                type="password"
+                class="form-control form-control-lg mb-3"
+                placeholder="Password"
+              />
+
+              <div class="d-grid">
+                <button class="btn btn-primary btn-lg">Register</button>
+              </div>
+
+              <span>
+                Have an account?
+                <a href="#" class="login-link">login</a>
+              </span>
+            </form>
+          </div>
+
+          <div class="register-img img-container">
+            <img src="./Img/register.svg" alt="login" />
+          </div>
+        </div>
+
+        <!-- Forgot section -->
+        <div class="forgot main-container">
+          <div class="forgot-form form-container">
+            <form action="">
+              <h2 class="text-center pb-3">Reset Password</h2>
+
+              <input
+                type="password"
+                class="form-control form-control-lg mb-3"
+                placeholder="Password"
+              />
+
+              <div class="d-grid">
+                <button class="btn btn-primary btn-lg">Reset Password</button>
+              </div>
+
+              <span> We will send you a reset link!!! </span>
+            </form>
+            <div class="close">
+              <i class="fas fa-times"></i>
+            </div>
+          </div>
+          <div class="forgot-img img-container">
+            <img src="./Img/forgot.svg" alt="forgot" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
