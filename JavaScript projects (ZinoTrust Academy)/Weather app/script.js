@@ -29,4 +29,16 @@ function getData() {
 
 function displayData(response) {
   console.log(response);
+  if (response.cod === '404') {
+    const errorEl = document.querySelector('.error');
+    errorEl.textContent = 'Please enter valid city';
+    searchEl.value = '';
+  } else {
+    const cityEl = document.querySelector('.city');
+    cityEl.innerText = `${response.name}, ${response.sys.country}`;
+
+    const today = new Date();
+    const dateEl = document.querySelector('.date');
+    dateEl.innerText = getDateFun(today);
+  }
 }
