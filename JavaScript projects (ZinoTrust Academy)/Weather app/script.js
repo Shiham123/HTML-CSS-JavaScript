@@ -27,7 +27,6 @@ function getData() {
 }
 
 function displayData(response) {
-  console.log(response);
   if (response.cod === '404') {
     const errorEl = document.querySelector('.error');
     errorEl.textContent = 'Please enter valid city';
@@ -68,26 +67,25 @@ function displayData(response) {
 
 function getDateFun(today) {
   let months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ],
+    days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
 
-  let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
-
-  let day = days[today.getDay()];
-  let date = today.getDate();
-  let month = months[today.getMonth()];
-  let year = today.getFullYear();
+  let day = days[today.getDay()],
+    date = today.getDate(),
+    month = months[today.getMonth()],
+    year = today.getFullYear();
 
   return `${day}, ${date} ${month}, ${year}`;
 }
