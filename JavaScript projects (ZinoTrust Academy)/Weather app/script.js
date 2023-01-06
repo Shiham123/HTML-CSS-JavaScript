@@ -11,7 +11,7 @@ btnEl.addEventListener('click', getInput);
 function getInput(event) {
   event.preventDefault();
 
-  if (event.type == 'click') {
+  if (event.type === 'click') {
     getData(searchEl.value);
   }
 }
@@ -27,9 +27,10 @@ function getData() {
 }
 
 function displayData(response) {
+  console.log(response);
   if (response.cod === '404') {
     const errorEl = document.querySelector('.error');
-    errorEl.textContent = 'Please enter valid city';
+    errorEl.textContent = 'Please enter a valid city name';
     searchEl.value = '';
   } else {
     const errorEl = document.querySelector('.error');
@@ -44,20 +45,20 @@ function displayData(response) {
     dateEl.innerText = getDateFun(today);
 
     const tempEl = document.querySelector('.temp');
-    tempEl.innerHTML = `Temp : ${Math.round(
+    tempEl.innerHTML = `Temp: ${Math.round(
       response.main.temp
     )} <span>°C</span>`;
 
     const weatherEl = document.querySelector('.weather');
-    weatherEl.innerText = `Weather : ${response.weather[0].main}`;
+    weatherEl.innerText = `Weather: ${response.weather[0].main}`;
 
     const descriptionEl = document.querySelector('.description');
-    descriptionEl.innerText = `Description: ${response.weather[0].description}`;
+    descriptionEl.innerHTML = `Description : ${response.weather[0].description}`;
 
     const tempRangeEl = document.querySelector('.temp-range');
-    tempRangeEl.innerText = `Temp Range: ${Math.round(
+    tempRangeEl.innerHTML = `Temp Range: ${Math.round(
       response.main.temp_max
-    )} °C / ${Math.round(response.main.temp_min)} °C`;
+    )} °C  / ${Math.round(response.main.temp_min)} °C`;
 
     const weatherIconEl = document.querySelector('.weather-icon');
     const iconURL = 'http://openweathermap.org/img/w/';
@@ -80,12 +81,12 @@ function getDateFun(today) {
       'Nov',
       'Dec',
     ],
-    days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
+    days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thru', 'Fri', 'Sat'];
 
   let day = days[today.getDay()],
     date = today.getDate(),
     month = months[today.getMonth()],
     year = today.getFullYear();
 
-  return `${day}, ${date} ${month}, ${year}`;
+  return `${day}, ${date} ${month}, ${year} `;
 }
