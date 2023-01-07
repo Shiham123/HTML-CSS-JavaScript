@@ -1,37 +1,36 @@
 const btlEl = document.querySelector('.get-quotes'),
   numberEl = document.getElementById('number');
+
 btlEl.addEventListener('click', getQuotes);
 
 function getQuotes(event) {
   event.preventDefault();
 
   if (numberEl.value.length == 0) {
-    return alert('Please enter a number ');
+    return alert('Please enter a number');
   } else {
-    const http = new XMLHttpRequest();
+    fetch('https://type.fit/api/quotes')
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        data = randomQuotes(data);
+        let output = '';
 
-    http.open('GET', 'https://type.fit/api/quotes', true);
-    http.onload = function () {
-      if (this.status === 200) {
-        let response = randomQuotes(JSON.parse(this.responseText)),
-          output = '';
-
-        for (let i = 0; i < response.length; i++) {
+        for (let i = 0; i < data.length; i++) {
           if (i == numberEl.value) {
             break;
           }
           output += `
-           <hr>
-               <h5>Quote: ${response[i].text}</h5>
-               <h6>Quote: ${response[i].author}</h6>
+          <hr>
+               <h5>Quote: ${data[i].text}</h5>
+               <h6>Quote: ${data[i].author}</h6>
                <hr>
-        `;
+          `;
         }
         const quotesEl = document.querySelector('.quotes');
         quotesEl.innerHTML = output;
-      }
-    };
-    http.send();
+      });
   }
 }
 
