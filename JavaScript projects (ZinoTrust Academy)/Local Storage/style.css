@@ -133,7 +133,7 @@ ol li button:first-child {
   color: #1ea735;
 }
 
-button {
+button { 
   padding: 1rem;
   margin-top: 1rem;
   cursor: pointer;
