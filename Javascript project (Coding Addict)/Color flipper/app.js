@@ -1,12 +1,13 @@
 const colors = ['green', 'red', 'rgba(133,122,200)', '#f15025'];
-const colorSpan = document.querySelector('.color');
-const colorBtn = document.querySelector('.btn');
 
-colorBtn.addEventListener('click', function () {
-  const getRandomColor = randomColor();
+const colorSpanEl = document.querySelector('.color'),
+  btnEl = document.querySelector('.btn');
 
-  document.body.style.backgroundColor = colors[getRandomColor];
-  colorSpan.textContent = colors[getRandomColor];
+btnEl.addEventListener('click', function () {
+  const getRandomColor = colors[randomColor()];
+
+  document.body.style.backgroundColor = getRandomColor;
+  colorSpanEl.textContent = getRandomColor;
 });
 
 function randomColor() {

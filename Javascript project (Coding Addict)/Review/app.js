@@ -38,16 +38,16 @@ const imgEl = document.querySelector('#person-img'),
 const nextBtnEl = document.querySelector('.next-btn'),
   prevBtnEl = document.querySelector('.prev-btn');
 
-let currentItem = 0;
+let currentElement = 0;
 window.addEventListener('DOMContentLoaded', function () {
-  const item = reviews[currentItem];
+  let item = reviews[currentElement];
   imgEl.src = item.img;
   authorEl.textContent = item.name;
   jobEl.textContent = item.job;
   infoEl.textContent = item.text;
 });
 
-function showPerson(person) {
+function personElement(person) {
   const item = reviews[person];
   imgEl.src = item.img;
   authorEl.textContent = item.name;
@@ -56,18 +56,17 @@ function showPerson(person) {
 }
 
 nextBtnEl.addEventListener('click', function () {
-  currentItem++;
-  if (currentItem > reviews.length - 1) {
-    currentItem = 0;
+  currentElement++;
+  if (currentElement > reviews.length - 1) {
+    currentElement = 0;
   }
-
-  showPerson(currentItem);
+  personElement(currentElement);
 });
 
 prevBtnEl.addEventListener('click', function () {
-  currentItem--;
-  if (currentItem < 0) {
-    currentItem = reviews.length - 1;
+  currentElement--;
+  if (currentElement < 0) {
+    currentElement = reviews.length - 1;
   }
-  showPerson(currentItem);
+  personElement(currentElement);
 });
