@@ -81,16 +81,16 @@ const menu = [
   },
 ];
 
-const sectionCenterEl = document.querySelector('.section-center'),
-  btnContainerEl = document.querySelector('.btn-container');
+const sectionCenterEl = document.querySelector('.section-center');
+const btnContainerEl = document.querySelector('.btn-container');
 
 window.addEventListener('DOMContentLoaded', () => {
-  displayMenuItem(menu);
+  displayMenu(menu);
   displayMenuButton();
 });
 
-function displayMenuItem(menuItem) {
-  let displayItem = menuItem
+function displayMenu(menuItem) {
+  const menuItemAll = menuItem
     .map((item) => {
       return `
     <article class="menu-item">
@@ -101,14 +101,14 @@ function displayMenuItem(menuItem) {
               <h4 class="price">${item.price}</h4>
             </header>
             <p class="item-text">
-            ${item.desc}
+              ${item.desc}
             </p>
           </div>
         </article>
     `;
     })
     .join('');
-  sectionCenterEl.innerHTML = displayItem;
+  sectionCenterEl.innerHTML = menuItemAll;
 }
 
 function displayMenuButton() {
@@ -122,26 +122,26 @@ function displayMenuButton() {
     ['all']
   );
 
-  const categoryBtn = categories
-    .map((category) => {
-      return `<button type="button" class="filter-btn" data-id="${category}">${category}</button>`;
+  const categoriesShow = categories
+    .map((item) => {
+      return `<button type="button" class="filter-btn" data-id="${item}">${item}</button>`;
     })
     .join('');
-  btnContainerEl.innerHTML = categoryBtn;
-  const filterBtnEl = btnContainerEl.querySelectorAll('.filter-btn');
+  btnContainerEl.innerHTML = categoriesShow;
 
+  const filterBtnEl = btnContainerEl.querySelectorAll('.filter-btn');
   filterBtnEl.forEach((btn) => {
     btn.addEventListener('click', (el) => {
-      let category = el.currentTarget.dataset.id;
-      let categoryItem = menu.filter((item) => {
-        if (item.category === category) {
+      const categoryData = el.currentTarget.dataset.id;
+      const categoryFilter = menu.filter((item) => {
+        if (item.category === categoryData) {
           return item;
         }
       });
-      if (category === 'all') {
-        displayMenuItem(menu);
+      if (categoryData === 'all') {
+        displayMenu(menu);
       } else {
-        displayMenuItem(categoryItem);
+        displayMenu(categoryFilter);
       }
     });
   });
