@@ -2,10 +2,9 @@
 const dateEl = document.querySelector('footer > p > span');
 dateEl.innerHTML = new Date().getFullYear();
 
-// responsive mood fix
-const navToggleEl = document.querySelector('.nav-toggle'),
-  linksContainerEl = document.querySelector('.links-container'),
-  linksEl = document.querySelector('.links');
+const navToggleEl = document.querySelector('.nav-toggle');
+const linksContainerEl = document.querySelector('.links-container');
+const linksEl = document.querySelector('.links');
 
 navToggleEl.addEventListener('click', () => {
   const containerHeight = linksContainerEl.getBoundingClientRect().height;
@@ -18,18 +17,18 @@ navToggleEl.addEventListener('click', () => {
   }
 });
 
-// navbar fix
-const navbarEl = document.querySelector('#nav');
+const navEl = document.querySelector('#nav');
 const topLinkEl = document.querySelector('.top-link');
 
 window.addEventListener('scroll', () => {
-  const navbarHeight = navbarEl.getBoundingClientRect().height;
+  const navbarHeight = navEl.getBoundingClientRect().height;
+
   const windowHeight = window.scrollY;
 
   if (windowHeight > navbarHeight) {
-    navbarEl.classList.add('fixed-nav');
+    navEl.classList.add('fixed-nav');
   } else {
-    navbarEl.classList.remove('fixed-nav');
+    navEl.classList.remove('fixed-nav');
   }
 
   if (windowHeight > 500) {
@@ -42,17 +41,26 @@ window.addEventListener('scroll', () => {
 const scrollLinkEl = document.querySelectorAll('.scroll-link');
 scrollLinkEl.forEach((link) => {
   link.addEventListener('click', (e) => {
+    e.preventDefault();
     const id = e.currentTarget.getAttribute('href').slice(1);
     const element = document.getElementById(id);
 
-    const navbarHeight = navbarEl.getBoundingClientRect().height;
-
-    const fixedNavBar = navbarEl.classList.contains('fixed-nav');
+    const navbarHeight = navEl.getBoundingClientRect().height;
+    const containerHeight = linksContainerEl.getBoundingClientRect().height;
+    const fixedHeight = navEl.classList.contains('fixed-nav');
 
     let position = element.offsetTop - navbarHeight;
 
-    window.scrollY({
-      lett: 0,
+    if (!fixedHeight) {
+      position -= navbarHeight;
+    }
+
+    if (containerHeight > 82) {
+      position += containerHeight;
+    }
+
+    window.scrollTo({
+      left: 0,
       top: position,
     });
     linksContainerEl.style.height = 0;
