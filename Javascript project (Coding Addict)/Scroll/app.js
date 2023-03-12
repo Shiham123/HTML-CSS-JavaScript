@@ -32,11 +32,29 @@ window.addEventListener('scroll', () => {
     navbarEl.classList.remove('fixed-nav');
   }
 
-  const topLinkHeight = topLinkEl.getBoundingClientRect().height;
-
-  if (topLinkHeight < 500) {
+  if (windowHeight > 500) {
     topLinkEl.classList.add('show-link');
   } else {
     topLinkEl.classList.remove('show-link');
   }
+});
+
+const scrollLinkEl = document.querySelectorAll('.scroll-link');
+scrollLinkEl.forEach((link) => {
+  link.addEventListener('click', (e) => {
+    const id = e.currentTarget.getAttribute('href').slice(1);
+    const element = document.getElementById(id);
+
+    const navbarHeight = navbarEl.getBoundingClientRect().height;
+
+    const fixedNavBar = navbarEl.classList.contains('fixed-nav');
+
+    let position = element.offsetTop - navbarHeight;
+
+    window.scrollY({
+      lett: 0,
+      top: position,
+    });
+    linksContainerEl.style.height = 0;
+  });
 });
