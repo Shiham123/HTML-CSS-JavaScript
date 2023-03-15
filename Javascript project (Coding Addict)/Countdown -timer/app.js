@@ -23,28 +23,40 @@ const weekdays = [
 ];
 
 const giveawayEl = document.querySelector('.giveaway'),
-  deadlineEl = document.querySelector('.deadline'),
-  deadlineFormatEl = document.querySelectorAll('.deadline-format h4');
+  deadlineFormatEl = document.querySelectorAll('.deadline-format h4'),
+  deadlineEl = document.querySelector('.deadline');
 
-let tempDate = new Date(),
-  tempYear = tempDate.getFullYear(),
-  tempMonth = tempDate.getMonth(),
-  tempDay = tempDate.getDate();
+// let tempDate = new Date(),
+//   tempYear = tempDate.getFullYear(),
+//   tempMonth = tempDate.getMonth(),
+//   tempDay = tempDate.getDate(),
+//   tempHour = tempDate.getHours(),
+//   tempMinutes = tempDate.getMinutes(),
+//   tempSeconds = tempDate.getSeconds();
 
-const futureDate = new Date(tempYear, tempMonth, tempDay + 10, 11, 30, 0);
+// const futureDate = new Date(
+//   tempYear,
+//   tempMonth,
+//   tempDay,
+//   tempHour,
+//   tempMinutes,
+//   tempSeconds + 10
+// );
 
-const year = futureDate.getFullYear();
-const date = futureDate.getDate();
-const hour = futureDate.getHours();
-const minute = futureDate.getMinutes();
+const futureDate = new Date(2024, 0, 1, 5, 0, 10);
 
-let weekDay = futureDate.getDay();
-weekDay = weekdays[weekDay];
+const year = futureDate.getFullYear(),
+  hour = futureDate.getHours(),
+  minute = futureDate.getMinutes(),
+  date = futureDate.getDate();
 
 let month = futureDate.getMonth();
 month = months[month];
 
-giveawayEl.textContent = `Giveaway on ends ${weekDay} ${date} ${month} ${year} ${hour}:${minute}AM`;
+let weekday = futureDate.getDay();
+weekday = weekdays[weekday];
+
+giveawayEl.innerHTML = `Giveaway ends on ${weekday} ${date} ${month} ${year}, ${hour}AM`;
 
 const futureTime = futureDate.getTime();
 
@@ -59,18 +71,18 @@ function getRemainingTime() {
   let days = time / oneDay;
   days = Math.floor(days);
 
-  const hour = Math.floor((time % oneDay) / oneHour),
-    minute = Math.floor((time % oneHour) / oneMinute),
-    second = Math.floor((time % oneMinute) / 1000);
+  const hours = Math.floor((time % oneDay) / oneHour),
+    minutes = Math.floor((time % oneHour) / oneMinute),
+    seconds = Math.floor((time % oneMinute) / 1000);
 
   function formatTime(item) {
     if (item < 10) {
-      item = `0${item}`;
+      return (item = `0${item}`);
     }
     return item;
   }
 
-  const values = [days, hour, minute, second];
+  const values = [days, hours, minutes, seconds];
 
   deadlineFormatEl.forEach((item, index) => {
     item.innerHTML = formatTime(values[index]);
@@ -78,9 +90,10 @@ function getRemainingTime() {
 
   if (time < 0) {
     clearInterval(countdown);
-    deadlineEl.innerHTML = `<h4>Sorry, time expired</h4>`;
+    deadlineEl.innerHTML = `<h4>Sorry, time is expired</h4>`;
   }
 }
 
 let countdown = setInterval(getRemainingTime, 1000);
+
 getRemainingTime();
