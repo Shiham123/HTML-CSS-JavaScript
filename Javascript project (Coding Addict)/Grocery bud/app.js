@@ -1,7 +1,3 @@
-// step one --- show the add item and remove item show button
-// step two = add the input value to the broad
-// step three = add the clear button and remove all item broad
-
 const groceryFormEl = document.querySelector('.grocery-form'),
   groceryEl = document.getElementById('grocery'),
   alertEl = document.querySelector('.alert'),
@@ -10,6 +6,7 @@ const groceryFormEl = document.querySelector('.grocery-form'),
   clearBtnEl = document.querySelector('.clear-btn'),
   submitBtnEl = document.querySelector('.submit-btn');
 
+let editElement;
 let editFlag = false;
 let editId = '';
 
@@ -18,6 +15,7 @@ clearBtnEl.addEventListener('click', clearItem);
 
 function addItem(e) {
   e.preventDefault();
+
   const value = groceryEl.value;
   const id = new Date().getTime().toString();
 
@@ -41,38 +39,24 @@ function addItem(e) {
     </div>
     `;
 
+    const deleteBtn = element.querySelector('.delete-btn'),
+      editBtn = element.querySelector('.edit-btn');
+
+    deleteBtn.addEventListener('click', deleteItem);
+    editBtn.addEventListener('click', editItem);
+
     groceryListEl.appendChild(element);
     groceryContainerEl.classList.add('show-container');
 
-    displayAlert('item is added', 'success');
+    displayAlert('Item is added', 'success');
     setToDefault();
   } else if (value && editFlag) {
-    console.log('item is editing here');
+    editElement.innerHTML = value;
+    displayAlert('Item is edited', 'success');
+    setToDefault();
   } else {
-    displayAlert('Please add a item', 'danger');
+    displayAlert('Please add A Item', 'danger');
   }
-}
-
-function setToDefault() {
-  editId = '';
-  editFlag = false;
-  groceryEl.value = '';
-
-  submitBtnEl.textContent = 'Submitted';
-
-  setTimeout(() => {
-    submitBtnEl.textContent = 'Submit';
-  }, 1000);
-}
-
-function clearItem() {
-  const items = document.querySelectorAll('.grocery-item');
-
-  items.forEach((item) => {
-    groceryListEl.removeChild(item);
-  });
-  groceryContainerEl.classList.remove('show-container');
-  displayAlert('Added all Item all removed', 'danger');
 }
 
 function displayAlert(text, action) {
@@ -82,5 +66,45 @@ function displayAlert(text, action) {
   setTimeout(() => {
     alertEl.textContent = '';
     alertEl.classList.remove(`alert-${action}`);
-  }, 3000);
+  }, 2000);
+}
+
+function deleteItem(e) {
+  const element = e.currentTarget.parentElement.parentElement;
+  groceryListEl.removeChild(element);
+
+  if (groceryListEl.children.length === 0) {
+    groceryContainerEl.classList.remove('show-container');
+  }
+
+  displayAlert('Item is deleted', 'danger');
+  setToDefault();
+}
+
+function editItem(e) {
+  const element = e.currentTarget.parentElement.parentElement;
+  editElement = e.currentTarget.parentElement.previousElementSibling;
+  groceryEl.value = editElement.innerHTML;
+  editId = element.dataset.id;
+  editFlag = true;
+  submitBtnEl.textContent = 'Edit';
+}
+
+function clearItem() {
+  const items = document.querySelectorAll('.grocery-item');
+
+  if (items.length > 0) {
+    items.forEach((item) => {
+      groceryListEl.removeChild(item);
+    });
+  }
+  groceryContainerEl.classList.remove('show-container');
+  displayAlert('All item removed', 'danger');
+}
+
+function setToDefault() {
+  groceryEl.value = '';
+  editFlag = false;
+  editId = '';
+  submitBtnEl.textContent = 'Submit';
 }
