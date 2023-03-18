@@ -6,16 +6,15 @@ const groceryFormEl = document.querySelector('.grocery-form'),
   submitBtnEl = document.querySelector('.submit-btn'),
   clearBtnEl = document.querySelector('.clear-btn');
 
-let editElement;
-let editFlag = false;
-let editId = '';
+let editElement,
+  editFlag = false,
+  editId = '';
 
 groceryFormEl.addEventListener('submit', addItem);
 clearBtnEl.addEventListener('click', clearItem);
 
 function addItem(e) {
   e.preventDefault();
-
   const value = groceryEl.value;
   const id = new Date().getTime().toString();
 
@@ -47,12 +46,11 @@ function addItem(e) {
 
     groceryListEl.appendChild(element);
     groceryContainerEl.classList.add('show-container');
-
     displayAlert('Item is added', 'success');
     setToDefault();
   } else if (value && editFlag) {
     editElement.innerHTML = value;
-    displayAlert('Edit the item', 'success');
+    displayAlert('Item is edited', 'success');
     setToDefault();
   } else {
     displayAlert('Please add item', 'danger');
@@ -69,7 +67,7 @@ function displayAlert(text, action) {
   }, 2000);
 }
 
-function clearItem() {
+function clearItem(e) {
   const items = document.querySelectorAll('.grocery-item');
 
   if (items.length > 0) {
@@ -79,6 +77,7 @@ function clearItem() {
   }
   groceryContainerEl.classList.remove('show-container');
   displayAlert('All item is removed', 'danger');
+  setToDefault();
 }
 
 function deleteItem(e) {
@@ -88,8 +87,7 @@ function deleteItem(e) {
   if (groceryListEl.children.length === 0) {
     groceryContainerEl.classList.remove('show-container');
   }
-
-  displayAlert('Item deleted', 'danger');
+  displayAlert('Item is remove', 'danger');
   setToDefault();
 }
 
@@ -106,5 +104,4 @@ function setToDefault() {
   groceryEl.value = '';
   editFlag = false;
   editId = '';
-  submitBtnEl.textContent = 'submit';
 }
