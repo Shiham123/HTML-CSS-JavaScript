@@ -6,15 +6,16 @@ const groceryFormEl = document.querySelector('.grocery-form'),
   submitBtnEl = document.querySelector('.submit-btn'),
   clearBtnEl = document.querySelector('.clear-btn');
 
-let editElement,
-  editFlag = false,
-  editId = '';
+let editFlag = false;
+let editElement;
+let editId = '';
 
 groceryFormEl.addEventListener('submit', addItem);
 clearBtnEl.addEventListener('click', clearItem);
 
 function addItem(e) {
   e.preventDefault();
+
   const value = groceryEl.value;
   const id = new Date().getTime().toString();
 
@@ -44,14 +45,16 @@ function addItem(e) {
     deleteBtn.addEventListener('click', deleteItem);
     editBtn.addEventListener('click', editItem);
 
+    addToLocalStorage(id, value);
+
     groceryListEl.appendChild(element);
     groceryContainerEl.classList.add('show-container');
     displayAlert('Item is added', 'success');
-    setToDefault();
+    setBackToDefault();
   } else if (value && editFlag) {
     editElement.innerHTML = value;
     displayAlert('Item is edited', 'success');
-    setToDefault();
+    setBackToDefault();
   } else {
     displayAlert('Please add item', 'danger');
   }
@@ -77,31 +80,58 @@ function clearItem(e) {
   }
   groceryContainerEl.classList.remove('show-container');
   displayAlert('All item is removed', 'danger');
-  setToDefault();
+  setBackToDefault();
+  localStorage.removeItem('list');
 }
 
 function deleteItem(e) {
   const element = e.currentTarget.parentElement.parentElement;
   groceryListEl.removeChild(element);
+  const id = element.dataset.id;
 
   if (groceryListEl.children.length === 0) {
     groceryContainerEl.classList.remove('show-container');
   }
-  displayAlert('Item is remove', 'danger');
-  setToDefault();
+
+  displayAlert('Item is deleted', 'danger');
+  setBackToDefault();
+  removeFromLocalStorage(id);
 }
 
 function editItem(e) {
-  const element = e.currentTarget.parentElement.parentElement;
   editElement = e.currentTarget.parentElement.previousElementSibling;
   groceryEl.value = editElement.innerHTML;
-  editId = element.dataset.id;
   editFlag = true;
   submitBtnEl.textContent = 'Edit';
 }
 
-function setToDefault() {
+function setBackToDefault() {
   groceryEl.value = '';
   editFlag = false;
   editId = '';
+  submitBtnEl.textContent = 'Submit';
+}
+
+function addToLocalStorage(id, value) {
+  const grocery = { id, value };
+  let items = getFromLocalStorage();
+  items.push(grocery);
+  localStorage.setItem('list', JSON.stringify(items));
+}
+
+function removeFromLocalStorage(id) {
+  let items = getFromLocalStorage();
+
+  items = items.filter((item) => {
+    if (item.id !== id) {
+      return id;
+    }
+  });
+  localStorage.setItem('list', JSON.stringify(items));
+}
+
+function getFromLocalStorage() {
+  return localStorage.getItem('list')
+    ? JSON.parse(localStorage.getItem('list'))
+    : [];
 }
