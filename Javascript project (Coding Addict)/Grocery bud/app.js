@@ -47,6 +47,7 @@ function addItem(e) {
 
     groceryListEl.appendChild(element);
     groceryContainerEl.classList.add('show-container');
+
     addToLocalStorage(id, value);
 
     setToDefault();
@@ -88,16 +89,17 @@ function clearItem() {
 function deleteItem(e) {
   const element = e.currentTarget.parentElement.parentElement;
   groceryListEl.removeChild(element);
+
   const id = element.dataset.id;
 
   if (groceryListEl.children.length === 0) {
     groceryContainerEl.classList.remove('show-container');
   }
 
+  removeFromLocalStorage(id);
+
   displayAlert('Item is deleted', 'danger');
   setToDefault();
-
-  removeFromLocalStorage(id);
 }
 
 function editItem(e) {
@@ -127,13 +129,12 @@ function addToLocalStorage(id, value) {
 
 function removeFromLocalStorage(id) {
   let items = getToLocalStorage();
-  console.log(id);
-  items = items.filter(function (item) {
+
+  items = items.filter((item) => {
     if (item.id !== id) {
       return item;
     }
   });
-
   localStorage.setItem('list', JSON.stringify(items));
 }
 
