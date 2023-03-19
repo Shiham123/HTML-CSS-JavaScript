@@ -1,9 +1,9 @@
 const groceryFormEl = document.querySelector('.grocery-form'),
   groceryEl = document.getElementById('grocery'),
   alertEl = document.querySelector('.alert'),
+  submitBtnEl = document.querySelector('.submit-btn'),
   groceryListEl = document.querySelector('.grocery-list'),
   groceryContainerEl = document.querySelector('.grocery-container'),
-  submitBtnEl = document.querySelector('.submit-btn'),
   clearBtnEl = document.querySelector('.clear-btn');
 
 let editFlag = false;
@@ -15,9 +15,8 @@ clearBtnEl.addEventListener('click', clearItem);
 
 function addItem(e) {
   e.preventDefault();
-
-  const value = groceryEl.value;
   const id = new Date().getTime().toString();
+  const value = groceryEl.value;
 
   if (value && !editFlag) {
     const element = document.createElement('article');
@@ -37,6 +36,7 @@ function addItem(e) {
           <i class="fas fa-trash"></i>
         </button>
       </div>
+
     `;
 
     const deleteBtn = element.querySelector('.delete-btn'),
@@ -45,16 +45,17 @@ function addItem(e) {
     deleteBtn.addEventListener('click', deleteItem);
     editBtn.addEventListener('click', editItem);
 
-    addToLocalStorage(id, value);
-
     groceryListEl.appendChild(element);
     groceryContainerEl.classList.add('show-container');
+    addToLocalStorage(id, value);
+
+    setToDefault();
     displayAlert('Item is added', 'success');
-    setBackToDefault();
   } else if (value && editFlag) {
     editElement.innerHTML = value;
-    displayAlert('Item is edited', 'success');
-    setBackToDefault();
+    editFromLocalStorage(editId, value);
+    displayAlert('item edit', 'success');
+    setToDefault();
   } else {
     displayAlert('Please add item', 'danger');
   }
@@ -70,7 +71,7 @@ function displayAlert(text, action) {
   }, 2000);
 }
 
-function clearItem(e) {
+function clearItem() {
   const items = document.querySelectorAll('.grocery-item');
 
   if (items.length > 0) {
@@ -79,8 +80,8 @@ function clearItem(e) {
     });
   }
   groceryContainerEl.classList.remove('show-container');
-  displayAlert('All item is removed', 'danger');
-  setBackToDefault();
+  displayAlert('All item are removed', 'danger');
+  setToDefault();
   localStorage.removeItem('list');
 }
 
@@ -94,43 +95,61 @@ function deleteItem(e) {
   }
 
   displayAlert('Item is deleted', 'danger');
-  setBackToDefault();
+  setToDefault();
+
   removeFromLocalStorage(id);
 }
 
 function editItem(e) {
   editElement = e.currentTarget.parentElement.previousElementSibling;
   groceryEl.value = editElement.innerHTML;
+
+  const element = e.currentTarget.parentElement.parentElement;
+  editId = element.dataset.id;
+
   editFlag = true;
   submitBtnEl.textContent = 'Edit';
 }
 
-function setBackToDefault() {
+function setToDefault() {
   groceryEl.value = '';
   editFlag = false;
   editId = '';
-  submitBtnEl.textContent = 'Submit';
+  submitBtnEl.textContent = 'submit';
 }
 
 function addToLocalStorage(id, value) {
   const grocery = { id, value };
-  let items = getFromLocalStorage();
+  let items = getToLocalStorage();
   items.push(grocery);
   localStorage.setItem('list', JSON.stringify(items));
 }
 
 function removeFromLocalStorage(id) {
-  let items = getFromLocalStorage();
-
-  items = items.filter((item) => {
+  let items = getToLocalStorage();
+  console.log(id);
+  items = items.filter(function (item) {
     if (item.id !== id) {
-      return id;
+      return item;
     }
+  });
+
+  localStorage.setItem('list', JSON.stringify(items));
+}
+
+function editFromLocalStorage(id, value) {
+  let items = getToLocalStorage();
+
+  items = items.map((item) => {
+    if (item.id === id) {
+      item.value = value;
+    }
+    return item;
   });
   localStorage.setItem('list', JSON.stringify(items));
 }
 
-function getFromLocalStorage() {
+function getToLocalStorage() {
   return localStorage.getItem('list')
     ? JSON.parse(localStorage.getItem('list'))
     : [];
