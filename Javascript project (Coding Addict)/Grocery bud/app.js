@@ -1,13 +1,13 @@
 const groceryFormEl = document.querySelector('.grocery-form'),
   groceryEl = document.getElementById('grocery'),
   alertEl = document.querySelector('.alert'),
-  submitBtnEl = document.querySelector('.submit-btn'),
   groceryListEl = document.querySelector('.grocery-list'),
   groceryContainerEl = document.querySelector('.grocery-container'),
+  submitBtnEl = document.querySelector('.submit-btn'),
   clearBtnEl = document.querySelector('.clear-btn');
 
-let editFlag = false;
 let editElement;
+let editFlag = false;
 let editId = '';
 
 groceryFormEl.addEventListener('submit', addItem);
@@ -15,8 +15,8 @@ clearBtnEl.addEventListener('click', clearItem);
 
 function addItem(e) {
   e.preventDefault();
-  const id = new Date().getTime().toString();
   const value = groceryEl.value;
+  const id = new Date().getTime().toString();
 
   if (value && !editFlag) {
     const element = document.createElement('article');
@@ -36,29 +36,30 @@ function addItem(e) {
           <i class="fas fa-trash"></i>
         </button>
       </div>
-
     `;
 
-    const deleteBtn = element.querySelector('.delete-btn'),
-      editBtn = element.querySelector('.edit-btn');
+    const deleteBtnEl = element.querySelector('.delete-btn'),
+      editBtnEl = element.querySelector('.edit-btn');
 
-    deleteBtn.addEventListener('click', deleteItem);
-    editBtn.addEventListener('click', editItem);
+    deleteBtnEl.addEventListener('click', deleteItem);
+    editBtnEl.addEventListener('click', editItem);
 
     groceryListEl.appendChild(element);
     groceryContainerEl.classList.add('show-container');
 
     addToLocalStorage(id, value);
 
-    setToDefault();
     displayAlert('Item is added', 'success');
+    setToDefault();
   } else if (value && editFlag) {
     editElement.innerHTML = value;
+
     editFromLocalStorage(editId, value);
-    displayAlert('item edit', 'success');
+
+    displayAlert('Item is edited', 'success');
     setToDefault();
   } else {
-    displayAlert('Please add item', 'danger');
+    displayAlert('Please add Item', 'danger');
   }
 }
 
@@ -80,9 +81,11 @@ function clearItem() {
       groceryListEl.removeChild(item);
     });
   }
+
   groceryContainerEl.classList.remove('show-container');
-  displayAlert('All item are removed', 'danger');
+  displayAlert('all item removed', 'danger');
   setToDefault();
+
   localStorage.removeItem('list');
 }
 
@@ -90,26 +93,25 @@ function deleteItem(e) {
   const element = e.currentTarget.parentElement.parentElement;
   groceryListEl.removeChild(element);
 
-  const id = element.dataset.id;
-
   if (groceryListEl.children.length === 0) {
     groceryContainerEl.classList.remove('show-container');
   }
 
-  removeFromLocalStorage(id);
-
   displayAlert('Item is deleted', 'danger');
   setToDefault();
+
+  const id = element.dataset.id;
+  removeFromLocalStorage(id);
 }
 
 function editItem(e) {
   editElement = e.currentTarget.parentElement.previousElementSibling;
   groceryEl.value = editElement.innerHTML;
+  editFlag = true;
 
   const element = e.currentTarget.parentElement.parentElement;
   editId = element.dataset.id;
 
-  editFlag = true;
   submitBtnEl.textContent = 'Edit';
 }
 
@@ -117,14 +119,14 @@ function setToDefault() {
   groceryEl.value = '';
   editFlag = false;
   editId = '';
-  submitBtnEl.textContent = 'submit';
+  submitBtnEl.textContent = 'Submit';
 }
 
 function addToLocalStorage(id, value) {
   const grocery = { id, value };
-  let items = getToLocalStorage();
-  items.push(grocery);
-  localStorage.setItem('list', JSON.stringify(items));
+  let item = getToLocalStorage();
+  item.push(grocery);
+  localStorage.setItem('list', JSON.stringify(item));
 }
 
 function removeFromLocalStorage(id) {
