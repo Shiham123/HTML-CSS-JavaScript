@@ -94,8 +94,8 @@ function setToDefault() {
   submitBtnEl.textContent = 'Submit';
 }
 
-function addToLocalStorage(id, text) {
-  const grocery = { id, text };
+function addToLocalStorage(id, value) {
+  const grocery = { id, value };
   let items = getToLocalStorage();
   items.push(grocery);
   localStorage.setItem('list', JSON.stringify(items));
