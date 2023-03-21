@@ -6,21 +6,22 @@ const groceryFormEl = document.querySelector('.grocery-form'),
   submitBtnEl = document.querySelector('.submit-btn'),
   clearBtnEl = document.querySelector('.clear-btn');
 
-let editElement;
 let editFlag = false;
+let editElement;
 let editId = '';
 
 groceryFormEl.addEventListener('submit', addItem);
 clearBtnEl.addEventListener('click', clearItem);
-window.addEventListener('DOMContentLoaded', setupItem);
+window.addEventListener('DOMContentLoaded', setupItems);
 
 function addItem(e) {
   e.preventDefault();
+
   const value = groceryEl.value;
   const id = new Date().getTime().toString();
 
   if (value && !editFlag) {
-    createItems(id, value);
+    createItem(id, value);
     addToLocalStorage(id, value);
 
     displayAlert('Item is added', 'success');
@@ -30,10 +31,10 @@ function addItem(e) {
 
     editFromLocalStorage(editId, value);
 
-    displayAlert('Item is edited', 'success');
+    displayAlert('Edit item', 'success');
     setToDefault();
   } else {
-    displayAlert('Please add Item', 'danger');
+    displayAlert('Please add item', 'danger');
   }
 }
 
@@ -55,9 +56,8 @@ function clearItem() {
       groceryListEl.removeChild(item);
     });
   }
-
   groceryContainerEl.classList.remove('show-container');
-  displayAlert('all item removed', 'danger');
+  displayAlert('All item removed', 'danger');
   setToDefault();
 
   localStorage.removeItem('list');
@@ -70,7 +70,6 @@ function deleteItem(e) {
   if (groceryListEl.children.length === 0) {
     groceryContainerEl.classList.remove('show-container');
   }
-
   displayAlert('Item is deleted', 'danger');
   setToDefault();
 
@@ -82,11 +81,10 @@ function editItem(e) {
   editElement = e.currentTarget.parentElement.previousElementSibling;
   groceryEl.value = editElement.innerHTML;
   editFlag = true;
+  submitBtnEl.textContent = 'Edit';
 
   const element = e.currentTarget.parentElement.parentElement;
   editId = element.dataset.id;
-
-  submitBtnEl.textContent = 'Edit';
 }
 
 function setToDefault() {
@@ -96,11 +94,11 @@ function setToDefault() {
   submitBtnEl.textContent = 'Submit';
 }
 
-function addToLocalStorage(id, value) {
-  const grocery = { id, value };
-  let item = getToLocalStorage();
-  item.push(grocery);
-  localStorage.setItem('list', JSON.stringify(item));
+function addToLocalStorage(id, text) {
+  const grocery = { id, text };
+  let items = getToLocalStorage();
+  items.push(grocery);
+  localStorage.setItem('list', JSON.stringify(items));
 }
 
 function removeFromLocalStorage(id) {
@@ -132,18 +130,18 @@ function getToLocalStorage() {
     : [];
 }
 
-function setupItem() {
+function setupItems() {
   let items = getToLocalStorage();
 
   if (items.length > 0) {
-    items = items.forEach((item) => {
-      createItems(item.id, item.value);
+    items.forEach((item) => {
+      createItem(item.id, item.value);
     });
     groceryContainerEl.classList.add('show-container');
   }
 }
 
-function createItems(id, value) {
+function createItem(id, value) {
   const element = document.createElement('article');
   element.classList.add('grocery-item');
 
