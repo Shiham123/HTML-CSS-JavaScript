@@ -6,7 +6,8 @@ const myBtnEl = document.querySelector('.MyBtn button'),
 
 const textEl = document.querySelector('.text'),
   myOptionsEl = document.querySelector('.MyOptions'),
-  nextBtnEl = document.querySelector('.nextBtn');
+  nextBtnEl = document.querySelector('.nextBtn'),
+  totalQuestionEl = document.querySelector('.total_que');
 
 let questionCount = 0;
 
@@ -25,20 +26,19 @@ continueButtonEl.addEventListener('click', () => {
 });
 
 function showQuestion(index) {
-  let questionElement = `<span>${questionsData[index].numb}. ${questionsData[index].question}</span>`;
-  textEl.innerHTML = questionElement;
-
-  let answerElement =
+  textEl.innerHTML = `<span>${questionsData[index].numb}. ${questionsData[index].question}</span>`;
+  myOptionsEl.innerHTML =
     `<div class="options">${questionsData[0].answer}</div>` +
     `<div class="options">${questionsData[1].answer}</div>` +
     `<div class="options">${questionsData[2].answer}</div>` +
     `<div class="options">${questionsData[3].answer}</div>`;
-  myOptionsEl.innerHTML = answerElement;
 
   const option = myOptionsEl.querySelectorAll('.options');
   for (let i = 0; i < option.length; i++) {
     option[i].setAttribute('onclick', 'optionSelected(this)');
   }
+
+  totalQuestionEl.innerHTML = `<p>${questionsData[index].numb} of ${questionsData.length} Questions</p>`;
 }
 
 nextBtnEl.addEventListener('click', () => {
@@ -52,5 +52,11 @@ nextBtnEl.addEventListener('click', () => {
 
 function optionSelected(answer) {
   let userAnswer = answer.textContent;
-  let currentAnswer = questionsData.answer;
+  let trueAnswer = questionsData[questionCount].answer;
+
+  if (userAnswer === trueAnswer) {
+    console.log('answer is true');
+  } else {
+    console.log('answer is false');
+  }
 }
