@@ -5,7 +5,10 @@ const myBtnEl = document.querySelector('.MyBtn button'),
   continueButtonEl = document.querySelector('.ContinueButton');
 
 const textEl = document.querySelector('.text'),
-  myOptionsEl = document.querySelector('.MyOptions');
+  myOptionsEl = document.querySelector('.MyOptions'),
+  nextBtnEl = document.querySelector('.nextBtn');
+
+const totalQuestionEl = document.querySelector('.total_que');
 
 let questionCount = 0;
 
@@ -34,3 +37,12 @@ function showQuestion(index) {
     `<div class="options">${questions[index].options[3]}</div>`;
   myOptionsEl.innerHTML = answerAdd;
 }
+
+nextBtnEl.addEventListener('click', () => {
+  if (questionCount < questions.length - 1) {
+    questionCount++;
+    showQuestion(questionCount);
+  } else {
+    window.location.reload();
+  }
+});
