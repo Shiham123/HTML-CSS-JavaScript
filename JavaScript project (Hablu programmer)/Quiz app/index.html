@@ -4,89 +4,106 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quiz app with hablu</title>
-    <!-- Font -->
+    <title>Awesome Quiz App With Fixed Time || Hablu Programmer</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css?family=Scheherazade+New:regular,700"
+      href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Font awesome -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-      crossorigin="anonymous"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
-    <!-- CSS and js file -->
-    <link rel="stylesheet" href="/css/style.css" />
-    <script src="/js/main.js" defer></script>
-    <script src="/js/question.js" defer></script>
   </head>
   <body>
-    <div class="my-quiz-app">
+    <div class="MyQuizApp">
       <div class="img">
-        <img src="/Img/undraw_Questions_re_1fy7.png" alt="" />
+        <img src="./Svg/Question.svg" alt="" />
       </div>
-      <div class="text">
-        <h3>Quiz app with fixed time</h3>
+      <div class="text1">
+        <h3>Quiz App With Fixed Time</h3>
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos
-          veritatis, magni nulla voluptate veniam libero recusandae in debitis
-          assumenda? Corporis?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
+          aperiam, numquam minima rem deserunt dolores consectetur veritatis
+          illo iure incidunt sint nihil!
         </p>
-        <h3>Quiz app with fixed time</h3>
+        <h3>Quiz App With Fixed Time</h3>
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, eaque.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, in.
         </p>
       </div>
-      <div class="my-btn">
-        <button>Start quiz</button>
+      <div class="MyBtn">
+        <button>Start Quiz</button>
       </div>
     </div>
 
-    <!-- ---------------------- -->
-    <div class="rules-box">
-      <div class="rules-title">some rules of this quiz</div>
-
-      <div class="rules-list">
+    <div class="RulesBox">
+      <div class="RulesTitle">Some Rules of this Quiz</div>
+      <div class="RulesList">
         <ol>
-          <li>you will have only <span>15 seconds</span> per each question</li>
-          <li>once you select your answer, it can't be undone</li>
-          <li>you can't select any option once time goes off</li>
-          <li>you can't exit from the quiz while you're playing</li>
-          <li>you'll get points on the basis of your correct answer</li>
+          <li>
+            You will have only
+            <span style="color: #007bff">15 seconds</span> per each question.
+          </li>
+          <li>Once you select your answer, it can't be undone.</li>
+          <li>You can't select any option once time goes off.</li>
+          <li>You can't exit from the Quiz while you're playing.</li>
+          <li>You'll get points on the basis of your correct answers.</li>
         </ol>
       </div>
 
-      <div class="rules-btn">
-        <button>Exit quiz</button>
-        <button>continue</button>
+      <div class="Buttons">
+        <button class="ExitButton">Exit Quiz</button>
+        <button class="ContinueButton">Continue</button>
       </div>
     </div>
-    <!-- ---------------------- -->
 
-    <div class="question">
-      <div class="question-header">
-        <h3>Start exam</h3>
-        <div class="time-count">
-          <div class="time-left">Time left</div>
-          <div class="seconds">15</div>
+    <div class="Questions">
+      <header class="QuestionsHeader">
+        <div class="title">Start Exam</div>
+
+        <div class="TimeCount">
+          <div class="TimeLeft">Time Left</div>
+          <div class="Seconds">15</div>
         </div>
 
-        <div class="time-line"></div>
-      </div>
+        <div class="time_lines"></div>
+      </header>
 
-      <div class="answer-section">
-        <div class="text"></div>
-
-        <div class="my-options"></div>
-      </div>
-
-      <div class="question-footer">
-        <div class="total-question">
-          <!-- <p>1 of 5 question</p> -->
+      <div class="section">
+        <div class="text">
+          <!-- <span>1. What Does HTML Stand For?</span>  -->
         </div>
-        <button class="next-btn">next</button>
+
+        <div class="MyOptions"></div>
+      </div>
+
+      <footer>
+        <div class="total_que">
+          <!-- <p>1 of 5 Questions</p> -->
+        </div>
+        <button class="nextBtn">Next Que</button>
+      </footer>
+    </div>
+
+    <div class="result_box">
+      <div class="ResultImg">
+        <img src="./Svg/winner.svg" alt="" />
+      </div>
+      <div class="complete_text">You Have Finished This Exam</div>
+      <div class="score_text">
+        <span
+          >Carry On👍 You Got
+          <p>0</p>
+          Out Of
+          <p>5</p></span
+        >
+      </div>
+      <div class="buttons">
+        <button class="restart1">Replay</button>
+        <button class="quit">Quit Quiz</button>
       </div>
     </div>
   </body>

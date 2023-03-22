@@ -1,6 +1,6 @@
-const questionsArray = [
+let questions = [
   {
-    num: 1,
+    numb: 1,
     question: 'What Does HTML Stand For?',
     answer: 'Hyper Text Markup Language',
     options: [
@@ -11,7 +11,7 @@ const questionsArray = [
     ],
   },
   {
-    num: 2,
+    numb: 2,
     question: 'What Does CSS Stand For?',
     answer: 'Cascading Style Sheet',
     options: [
@@ -22,19 +22,19 @@ const questionsArray = [
     ],
   },
   {
-    num: 3,
+    numb: 3,
     question: 'What Does PHP Stand For?',
     answer: 'Hypertext Preprocessor',
     options: [
       'Hypertext Preprocessor',
       'Hypertext Programming',
-      'Hypertext Pre programming',
-      'Home text Preprocessor',
+      'Hypertext Preprogramming',
+      'Hometext Preprocessor',
     ],
   },
 
   {
-    num: 4,
+    numb: 4,
     question: 'What does SQL stand for?',
     answer: 'Structured Query Language',
     options: [
@@ -46,7 +46,7 @@ const questionsArray = [
   },
 
   {
-    num: 5,
+    numb: 5,
     question: 'What does XML stand for?',
     answer: 'eXtensible Markup Language',
     options: [
