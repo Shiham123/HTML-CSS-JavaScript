@@ -56,4 +56,15 @@ let questions = [
       'eXamine Multiple Language',
     ],
   },
+  {
+    numb: 6,
+    question: 'What is SCSS?',
+    answer: 'css preprocessor',
+    options: [
+      'css library',
+      'css framework',
+      'css modifier',
+      'css preprocessor',
+    ],
+  },
 ];

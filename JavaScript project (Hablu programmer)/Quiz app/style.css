@@ -179,7 +179,7 @@ ol li {
   font-size: 25px;
   font-weight: 600;
 }
-.MyOptions {
+.My {
   padding: 20px 0px;
   display: block;
 }
@@ -228,7 +228,7 @@ footer button {
   color: #f1f1f1;
   transition: all 0.3s ease;
   margin-top: 11px;
-  display: none;
+  /* display: none; */
 }
 footer .nextBtn:hover {
   background-color: rgb(29, 194, 194);
