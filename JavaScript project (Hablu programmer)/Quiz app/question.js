@@ -1,4 +1,4 @@
-let questions = [
+let questionsData = [
   {
     numb: 1,
     question: 'What Does HTML Stand For?',
