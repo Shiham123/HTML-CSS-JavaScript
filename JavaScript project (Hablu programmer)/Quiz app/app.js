@@ -9,7 +9,7 @@ const textEl = document.querySelector('.text'),
   totalQuestionEl = document.querySelector('.total_que'),
   nextBtnEl = document.querySelector('.nextBtn');
 
-const secondsEl = document.querySelector('.Seconds');
+const timeCountEl = document.querySelector('.TimeCount .Seconds');
 
 let questionCounter = 0;
 let timerCounter;
@@ -52,29 +52,29 @@ function showQuestion(index) {
 
   const option = myOptionsEl.querySelectorAll('.options');
   for (let i = 0; i < myOptionsEl.children.length; i++) {
-    option[i].setAttribute('onclick', 'selectOption(this)');
+    option[i].setAttribute('onclick', 'selectedOption(this)');
   }
 }
 
-function selectOption(answer) {
+function selectedOption(answer) {
   clearInterval(timerCounter);
   let userAnswer = answer.textContent;
   let correctAnswer = questionsData[questionCounter].answer;
 
-  let tickIcon = `<div class="tick icon"><i class="fas fa-check"></i></div>`,
-    crossIcon = `<div class="cross icon"><i class="fas fa-times"></i></div>`;
+  let correctIcon = `<div><i class="fas fa-check"></i></div>`,
+    crossIcon = `<div><i class="fas fa-times"></i></div>`;
 
   if (userAnswer === correctAnswer) {
     answer.classList.add('correct');
-    answer.insertAdjacentHTML('beforeend', tickIcon);
+    answer.insertAdjacentHTML('beforeend', correctIcon);
   } else {
-    answer.classList.remove('incorrect');
+    answer.classList.add('incorrect');
     answer.insertAdjacentHTML('beforeend', crossIcon);
 
     for (let i = 0; i < myOptionsEl.children.length; i++) {
       if (myOptionsEl.children[i].textContent === correctAnswer) {
         myOptionsEl.children[i].setAttribute('class', 'options correct');
-        myOptionsEl.children[i].insertAdjacentHTML('beforeend', tickIcon);
+        myOptionsEl.children[i].insertAdjacentHTML('beforeend', correctIcon);
       }
     }
   }
@@ -85,10 +85,10 @@ function selectOption(answer) {
 }
 
 function startTimer(timer) {
-  secondsEl.textContent = timer;
+  timeCountEl.textContent = timer;
 
   timerCounter = setInterval(() => {
-    secondsEl.textContent = timer;
+    timeCountEl.textContent = timer;
     timer--;
   }, 1000);
 }
