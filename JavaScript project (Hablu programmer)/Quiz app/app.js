@@ -55,8 +55,18 @@ function optionSelected(answer) {
   let correctAnswer = questionsData[questionCount].answer;
 
   if (userAnswer === correctAnswer) {
-    console.log('answer is correct');
+    answer.classList.add('correct');
   } else {
-    console.log('answer is incorrect');
+    answer.classList.add('incorrect');
+
+    for (let i = 0; i < myOptionsEl.children.length; i++) {
+      if (myOptionsEl.children[i].textContent === correctAnswer) {
+        myOptionsEl.children[i].setAttribute('class', 'options correct');
+      }
+    }
+  }
+
+  for (let i = 0; i < myOptionsEl.children.length; i++) {
+    myOptionsEl.children[i].classList.add('disabled');
   }
 }
