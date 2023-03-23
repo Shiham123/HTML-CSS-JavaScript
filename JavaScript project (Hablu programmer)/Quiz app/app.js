@@ -9,7 +9,12 @@ const textEl = document.querySelector('.text'),
   myOptionsEl = document.querySelector('.MyOptions'),
   totalQuestionEl = document.querySelector('.total_que');
 
+const timeCountEl = document.querySelector('.TimeCount .Seconds'),
+  secondsEl = document.querySelector('.Seconds');
+
 let questionCount = 0;
+let timerCounter;
+let timeValue = 5;
 
 myBtnEl.addEventListener('click', () => {
   rulesBoxEl.classList.add('activeInfo');
@@ -23,6 +28,7 @@ continueButtonEl.addEventListener('click', () => {
   rulesBoxEl.classList.remove('activeInfo');
   questionsEl.classList.add('activeQuiz');
   showQuestion(0);
+  startTime(5);
 });
 
 function showQuestion(index) {
@@ -45,23 +51,32 @@ nextBtnEl.addEventListener('click', () => {
   if (questionCount < questionsData.length - 1) {
     questionCount++;
     showQuestion(questionCount);
+    clearInterval(timerCounter);
+    startTime(timeValue);
   } else {
     window.location.reload();
   }
 });
 
 function optionSelected(answer) {
+  clearInterval(timerCounter);
   let userAnswer = answer.textContent;
   let correctAnswer = questionsData[questionCount].answer;
 
+  let tickIcon = `<div class="tick icon"><i class="fas fa-check"></i></div>`,
+    crossIcon = `<div class="cross icon"><i class="fas fa-times"></i></div>`;
+
   if (userAnswer === correctAnswer) {
     answer.classList.add('correct');
+    answer.insertAdjacentHTML('beforeend', tickIcon);
   } else {
     answer.classList.add('incorrect');
+    answer.insertAdjacentHTML('beforeend', crossIcon);
 
     for (let i = 0; i < myOptionsEl.children.length; i++) {
       if (myOptionsEl.children[i].textContent === correctAnswer) {
         myOptionsEl.children[i].setAttribute('class', 'options correct');
+        myOptionsEl.children[i].insertAdjacentHTML('beforeend', tickIcon);
       }
     }
   }
@@ -69,4 +84,12 @@ function optionSelected(answer) {
   for (let i = 0; i < myOptionsEl.children.length; i++) {
     myOptionsEl.children[i].classList.add('disabled');
   }
+}
+
+function startTime(timer) {
+  secondsEl.innerHTML = timer;
+  timerCounter = setInterval(() => {
+    timeCountEl.textContent = timer;
+    timer--;
+  }, 1000);
 }
