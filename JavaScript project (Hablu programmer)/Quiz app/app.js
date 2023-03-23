@@ -2,19 +2,18 @@ const myBtnEl = document.querySelector('.MyBtn button'),
   rulesBoxEl = document.querySelector('.RulesBox'),
   exitButtonEl = document.querySelector('.ExitButton'),
   continueButtonEl = document.querySelector('.ContinueButton'),
-  questionsEl = document.querySelector('.Questions'),
-  nextBtnEl = document.querySelector('.nextBtn');
+  questionsEl = document.querySelector('.Questions');
 
 const textEl = document.querySelector('.text'),
   myOptionsEl = document.querySelector('.MyOptions'),
-  totalQuestionEl = document.querySelector('.total_que');
+  totalQuestionEl = document.querySelector('.total_que'),
+  nextBtnEl = document.querySelector('.nextBtn');
 
-const timeCountEl = document.querySelector('.TimeCount .Seconds'),
-  secondsEl = document.querySelector('.Seconds');
+const secondsEl = document.querySelector('.Seconds');
 
-let questionCount = 0;
+let questionCounter = 0;
 let timerCounter;
-let timeValue = 5;
+let timerValue = 15;
 
 myBtnEl.addEventListener('click', () => {
   rulesBoxEl.classList.add('activeInfo');
@@ -27,8 +26,19 @@ exitButtonEl.addEventListener('click', () => {
 continueButtonEl.addEventListener('click', () => {
   rulesBoxEl.classList.remove('activeInfo');
   questionsEl.classList.add('activeQuiz');
-  showQuestion(0);
-  startTime(5);
+  showQuestion(questionCounter);
+  startTimer(timerValue);
+});
+
+nextBtnEl.addEventListener('click', () => {
+  if (questionCounter < questionsData.length - 1) {
+    questionCounter++;
+    showQuestion(questionCounter);
+    clearInterval(timerCounter);
+    startTimer(timerValue);
+  } else {
+    window.location.reload();
+  }
 });
 
 function showQuestion(index) {
@@ -38,30 +48,18 @@ function showQuestion(index) {
     `<div class="options">${questionsData[index].options[1]}</div>` +
     `<div class="options">${questionsData[index].options[2]}</div>` +
     `<div class="options">${questionsData[index].options[3]}</div>`;
-
   totalQuestionEl.innerHTML = `<p>${questionsData[index].numb} of ${questionsData.length} Questions</p>`;
 
   const option = myOptionsEl.querySelectorAll('.options');
-  for (let i = 0; i < option.length; i++) {
-    option[i].setAttribute('onclick', 'optionSelected(this)');
+  for (let i = 0; i < myOptionsEl.children.length; i++) {
+    option[i].setAttribute('onclick', 'selectOption(this)');
   }
 }
 
-nextBtnEl.addEventListener('click', () => {
-  if (questionCount < questionsData.length - 1) {
-    questionCount++;
-    showQuestion(questionCount);
-    clearInterval(timerCounter);
-    startTime(timeValue);
-  } else {
-    window.location.reload();
-  }
-});
-
-function optionSelected(answer) {
+function selectOption(answer) {
   clearInterval(timerCounter);
   let userAnswer = answer.textContent;
-  let correctAnswer = questionsData[questionCount].answer;
+  let correctAnswer = questionsData[questionCounter].answer;
 
   let tickIcon = `<div class="tick icon"><i class="fas fa-check"></i></div>`,
     crossIcon = `<div class="cross icon"><i class="fas fa-times"></i></div>`;
@@ -70,7 +68,7 @@ function optionSelected(answer) {
     answer.classList.add('correct');
     answer.insertAdjacentHTML('beforeend', tickIcon);
   } else {
-    answer.classList.add('incorrect');
+    answer.classList.remove('incorrect');
     answer.insertAdjacentHTML('beforeend', crossIcon);
 
     for (let i = 0; i < myOptionsEl.children.length; i++) {
@@ -86,10 +84,11 @@ function optionSelected(answer) {
   }
 }
 
-function startTime(timer) {
-  secondsEl.innerHTML = timer;
+function startTimer(timer) {
+  secondsEl.textContent = timer;
+
   timerCounter = setInterval(() => {
-    timeCountEl.textContent = timer;
+    secondsEl.textContent = timer;
     timer--;
   }, 1000);
 }
