@@ -2,11 +2,11 @@ const myBtnEl = document.querySelector('.MyBtn button'),
   rulesBoxEl = document.querySelector('.RulesBox'),
   exitButtonEl = document.querySelector('.ExitButton'),
   continueButtonEl = document.querySelector('.ContinueButton'),
-  questionsEl = document.querySelector('.Questions');
+  questionsEl = document.querySelector('.Questions'),
+  nextBtnEl = document.querySelector('.nextBtn');
 
 const textEl = document.querySelector('.text'),
   myOptionsEl = document.querySelector('.MyOptions'),
-  nextBtnEl = document.querySelector('.nextBtn'),
   totalQuestionEl = document.querySelector('.total_que');
 
 let questionCount = 0;
@@ -28,17 +28,17 @@ continueButtonEl.addEventListener('click', () => {
 function showQuestion(index) {
   textEl.innerHTML = `<span>${questionsData[index].numb}. ${questionsData[index].question}</span>`;
   myOptionsEl.innerHTML =
-    `<div class="options">${questionsData[0].answer}</div>` +
-    `<div class="options">${questionsData[1].answer}</div>` +
-    `<div class="options">${questionsData[2].answer}</div>` +
-    `<div class="options">${questionsData[3].answer}</div>`;
+    `<div class="options">${questionsData[index].options[0]}</div>` +
+    `<div class="options">${questionsData[index].options[1]}</div>` +
+    `<div class="options">${questionsData[index].options[2]}</div>` +
+    `<div class="options">${questionsData[index].options[3]}</div>`;
+
+  totalQuestionEl.innerHTML = `<p>${questionsData[index].numb} of ${questionsData.length} Questions</p>`;
 
   const option = myOptionsEl.querySelectorAll('.options');
   for (let i = 0; i < option.length; i++) {
     option[i].setAttribute('onclick', 'optionSelected(this)');
   }
-
-  totalQuestionEl.innerHTML = `<p>${questionsData[index].numb} of ${questionsData.length} Questions</p>`;
 }
 
 nextBtnEl.addEventListener('click', () => {
@@ -52,11 +52,11 @@ nextBtnEl.addEventListener('click', () => {
 
 function optionSelected(answer) {
   let userAnswer = answer.textContent;
-  let trueAnswer = questionsData[questionCount].answer;
+  let correctAnswer = questionsData[questionCount].answer;
 
-  if (userAnswer === trueAnswer) {
-    console.log('answer is true');
+  if (userAnswer === correctAnswer) {
+    console.log('answer is correct');
   } else {
-    console.log('answer is false');
+    console.log('answer is incorrect');
   }
 }
