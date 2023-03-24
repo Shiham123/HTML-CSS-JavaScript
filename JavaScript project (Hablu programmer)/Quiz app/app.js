@@ -12,7 +12,7 @@ const textEl = document.querySelector('.text'),
 const timeCountEl = document.querySelector('.TimeCount .Seconds');
 
 let questionCounter = 0;
-let timerCounter;
+let counterTimer;
 let timerValue = 15;
 
 myBtnEl.addEventListener('click', () => {
@@ -34,7 +34,7 @@ nextBtnEl.addEventListener('click', () => {
   if (questionCounter < questionsData.length - 1) {
     questionCounter++;
     showQuestion(questionCounter);
-    clearInterval(timerCounter);
+    clearInterval(counterTimer);
     startTimer(timerValue);
   } else {
     window.location.reload();
@@ -57,16 +57,16 @@ function showQuestion(index) {
 }
 
 function selectedOption(answer) {
-  clearInterval(timerCounter);
+  clearInterval(counterTimer);
   let userAnswer = answer.textContent;
   let correctAnswer = questionsData[questionCounter].answer;
 
-  let correctIcon = `<div><i class="fas fa-check"></i></div>`,
+  let checkIcon = `<div><i class="fas fa-check"></i></div>`,
     crossIcon = `<div><i class="fas fa-times"></i></div>`;
 
   if (userAnswer === correctAnswer) {
     answer.classList.add('correct');
-    answer.insertAdjacentHTML('beforeend', correctIcon);
+    answer.insertAdjacentHTML('beforeend', checkIcon);
   } else {
     answer.classList.add('incorrect');
     answer.insertAdjacentHTML('beforeend', crossIcon);
@@ -74,7 +74,7 @@ function selectedOption(answer) {
     for (let i = 0; i < myOptionsEl.children.length; i++) {
       if (myOptionsEl.children[i].textContent === correctAnswer) {
         myOptionsEl.children[i].setAttribute('class', 'options correct');
-        myOptionsEl.children[i].insertAdjacentHTML('beforeend', correctIcon);
+        myOptionsEl.children[i].insertAdjacentHTML('beforeend', checkIcon);
       }
     }
   }
@@ -87,7 +87,7 @@ function selectedOption(answer) {
 function startTimer(timer) {
   timeCountEl.textContent = timer;
 
-  timerCounter = setInterval(() => {
+  counterTimer = setInterval(() => {
     timeCountEl.textContent = timer;
     timer--;
   }, 1000);
