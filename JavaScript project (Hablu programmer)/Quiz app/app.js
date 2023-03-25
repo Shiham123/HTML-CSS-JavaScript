@@ -1,8 +1,8 @@
-const myBtnEl = document.querySelector('.MyBtn button'),
+const myBtnEl = document.querySelector('.MyBtn > button'),
   rulesBoxEl = document.querySelector('.RulesBox'),
   exitButtonEl = document.querySelector('.ExitButton'),
-  continueButtonEl = document.querySelector('.ContinueButton'),
-  questionsEl = document.querySelector('.Questions');
+  questionsEl = document.querySelector('.Questions'),
+  continueButtonEl = document.querySelector('.ContinueButton');
 
 const textEl = document.querySelector('.text'),
   myOptionsEl = document.querySelector('.MyOptions'),
@@ -10,11 +10,12 @@ const textEl = document.querySelector('.text'),
   nextBtnEl = document.querySelector('.nextBtn');
 
 const timeCountEl = document.querySelector('.TimeCount .Seconds'),
-  timeLineEl = document.querySelector('.Questions header .time_lines');
+  timeLineEl = document.querySelector('.time_lines');
 
 let questionCounter = 0;
-let timeCounter;
-let timeValue = 15;
+let timerCounter;
+let timerValue = 15;
+
 let lineCounter;
 let lineValue = 0;
 
@@ -29,8 +30,10 @@ exitButtonEl.addEventListener('click', () => {
 continueButtonEl.addEventListener('click', () => {
   rulesBoxEl.classList.remove('activeInfo');
   questionsEl.classList.add('activeQuiz');
+
   showQuestion(questionCounter);
-  startTimer(timeValue);
+  startTimer(timerValue);
+
   startTimerLine(lineValue);
 });
 
@@ -39,16 +42,16 @@ nextBtnEl.addEventListener('click', () => {
     questionCounter++;
     showQuestion(questionCounter);
 
-    clearInterval(timeCounter);
-    startTimer(timeValue);
+    clearInterval(timerCounter);
+    startTimer(timerValue);
 
     clearInterval(lineCounter);
     startTimerLine(lineValue);
-
-    nextBtnEl.style.display = 'none';
   } else {
     window.location.reload();
   }
+
+  nextBtnEl.style.display = 'none';
 });
 
 function showQuestion(index) {
@@ -58,7 +61,7 @@ function showQuestion(index) {
     `<div class="options">${questionsData[index].options[1]}</div>` +
     `<div class="options">${questionsData[index].options[2]}</div>` +
     `<div class="options">${questionsData[index].options[3]}</div>`;
-  totalQuestionEl.innerHTML = `<p>${questionsData[index].numb} of ${questionsData.length}</p>`;
+  totalQuestionEl.innerHTML = `<p>${questionsData[index].numb} of ${questionsData.length} Questions</p>`;
 
   const option = myOptionsEl.querySelectorAll('.options');
   for (let i = 0; i < myOptionsEl.children.length; i++) {
@@ -68,7 +71,7 @@ function showQuestion(index) {
 
 function selectOption(answer) {
   clearInterval(lineCounter);
-  clearInterval(timeCounter);
+  clearInterval(timerCounter);
 
   let userAnswer = answer.textContent;
   let correctAnswer = questionsData[questionCounter].answer;
@@ -101,7 +104,7 @@ function selectOption(answer) {
 function startTimer(timer) {
   timeCountEl.textContent = timer;
 
-  timeCounter = setInterval(() => {
+  timerCounter = setInterval(() => {
     timeCountEl.textContent = timer;
     timer--;
 
