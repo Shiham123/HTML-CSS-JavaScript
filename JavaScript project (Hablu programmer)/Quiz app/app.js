@@ -12,11 +12,11 @@ const textEl = document.querySelector('.text'),
 const timeCountEl = document.querySelector('.TimeCount .Seconds'),
   timeLineEl = document.querySelector('.QuestionsHeader .time_lines');
 
-let questionCounter = 0;
-let counterTimer;
-let timerValue = 15;
-let counterLine;
-let widthValue = 0;
+let questionsCounter = 0;
+let timeCounter;
+let timeValue = 15;
+let lineCounter;
+let lineWidth = 0;
 
 myBtnEl.addEventListener('click', () => {
   rulesBoxEl.classList.add('activeInfo');
@@ -29,20 +29,21 @@ exitButtonEl.addEventListener('click', () => {
 continueButtonEl.addEventListener('click', () => {
   rulesBoxEl.classList.remove('activeInfo');
   questionsEl.classList.add('activeQuiz');
-  showQuestion(questionCounter);
-  startTimer(timerValue);
+  showQuestion(questionsCounter);
+  startTimer(timeValue);
   startTimerLine(0);
 });
 
 nextBtnEl.addEventListener('click', () => {
-  if (questionCounter < questionsData.length - 1) {
-    questionCounter++;
-    showQuestion(questionCounter);
-    clearInterval(counterTimer);
-    startTimer(timerValue);
+  if (questionsCounter < questionsData.length - 1) {
+    questionsCounter++;
+    showQuestion(questionsCounter);
 
-    clearInterval(counterLine);
-    startTimerLine(widthValue);
+    clearInterval(timeCounter);
+    startTimer(timeValue);
+
+    clearInterval(lineCounter);
+    startTimerLine(lineWidth);
 
     nextBtnEl.style.display = 'none';
   } else {
@@ -61,22 +62,23 @@ function showQuestion(index) {
 
   const option = myOptionsEl.querySelectorAll('.options');
   for (let i = 0; i < myOptionsEl.children.length; i++) {
-    option[i].setAttribute('onclick', 'selectedOption(this)');
+    option[i].setAttribute('onclick', 'optionSelected(this)');
   }
 }
 
-function selectedOption(answer) {
-  clearInterval(counterTimer);
-  clearInterval(counterLine);
-  let userAnswer = answer.textContent;
-  let correctAnswer = questionsData[questionCounter].answer;
+function optionSelected(answer) {
+  clearInterval(lineCounter);
+  clearInterval(timeCounter);
 
-  let checkIcon = `<div><i class="fas fa-check"></i></div>`,
+  let userAnswer = answer.textContent;
+  let correctAnswer = questionsData[questionsCounter].answer;
+
+  let correctIcon = `<div><i class="fas fa-check"></i></div>`,
     crossIcon = `<div><i class="fas fa-times"></i></div>`;
 
   if (userAnswer === correctAnswer) {
     answer.classList.add('correct');
-    answer.insertAdjacentHTML('beforeend', checkIcon);
+    answer.insertAdjacentHTML('beforeend', correctIcon);
   } else {
     answer.classList.add('incorrect');
     answer.insertAdjacentHTML('beforeend', crossIcon);
@@ -84,7 +86,7 @@ function selectedOption(answer) {
     for (let i = 0; i < myOptionsEl.children.length; i++) {
       if (myOptionsEl.children[i].textContent === correctAnswer) {
         myOptionsEl.children[i].setAttribute('class', 'options correct');
-        myOptionsEl.children[i].insertAdjacentHTML('beforeend', checkIcon);
+        myOptionsEl.children[i].insertAdjacentHTML('beforeend', correctIcon);
       }
     }
   }
@@ -99,7 +101,7 @@ function selectedOption(answer) {
 function startTimer(timer) {
   timeCountEl.textContent = timer;
 
-  counterTimer = setInterval(() => {
+  timeCounter = setInterval(() => {
     timeCountEl.textContent = timer;
     timer--;
 
@@ -110,18 +112,18 @@ function startTimer(timer) {
 
     if (timer < 0) {
       timeCountEl.textContent = '00';
-      clearInterval(counterTimer);
+      clearInterval(timeCounter);
     }
   }, 1000);
 }
 
 function startTimerLine(timeLine) {
-  counterLine = setInterval(() => {
+  lineCounter = setInterval(() => {
     timeLine += 1;
     timeLineEl.style.width = timeLine + 'px';
 
     if (timeLine > 319) {
-      clearInterval(counterLine);
+      clearInterval(lineCounter);
     }
   }, 50);
 }
