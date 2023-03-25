@@ -10,13 +10,13 @@ const textEl = document.querySelector('.text'),
   nextBtnEl = document.querySelector('.nextBtn');
 
 const timeCountEl = document.querySelector('.TimeCount .Seconds'),
-  timeLineEl = document.querySelector('.QuestionsHeader .time_lines');
+  timeLineEl = document.querySelector('.Questions header .time_lines');
 
-let questionsCounter = 0;
+let questionCounter = 0;
 let timeCounter;
 let timeValue = 15;
 let lineCounter;
-let lineWidth = 0;
+let lineValue = 0;
 
 myBtnEl.addEventListener('click', () => {
   rulesBoxEl.classList.add('activeInfo');
@@ -29,21 +29,21 @@ exitButtonEl.addEventListener('click', () => {
 continueButtonEl.addEventListener('click', () => {
   rulesBoxEl.classList.remove('activeInfo');
   questionsEl.classList.add('activeQuiz');
-  showQuestion(questionsCounter);
+  showQuestion(questionCounter);
   startTimer(timeValue);
-  startTimerLine(0);
+  startTimerLine(lineValue);
 });
 
 nextBtnEl.addEventListener('click', () => {
-  if (questionsCounter < questionsData.length - 1) {
-    questionsCounter++;
-    showQuestion(questionsCounter);
+  if (questionCounter < questionsData.length - 1) {
+    questionCounter++;
+    showQuestion(questionCounter);
 
     clearInterval(timeCounter);
     startTimer(timeValue);
 
     clearInterval(lineCounter);
-    startTimerLine(lineWidth);
+    startTimerLine(lineValue);
 
     nextBtnEl.style.display = 'none';
   } else {
@@ -58,27 +58,27 @@ function showQuestion(index) {
     `<div class="options">${questionsData[index].options[1]}</div>` +
     `<div class="options">${questionsData[index].options[2]}</div>` +
     `<div class="options">${questionsData[index].options[3]}</div>`;
-  totalQuestionEl.innerHTML = `<p>${questionsData[index].numb} of ${questionsData.length} Questions</p>`;
+  totalQuestionEl.innerHTML = `<p>${questionsData[index].numb} of ${questionsData.length}</p>`;
 
   const option = myOptionsEl.querySelectorAll('.options');
   for (let i = 0; i < myOptionsEl.children.length; i++) {
-    option[i].setAttribute('onclick', 'optionSelected(this)');
+    option[i].setAttribute('onclick', 'selectOption(this)');
   }
 }
 
-function optionSelected(answer) {
+function selectOption(answer) {
   clearInterval(lineCounter);
   clearInterval(timeCounter);
 
   let userAnswer = answer.textContent;
-  let correctAnswer = questionsData[questionsCounter].answer;
+  let correctAnswer = questionsData[questionCounter].answer;
 
-  let correctIcon = `<div><i class="fas fa-check"></i></div>`,
+  let checkIcon = `<div><i class="fas fa-check"></i></div>`,
     crossIcon = `<div><i class="fas fa-times"></i></div>`;
 
   if (userAnswer === correctAnswer) {
     answer.classList.add('correct');
-    answer.insertAdjacentHTML('beforeend', correctIcon);
+    answer.insertAdjacentHTML('beforeend', checkIcon);
   } else {
     answer.classList.add('incorrect');
     answer.insertAdjacentHTML('beforeend', crossIcon);
@@ -86,7 +86,7 @@ function optionSelected(answer) {
     for (let i = 0; i < myOptionsEl.children.length; i++) {
       if (myOptionsEl.children[i].textContent === correctAnswer) {
         myOptionsEl.children[i].setAttribute('class', 'options correct');
-        myOptionsEl.children[i].insertAdjacentHTML('beforeend', correctIcon);
+        myOptionsEl.children[i].insertAdjacentHTML('beforeend', checkIcon);
       }
     }
   }
@@ -112,17 +112,16 @@ function startTimer(timer) {
 
     if (timer < 0) {
       timeCountEl.textContent = '00';
-      clearInterval(timeCounter);
     }
   }, 1000);
 }
 
-function startTimerLine(timeLine) {
+function startTimerLine(timerLine) {
   lineCounter = setInterval(() => {
-    timeLine += 1;
-    timeLineEl.style.width = timeLine + 'px';
+    timerLine += 1;
+    timeLineEl.style.width = timerLine + 'px';
 
-    if (timeLine > 319) {
+    if (timerLine > 319) {
       clearInterval(lineCounter);
     }
   }, 50);
