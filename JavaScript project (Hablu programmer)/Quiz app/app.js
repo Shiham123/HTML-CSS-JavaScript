@@ -43,6 +43,8 @@ nextBtnEl.addEventListener('click', () => {
 
     clearInterval(counterLine);
     startTimerLine(widthValue);
+
+    nextBtnEl.style.display = 'none';
   } else {
     window.location.reload();
   }
@@ -90,6 +92,8 @@ function selectedOption(answer) {
   for (let i = 0; i < myOptionsEl.children.length; i++) {
     myOptionsEl.children[i].classList.add('disabled');
   }
+
+  nextBtnEl.style.display = 'block';
 }
 
 function startTimer(timer) {
