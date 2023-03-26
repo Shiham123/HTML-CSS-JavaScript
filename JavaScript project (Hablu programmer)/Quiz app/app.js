@@ -61,6 +61,12 @@ nextBtnEl.addEventListener('click', () => {
   nextBtnEl.style.display = 'none';
 });
 
+restartQuizEl.addEventListener('click', () => {
+  rulesBoxEl.classList.remove('activeInfo');
+  resultBoxEl.classList.remove('activeResult');
+  questionsEl.classList.add('activeQuiz');
+});
+
 function showQuestion(index) {
   textEl.innerHTML = `<span>${questionsData[index].numb}. ${questionsData[index].question}</span>`;
   myOptionsEl.innerHTML =
