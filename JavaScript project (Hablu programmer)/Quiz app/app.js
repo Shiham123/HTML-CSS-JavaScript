@@ -1,8 +1,8 @@
-const myBtnEl = document.querySelector('.MyBtn > button'),
+const myBtnEl = document.querySelector('.MyBtn button'),
   rulesBoxEl = document.querySelector('.RulesBox'),
   exitButtonEl = document.querySelector('.ExitButton'),
-  questionsEl = document.querySelector('.Questions'),
-  continueButtonEl = document.querySelector('.ContinueButton');
+  continueButtonEl = document.querySelector('.ContinueButton'),
+  questionsEl = document.querySelector('.Questions');
 
 const textEl = document.querySelector('.text'),
   myOptionsEl = document.querySelector('.MyOptions'),
@@ -10,20 +10,18 @@ const textEl = document.querySelector('.text'),
   nextBtnEl = document.querySelector('.nextBtn');
 
 const timeCountEl = document.querySelector('.TimeCount .Seconds'),
-  timeLineEl = document.querySelector('.time_lines');
+  timeLinesEl = document.querySelector('.time_lines');
 
 const resultBoxEl = document.querySelector('.result_box'),
-  restartQuizEl = document.querySelector('.restart1'),
+  scoreTextEl = document.querySelector('.score_text'),
   quitQuizEl = document.querySelector('.quit'),
-  scoreTextEl = document.querySelector('.score_text');
+  restartQuizEL = document.querySelector('.restart1');
 
 let questionCounter = 0;
 let timerCounter;
 let timerValue = 15;
-
 let lineCounter;
 let lineValue = 0;
-
 let userScore = 0;
 
 myBtnEl.addEventListener('click', () => {
@@ -40,17 +38,17 @@ continueButtonEl.addEventListener('click', () => {
 
   showQuestion(questionCounter);
   startTimer(timerValue);
-
   startTimerLine(lineValue);
 });
 
-restartQuizEl.addEventListener('click', () => {
+restartQuizEL.addEventListener('click', () => {
   rulesBoxEl.classList.remove('activeInfo');
   resultBoxEl.classList.remove('activeResult');
   questionsEl.classList.add('activeQuiz');
 
   questionCounter = 0;
   userScore = 0;
+
   showQuestion(questionCounter);
 
   clearInterval(timerCounter);
@@ -73,8 +71,6 @@ nextBtnEl.addEventListener('click', () => {
   } else {
     showResult();
   }
-
-  nextBtnEl.style.display = 'none';
 });
 
 function showQuestion(index) {
@@ -84,17 +80,20 @@ function showQuestion(index) {
     `<div class="options">${questionsData[index].options[1]}</div>` +
     `<div class="options">${questionsData[index].options[2]}</div>` +
     `<div class="options">${questionsData[index].options[3]}</div>`;
-  totalQuestionEl.innerHTML = `<p>${questionsData[index].numb} of ${questionsData.length} Questions</p>`;
+
+  totalQuestionEl.innerHTML = `<p>${questionsData[index].numb} of ${questionsData.length} questions</p>`;
 
   const option = myOptionsEl.querySelectorAll('.options');
   for (let i = 0; i < myOptionsEl.children.length; i++) {
     option[i].setAttribute('onclick', 'selectOption(this)');
   }
+
+  nextBtnEl.style.display = 'none';
 }
 
 function selectOption(answer) {
-  clearInterval(lineCounter);
   clearInterval(timerCounter);
+  clearInterval(lineCounter);
 
   let userAnswer = answer.textContent;
   let correctAnswer = questionsData[questionCounter].answer;
@@ -133,13 +132,13 @@ function startTimer(timer) {
     timeCountEl.textContent = timer;
     timer--;
 
+    if (timer < 0) {
+      timeCountEl.textContent = '0';
+    }
+
     if (timer < 9) {
       let addZero = timeCountEl.textContent;
       timeCountEl.textContent = 0 + addZero;
-    }
-
-    if (timer < 0) {
-      timeCountEl.textContent = '00';
     }
   }, 1000);
 }
@@ -147,7 +146,7 @@ function startTimer(timer) {
 function startTimerLine(timerLine) {
   lineCounter = setInterval(() => {
     timerLine += 1;
-    timeLineEl.style.width = timerLine + 'px';
+    timeLinesEl.style.width = timerLine + 'px';
 
     if (timerLine > 319) {
       clearInterval(lineCounter);
@@ -161,11 +160,11 @@ function showResult() {
   resultBoxEl.classList.add('activeResult');
 
   if (userScore > 3) {
-    scoreTextEl.innerHTML = `<span>Congratulation you got <p>${userScore}</p> Out of <p>${questionsData.length}</p></span>`;
+    scoreTextEl.innerHTML = `<span>Congratulation <p>${userScore}</p> out of <p>${questionsData.length}</p></span>`;
   } else if (userScore > 1) {
-    scoreTextEl.innerHTML = `<span>Carry on,  you got <p>${userScore}</p> Out of <p>${questionsData.length}</p></span>`;
+    scoreTextEl.innerHTML = `<span>Carry on <p>${userScore}</p> out of <p>${questionsData.length}</p></span>`;
   } else {
-    scoreTextEl.innerHTML = `<span>no result yet try again you got <p>${userScore}</p> Out of <p>${questionsData.length}</p></span>`;
+    scoreTextEl.innerHTML = `<span>Fail it <p>${userScore}</p> out of <p>${questionsData.length}</p></span>`;
   }
 }
 
