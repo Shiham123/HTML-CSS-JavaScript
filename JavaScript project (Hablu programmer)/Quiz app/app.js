@@ -12,12 +12,19 @@ const textEl = document.querySelector('.text'),
 const timeCountEl = document.querySelector('.TimeCount .Seconds'),
   timeLineEl = document.querySelector('.time_lines');
 
+const resultBoxEl = document.querySelector('.result_box'),
+  restartQuizEl = document.querySelector('.restart1'),
+  quitQuizEl = document.querySelector('.quit'),
+  scoreTextEl = document.querySelector('.score_text');
+
 let questionCounter = 0;
 let timerCounter;
 let timerValue = 15;
 
 let lineCounter;
 let lineValue = 0;
+
+let userScore = 0;
 
 myBtnEl.addEventListener('click', () => {
   rulesBoxEl.classList.add('activeInfo');
@@ -48,7 +55,7 @@ nextBtnEl.addEventListener('click', () => {
     clearInterval(lineCounter);
     startTimerLine(lineValue);
   } else {
-    window.location.reload();
+    showResult();
   }
 
   nextBtnEl.style.display = 'none';
@@ -80,6 +87,8 @@ function selectOption(answer) {
     crossIcon = `<div><i class="fas fa-times"></i></div>`;
 
   if (userAnswer === correctAnswer) {
+    userScore += 1;
+
     answer.classList.add('correct');
     answer.insertAdjacentHTML('beforeend', checkIcon);
   } else {
@@ -129,3 +138,21 @@ function startTimerLine(timerLine) {
     }
   }, 50);
 }
+
+function showResult() {
+  rulesBoxEl.classList.remove('activeInfo');
+  questionsEl.classList.remove('activeQuiz');
+  resultBoxEl.classList.add('activeResult');
+
+  if (userScore > 3) {
+    scoreTextEl.innerHTML = `<span>Congratulation you got <p>${userScore}</p> Out of <p>${questionsData.length}</p></span>`;
+  } else if (userScore > 1) {
+    scoreTextEl.innerHTML = `<span>Carry on,  you got <p>${userScore}</p> Out of <p>${questionsData.length}</p></span>`;
+  } else {
+    scoreTextEl.innerHTML = `<span>no result yet try again you got <p>${userScore}</p> Out of <p>${questionsData.length}</p></span>`;
+  }
+}
+
+quitQuizEl.addEventListener('click', () => {
+  window.location.reload();
+});
