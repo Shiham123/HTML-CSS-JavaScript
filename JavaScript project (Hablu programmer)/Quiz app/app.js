@@ -44,6 +44,22 @@ continueButtonEl.addEventListener('click', () => {
   startTimerLine(lineValue);
 });
 
+restartQuizEl.addEventListener('click', () => {
+  rulesBoxEl.classList.remove('activeInfo');
+  resultBoxEl.classList.remove('activeResult');
+  questionsEl.classList.add('activeQuiz');
+
+  questionCounter = 0;
+  userScore = 0;
+  showQuestion(questionCounter);
+
+  clearInterval(timerCounter);
+  startTimer(timerValue);
+
+  clearInterval(lineCounter);
+  startTimerLine(lineValue);
+});
+
 nextBtnEl.addEventListener('click', () => {
   if (questionCounter < questionsData.length - 1) {
     questionCounter++;
@@ -59,12 +75,6 @@ nextBtnEl.addEventListener('click', () => {
   }
 
   nextBtnEl.style.display = 'none';
-});
-
-restartQuizEl.addEventListener('click', () => {
-  rulesBoxEl.classList.remove('activeInfo');
-  resultBoxEl.classList.remove('activeResult');
-  questionsEl.classList.add('activeQuiz');
 });
 
 function showQuestion(index) {
