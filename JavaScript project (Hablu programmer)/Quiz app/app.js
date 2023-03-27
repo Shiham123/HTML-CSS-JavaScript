@@ -10,12 +10,12 @@ const textEl = document.querySelector('.text'),
   nextBtnEl = document.querySelector('.nextBtn');
 
 const timeCountEl = document.querySelector('.TimeCount .Seconds'),
-  timeLinesEl = document.querySelector('.time_lines');
+  timeLineEl = document.querySelector('.QuestionsHeader .time_lines');
 
 const resultBoxEl = document.querySelector('.result_box'),
   scoreTextEl = document.querySelector('.score_text'),
   quitQuizEl = document.querySelector('.quit'),
-  restartQuizEL = document.querySelector('.restart1');
+  restartQuizEl = document.querySelector('.restart1');
 
 let questionCounter = 0;
 let timerCounter;
@@ -38,24 +38,19 @@ continueButtonEl.addEventListener('click', () => {
 
   showQuestion(questionCounter);
   startTimer(timerValue);
+
+  clearInterval(lineCounter);
   startTimerLine(lineValue);
 });
 
-restartQuizEL.addEventListener('click', () => {
+restartQuizEl.addEventListener('click', () => {
   rulesBoxEl.classList.remove('activeInfo');
   resultBoxEl.classList.remove('activeResult');
   questionsEl.classList.add('activeQuiz');
 
   questionCounter = 0;
   userScore = 0;
-
   showQuestion(questionCounter);
-
-  clearInterval(timerCounter);
-  startTimer(timerValue);
-
-  clearInterval(lineCounter);
-  startTimerLine(lineValue);
 });
 
 nextBtnEl.addEventListener('click', () => {
@@ -71,6 +66,8 @@ nextBtnEl.addEventListener('click', () => {
   } else {
     showResult();
   }
+
+  nextBtnEl.style.display = 'none';
 });
 
 function showQuestion(index) {
@@ -80,15 +77,12 @@ function showQuestion(index) {
     `<div class="options">${questionsData[index].options[1]}</div>` +
     `<div class="options">${questionsData[index].options[2]}</div>` +
     `<div class="options">${questionsData[index].options[3]}</div>`;
-
-  totalQuestionEl.innerHTML = `<p>${questionsData[index].numb} of ${questionsData.length} questions</p>`;
+  totalQuestionEl.innerHTML = `<p>${questionsData[index].numb} of ${questionsData.length} Questions</p>`;
 
   const option = myOptionsEl.querySelectorAll('.options');
   for (let i = 0; i < myOptionsEl.children.length; i++) {
     option[i].setAttribute('onclick', 'selectOption(this)');
   }
-
-  nextBtnEl.style.display = 'none';
 }
 
 function selectOption(answer) {
@@ -112,7 +106,7 @@ function selectOption(answer) {
 
     for (let i = 0; i < myOptionsEl.children.length; i++) {
       if (myOptionsEl.children[i].textContent === correctAnswer) {
-        myOptionsEl.children[i].setAttribute('class', 'options correct');
+        myOptionsEl.children[i].classList.add('correct');
         myOptionsEl.children[i].insertAdjacentHTML('beforeend', checkIcon);
       }
     }
@@ -146,7 +140,7 @@ function startTimer(timer) {
 function startTimerLine(timerLine) {
   lineCounter = setInterval(() => {
     timerLine += 1;
-    timeLinesEl.style.width = timerLine + 'px';
+    timeLineEl.style.width = timerLine + 'px';
 
     if (timerLine > 319) {
       clearInterval(lineCounter);
@@ -160,11 +154,11 @@ function showResult() {
   resultBoxEl.classList.add('activeResult');
 
   if (userScore > 3) {
-    scoreTextEl.innerHTML = `<span>Congratulation <p>${userScore}</p> out of <p>${questionsData.length}</p></span>`;
+    scoreTextEl.innerHTML = `<span>congratulation <p>${userScore}</p> out of <p>${questionsData.length}</p></span>`;
   } else if (userScore > 1) {
     scoreTextEl.innerHTML = `<span>Carry on <p>${userScore}</p> out of <p>${questionsData.length}</p></span>`;
   } else {
-    scoreTextEl.innerHTML = `<span>Fail it <p>${userScore}</p> out of <p>${questionsData.length}</p></span>`;
+    scoreTextEl.innerHTML = `<span>Try again <p>${userScore}</p> out of <p>${questionsData.length}</p></span>`;
   }
 }
 
