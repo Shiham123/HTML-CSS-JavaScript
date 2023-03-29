@@ -64,6 +64,18 @@
   justify-content: center;
 }
 
+@media (max-width: 1000px) {
+  .shop {
+    grid-template-columns: repeat(2, 330px);
+  }
+}
+
+@media (max-width: 500px) {
+  .shop {
+    grid-template-columns: repeat(1, 330px);
+  }
+}
+
 .item {
   border: 2px solid var(--black-three);
   border-radius: 4px;
@@ -78,6 +90,23 @@
 }
 
 .prince-quantity {
+  margin-top: 2rem;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+  font-size: 20px;
+}
+
+.fa-minus {
+  color: red;
+}
+
+.fa-plus {
+  color: green;
 }
