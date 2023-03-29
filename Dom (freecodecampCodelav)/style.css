@@ -1,3 +1,54 @@
-body {
-  background-image: url(/img/pexels-juan-pablo-serrano-arenas-877971.jpg);
+:root {
+  --white-one: #f8f9fa;
+  --white-two: #e9ecef;
+  --white-three: #dee2e6;
+  --white-four: #ced4da;
+  --grey: #adb5bd;
+  --black-one: #212529;
+  --black-two: #343a40;
+  --black-three: #495057;
+  --black-four: #6c757d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/**
+  * ! navbar style component
+  */
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--black-one);
+  padding: 25px 60px;
+}
+
+.navbar h2 {
+  color: var(--white-one);
+}
+
+.cart {
+  background-color: var(--white-one);
+  color: var(--black-one);
+  font-size: 30px;
+  padding: 5px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.cartAmount {
+  position: absolute;
+  top: -15px;
+  right: -10px;
+  font-size: 16px;
+  background-color: var(--black-three);
+  color: var(--white-three);
+  padding: 5px;
+  border-radius: 8px;
 }
