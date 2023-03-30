@@ -118,11 +118,16 @@ generateShop();
 
 function incrementProduct(id) {
   let selectItem = id;
+  let searchItem = storeItem.find((item) => item.id === selectItem.id);
 
-  storeItem.push({
-    id: selectItem.id,
-    item: 1,
-  });
+  if (searchItem === undefined) {
+    storeItem.push({
+      id: selectItem.id,
+      item: 1,
+    });
+  } else {
+    searchItem.item += 1;
+  }
   console.log(storeItem);
 }
 
