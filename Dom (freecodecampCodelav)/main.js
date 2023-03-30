@@ -99,13 +99,12 @@ function showProduct() {
         <div class="details">
           <h3>${name}</h3>
           <p>${desc}</p>
-
           <div class="prince-quantity">
             <h2>$ ${price}</h2>
             <div class="buttons">
               <i onclick="incrementProduct(${id}) "class="fa-solid fa-square-plus"></i>
-              <div id="${id}" class="quantity">0</div>
-              <i class="fa-solid fa-square-minus"></i>
+              <div id="${id}" class="quantity"></div>
+              <i onclick="decrementProduct(${id})"class="fa-solid fa-square-minus"></i>
             </div>
           </div>
         </div>
@@ -129,5 +128,22 @@ function incrementProduct(id) {
   } else {
     searchItem.item += 1;
   }
-  console.log(storeProduct);
+  updateProduct(selectItem.id);
+}
+
+function decrementProduct(id) {
+  let selectItem = id;
+  let searchItem = storeProduct.find((product) => product.id === selectItem.id);
+
+  if (searchItem.item === 0) {
+    return;
+  } else {
+    searchItem.item -= 1;
+  }
+  updateProduct(selectItem.id);
+}
+
+function updateProduct(id) {
+  let searchItem = storeProduct.find((product) => product.id === id);
+  document.getElementById(id).innerHTML = searchItem.item;
 }
