@@ -91,25 +91,26 @@ const storeProduct = [];
 
 function showProduct() {
   return (shopEl.innerHTML = shopData
-    .map((product) => {
-      let { id, name, price, desc, img } = product;
+    .map((item) => {
+      let { id, name, price, desc, img } = item;
       return `
-		<div id="product-${id} "class="item">
+    <div id="product-${id}" class="item">
         <img width="326" src="${img}" alt="" />
         <div class="details">
           <h3>${name}</h3>
-          <p>${desc}</p>
+          <p>${desc}-  ${id}</p>
+
           <div class="prince-quantity">
             <h2>$ ${price}</h2>
             <div class="buttons">
-              <i onclick="incrementProduct(${id}) "class="fa-solid fa-square-plus"></i>
+              <i onclick="incrementProduct(${id})" class="fa-solid fa-square-plus"></i>
               <div id="${id}" class="quantity">0</div>
-              <i onclick="decrementProduct(${id})"class="fa-solid fa-square-minus"></i>
+              <i onclick="decrementProduct(${id})" class="fa-solid fa-square-minus"></i>
             </div>
           </div>
         </div>
       </div>
-		`;
+    `;
     })
     .join(''));
 }
@@ -118,7 +119,7 @@ showProduct();
 
 function incrementProduct(id) {
   let selectItem = id;
-  let searchItem = storeProduct.find((product) => product.id === selectItem.id);
+  let searchItem = storeProduct.find((item) => item.id === selectItem.id);
 
   if (searchItem === undefined) {
     storeProduct.push({
@@ -133,11 +134,10 @@ function incrementProduct(id) {
 
 function decrementProduct(id) {
   let selectItem = id;
-  let searchItem = storeProduct.find((product) => product.id === selectItem.id);
+  let searchItem = storeProduct.find((item) => item.id === selectItem.id);
 
-  if (searchItem.item === 0) {
-    return;
-  } else {
+  if (searchItem.item === 0) return;
+  else {
     searchItem.item -= 1;
   }
   updateProduct(selectItem.id);
