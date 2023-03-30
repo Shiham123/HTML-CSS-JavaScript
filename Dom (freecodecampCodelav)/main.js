@@ -103,7 +103,7 @@ function showProduct() {
             <h2>$ ${price}</h2>
             <div class="buttons">
               <i onclick="incrementProduct(${id}) "class="fa-solid fa-square-plus"></i>
-              <div id="${id}" class="quantity"></div>
+              <div id="${id}" class="quantity">0</div>
               <i onclick="decrementProduct(${id})"class="fa-solid fa-square-minus"></i>
             </div>
           </div>
