@@ -1,6 +1,6 @@
 const shopEl = document.getElementById('shop');
 
-let shopItemData = [
+const shopData = [
   {
     id: 'one',
     name: 'Casual Shirt',
@@ -87,50 +87,47 @@ let shopItemData = [
   },
 ];
 
-let storeItem = [];
+const storeProduct = [];
 
-function generateShop() {
-  return (shopEl.innerHTML = shopItemData
-    .map((item) => {
-      let { id, name, price, desc, img } = item;
+function showProduct() {
+  return (shopEl.innerHTML = shopData
+    .map((product) => {
+      let { id, name, price, desc, img } = product;
       return `
-    <div id="product-id-${id} "class="item">
+		<div id="product-${id} "class="item">
         <img width="326" src="${img}" alt="" />
         <div class="details">
           <h3>${name}</h3>
-          <p>${desc} ${id}</p>
+          <p>${desc}</p>
+
           <div class="prince-quantity">
             <h2>$ ${price}</h2>
             <div class="buttons">
-              <i onclick="incrementProduct(${id})"class="fa-solid fa-square-plus"></i>
-              <div id=${id} class="quantity">0</div>
-              <i onclick="decrementProduct()"class="fa-solid fa-square-minus"></i>
+              <i onclick="incrementProduct(${id}) "class="fa-solid fa-square-plus"></i>
+              <div id="${id}" class="quantity">0</div>
+              <i class="fa-solid fa-square-minus"></i>
             </div>
           </div>
         </div>
       </div>
-    `;
+		`;
     })
     .join(''));
 }
 
-generateShop();
+showProduct();
 
 function incrementProduct(id) {
   let selectItem = id;
-  let searchItem = storeItem.find((item) => item.id === selectItem.id);
+  let searchItem = storeProduct.find((product) => product.id === selectItem.id);
 
   if (searchItem === undefined) {
-    storeItem.push({
+    storeProduct.push({
       id: selectItem.id,
       item: 1,
     });
   } else {
     searchItem.item += 1;
   }
-  console.log(storeItem);
+  console.log(storeProduct);
 }
-
-function decrementProduct() {}
-
-function updateProduct() {}
