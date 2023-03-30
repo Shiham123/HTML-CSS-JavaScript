@@ -2,90 +2,92 @@ const shopEl = document.getElementById('shop');
 
 let shopItemData = [
   {
-    id: '1',
+    id: 'one',
     name: 'Casual Shirt',
     price: 45,
     desc: 'Lorem ipsum dolor sit amet consectetur adipisicing.',
     img: '../Img/img-1.jpg',
   },
   {
-    id: '2',
+    id: 'two',
     name: 'Office Shirt',
     price: 100,
     desc: 'Lorem ipsum dolor sit amet consectetur adipisicing.',
     img: '../Img/img-2.jpg',
   },
   {
-    id: '3',
+    id: 'three',
     name: 'T Shirt',
     price: 25,
     desc: 'Lorem ipsum dolor sit amet consectetur adipisicing.',
     img: '../Img/img-3.jpg',
   },
   {
-    id: '4',
+    id: 'four',
     name: 'Mens Suit',
     price: 300,
     desc: 'Lorem ipsum dolor sit amet consectetur adipisicing.',
     img: '../Img/img-4.jpg',
   },
   {
-    id: '5',
+    id: 'five',
     name: 'Mens Tie',
     price: 25,
     desc: 'Lorem ipsum dolor sit amet consectetur adipisicing.',
     img: '../Img/img-5.png',
   },
   {
-    id: '6',
+    id: 'six',
     name: 'Casual shoes',
     price: 200,
     desc: 'Lorem ipsum dolor sit amet consectetur adipisicing.',
     img: '../Img/img-6.png',
   },
   {
-    id: '7',
+    id: 'seven',
     name: 'black suit',
     price: 450,
     desc: 'Lorem ipsum dolor sit amet consectetur adipisicing.',
     img: '../Img/img-7.png',
   },
   {
-    id: '8',
+    id: 'eight',
     name: 'polo shirt',
     price: 45,
     desc: 'Lorem ipsum dolor sit amet consectetur adipisicing.',
     img: '../Img/img-8.png',
   },
   {
-    id: '9',
+    id: 'nine',
     name: 'denim shirt',
     price: 85,
     desc: 'Lorem ipsum dolor sit amet consectetur adipisicing.',
     img: '../Img/img-9.png',
   },
   {
-    id: '10',
+    id: 'ten',
     name: 'denim pants',
     price: 120,
     desc: 'Lorem ipsum dolor sit amet consectetur adipisicing.',
     img: '../Img/img-10.png',
   },
   {
-    id: '11',
+    id: 'eleven',
     name: 'basic cap',
     price: 35,
     desc: 'Lorem ipsum dolor sit amet consectetur adipisicing.',
     img: '../Img/img-11.png',
   },
   {
-    id: '12',
+    id: 'twelve',
     name: 'leather boots',
     price: 350,
     desc: 'Lorem ipsum dolor sit amet consectetur adipisicing.',
     img: '../Img/img-12.png',
   },
 ];
+
+let storeItem = [];
 
 function generateShop() {
   return (shopEl.innerHTML = shopItemData
@@ -100,7 +102,7 @@ function generateShop() {
           <div class="prince-quantity">
             <h2>$ ${price}</h2>
             <div class="buttons">
-              <i onclick="incrementProduct()"class="fa-solid fa-square-plus"></i>
+              <i onclick="incrementProduct(${id})"class="fa-solid fa-square-plus"></i>
               <div id=${id} class="quantity">0</div>
               <i onclick="decrementProduct()"class="fa-solid fa-square-minus"></i>
             </div>
@@ -114,7 +116,15 @@ function generateShop() {
 
 generateShop();
 
-function incrementProduct() {}
+function incrementProduct(id) {
+  let selectItem = id;
+
+  storeItem.push({
+    id: selectItem.id,
+    item: 1,
+  });
+  console.log(storeItem);
+}
 
 function decrementProduct() {}
 
