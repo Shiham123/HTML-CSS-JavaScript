@@ -1,4 +1,5 @@
 const shopEl = document.getElementById('shop');
+const cartAmountEl = document.getElementById('cartAmount');
 
 const shopData = [
   {
@@ -146,4 +147,10 @@ function decrementProduct(id) {
 function updateProduct(id) {
   let searchItem = storeProduct.find((product) => product.id === id);
   document.getElementById(id).innerHTML = searchItem.item;
+  calculationProduct();
+}
+
+function calculationProduct() {
+  let updateAmount = storeProduct.map((x) => x.item).reduce((x, y) => x + y, 0);
+  cartAmountEl.innerHTML = updateAmount;
 }
