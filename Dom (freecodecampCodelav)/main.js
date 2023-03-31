@@ -88,7 +88,7 @@ const shopData = [
   },
 ];
 
-const storeProduct = JSON.parse(localStorage.getItem('data')) || [];
+let storeProduct = JSON.parse(localStorage.getItem('data')) || [];
 
 function showProduct() {
   return (shopEl.innerHTML = shopData
