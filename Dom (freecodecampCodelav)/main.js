@@ -88,33 +88,32 @@ const shopData = [
   },
 ];
 
-let basket = JSON.parse(localStorage.getItem('data')) || [];
+let storeProduct = JSON.parse(localStorage.getItem('data')) || [];
 
 function showProduct() {
   shopEl.innerHTML = shopData
     .map((item) => {
       let { id, name, price, desc, img } = item;
-      let searchItem = basket.find((item) => item.id === id) || [];
+      let showLocalStorage = storeProduct.find((item) => item.id === id) || [];
       return `
     <div id="product-${id}" class="item">
-        <img width="326" src="${img}" alt="" />
-        <div class="details">
-          <h3>${name}</h3>
-          <p>${desc}</p>
+    <img width="326" src="${img}" alt="" />
+    <div class="details">
+      <h3>${name}</h3>
+      <p>${desc} ${id}</p>
 
-          <div class="prince-quantity">
-            <h2>$ ${price}</h2>
-            <div class="buttons">
-              <i onclick="incrementProduct(${id})" class="fa-solid fa-square-plus"></i>
-              <div id="${id}" class="quantity">${
-        searchItem.item === undefined ? 0 : searchItem.item
+      <div class="prince-quantity">
+        <h2>$ ${price}</h2>
+        <div class="buttons">
+          <i onclick="incrementProduct(${id})" class="fa-solid fa-square-plus"></i>
+          <div id="${id}" class="quantity">${
+        showLocalStorage.item === undefined ? 0 : showLocalStorage.item
       }</div>
-              <i onclick="decrementProduct(${id})" class="fa-solid fa-square-minus"></i>
-            </div>
-          </div>
+          <i onclick="decrementProduct(${id})" class="fa-solid fa-square-minus"></i>
         </div>
       </div>
-    `;
+    </div>
+  </div>`;
     })
     .join('');
 }
@@ -123,10 +122,10 @@ showProduct();
 
 function incrementProduct(id) {
   let selectItem = id;
-  let searchItem = basket.find((item) => item.id === selectItem.id);
+  let searchItem = storeProduct.find((item) => item.id === selectItem.id);
 
   if (searchItem === undefined) {
-    basket.push({
+    storeProduct.push({
       id: selectItem.id,
       item: 1,
     });
@@ -134,12 +133,12 @@ function incrementProduct(id) {
     searchItem.item += 1;
   }
   updateProduct(selectItem.id);
-  localStorage.setItem('data', JSON.stringify(basket));
+  localStorage.setItem('data', JSON.stringify(storeProduct));
 }
 
 function decrementProduct(id) {
   let selectItem = id;
-  let searchItem = basket.find((item) => item.id === selectItem.id);
+  let searchItem = storeProduct.find((item) => item.id === selectItem.id);
 
   if (searchItem === undefined) return;
   else if (searchItem.item === 0) return;
@@ -147,21 +146,21 @@ function decrementProduct(id) {
     searchItem.item -= 1;
   }
   updateProduct(selectItem.id);
-  basket = basket.filter((item) => item.item !== 0);
-  localStorage.setItem('data', JSON.stringify(basket));
+  storeProduct = storeProduct.filter((item) => item.item !== 0);
+  localStorage.setItem('data', JSON.stringify(storeProduct));
 }
 
 function updateProduct(id) {
-  let searchItem = basket.find((item) => item.id === id);
+  let searchItem = storeProduct.find((item) => item.id === id);
   document.getElementById(id).innerHTML = searchItem.item;
-  calculation();
+  calculationProduct();
 }
 
-function calculation() {
-  let selectItem = basket
+function calculationProduct() {
+  let searchItem = storeProduct
     .map((item) => item.item)
     .reduce((itemOne, itemTwo) => itemOne + itemTwo, 0);
-  cartAmountEl.innerHTML = selectItem;
+  cartAmountEl.innerHTML = searchItem;
 }
 
-calculation();
+calculationProduct();
