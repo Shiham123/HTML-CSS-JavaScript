@@ -93,8 +93,8 @@ let basket = JSON.parse(localStorage.getItem('data')) || [];
 function showProduct() {
   shopEl.innerHTML = shopData
     .map((item) => {
-      let { id, name, price, desc, img } = item;
-      let searchLocalStorage = basket.find((item) => item.id === id) || [];
+      let { id, price, desc, img, name } = item;
+      let showItemLocalStorage = basket.find((item) => item.id === id) || [];
       return `
     <div id="product-${id}" class="item">
         <img width="326" src="${img}" alt="" />
@@ -105,11 +105,11 @@ function showProduct() {
           <div class="prince-quantity">
             <h2>$ ${price}</h2>
             <div class="buttons">
-              <i onclick="increment(${id})" class="fa-solid fa-square-plus"></i>
+              <i onclick="incrementProduct(${id})" class="fa-solid fa-square-plus"></i>
               <div id="${id}" class="quantity">${
-        searchLocalStorage.item === undefined ? 0 : searchLocalStorage.item
+        showItemLocalStorage.item === undefined ? 0 : showItemLocalStorage.item
       }</div>
-              <i onclick="decrement(${id})" class="fa-solid fa-square-minus"></i>
+              <i onclick="decrementProduct(${id})" class="fa-solid fa-square-minus"></i>
             </div>
           </div>
         </div>
@@ -121,7 +121,7 @@ function showProduct() {
 
 showProduct();
 
-function increment(id) {
+function incrementProduct(id) {
   let selectItem = id;
   let searchItem = basket.find((item) => item.id === selectItem.id);
 
@@ -133,11 +133,11 @@ function increment(id) {
   } else {
     searchItem.item += 1;
   }
-  update(selectItem.id);
+  updateProduct(selectItem.id);
   localStorage.setItem('data', JSON.stringify(basket));
 }
 
-function decrement(id) {
+function decrementProduct(id) {
   let selectItem = id;
   let searchItem = basket.find((item) => item.id === selectItem.id);
 
@@ -148,12 +148,12 @@ function decrement(id) {
   } else {
     searchItem.item -= 1;
   }
-  update(selectItem.id);
+  updateProduct(selectItem.id);
   basket = basket.filter((item) => item.item !== 0);
   localStorage.setItem('data', JSON.stringify(basket));
 }
 
-function update(id) {
+function updateProduct(id) {
   let searchItem = basket.find((item) => item.id === id);
   document.getElementById(id).innerHTML = searchItem.item;
   calculation();
