@@ -96,24 +96,24 @@ function showProduct() {
       let { id, name, price, desc, img } = item;
       let searchLocalStorage = basket.find((item) => item.id === id) || [];
       return `
-    <div id="product-${id} "class="item">
-    <img width="326" src="${img}" alt="" />
-    <div class="details">
-      <h3>${name}</h3>
-      <p>${desc}</p>
+    <div id="product-${id}" class="item">
+        <img width="326" src="${img}" alt="" />
+        <div class="details">
+          <h3>${name}</h3>
+          <p>${desc} ${id}</p>
 
-      <div class="prince-quantity">
-        <h2>$ ${price}</h2>
-        <div class="buttons">
-          <i onclick="increment(${id})" class="fa-solid fa-square-plus"></i>
-          <div id="${id}" class="quantity">${
+          <div class="prince-quantity">
+            <h2>$ ${price}</h2>
+            <div class="buttons">
+              <i onclick="increment(${id})" class="fa-solid fa-square-plus"></i>
+              <div id="${id}" class="quantity">${
         searchLocalStorage.item === undefined ? 0 : searchLocalStorage.item
       }</div>
-          <i onclick="decrement(${id})" class="fa-solid fa-square-minus"></i>
+              <i onclick="decrement(${id})" class="fa-solid fa-square-minus"></i>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
     `;
     })
     .join('');
@@ -148,7 +148,6 @@ function decrement(id) {
   } else {
     searchItem.item -= 1;
   }
-
   update(selectItem.id);
   basket = basket.filter((item) => item.item !== 0);
   localStorage.setItem('data', JSON.stringify(basket));
@@ -161,10 +160,10 @@ function update(id) {
 }
 
 function calculation() {
-  let update = basket
+  let searchItem = basket
     .map((item) => item.item)
     .reduce((itemOne, itemTwo) => itemOne + itemTwo, 0);
-  cartAmountEl.innerHTML = update;
+  cartAmountEl.innerHTML = searchItem;
 }
 
 calculation();
