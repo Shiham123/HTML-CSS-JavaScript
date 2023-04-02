@@ -15,7 +15,28 @@ calculationProduct();
 
 function generateCartItems() {
   if (storeProduct.length !== 0) {
-    console.log(storeProduct);
+    return (shoppingCartEl.innerHTML = storeProduct
+      .map((product) => {
+        let { id, item } = product;
+        let searchItem = shopData.find((item) => item.id === id) || [];
+        return `
+        <div class="cart-item">
+          <img width="309" src="${searchItem.img}" alt="" />
+          <div class="details">
+            <div class="title-price">
+              <h4>
+                <p>${searchItem.name}</p>
+                <p>$ ${searchItem.price}</p>
+              </h4>
+              <i class="fa-sharp fa-solid fa-circle-xmark"></i>
+            </div>
+            <div class="cart-buttons"></div>
+            <h3></h3>
+          </div>
+        </div>
+      `;
+      })
+      .join(''));
   } else {
     labelEl.innerHTML = `
     <h2>Cart is empty</h2>

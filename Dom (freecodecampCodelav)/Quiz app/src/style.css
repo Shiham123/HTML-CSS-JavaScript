@@ -136,3 +136,22 @@ a {
   cursor: pointer;
   margin-top: 10px;
 }
+
+.fa-circle-xmark {
+  color: red;
+  font-weight: bold;
+}
+
+/**
+* ! style shopping cart
+**/
+
+.shopping-cart {
+  display: grid;
+  grid-template-columns: repeat(1, 320px);
+}
+
+.cart-item {
+  border: 1px solid var(--black-three);
+  margin: 5px;
+}
