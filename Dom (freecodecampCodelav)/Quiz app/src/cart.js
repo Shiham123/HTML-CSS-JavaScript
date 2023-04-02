@@ -90,6 +90,7 @@ function updateProduct(id) {
   let searchItem = storeProduct.find((item) => item.id === id);
   document.getElementById(id).innerHTML = searchItem.item;
   calculationProduct();
+  totalAmount();
 }
 
 function removeItem(id) {
@@ -97,4 +98,24 @@ function removeItem(id) {
   storeProduct = storeProduct.filter((item) => item.id !== selectItem.id);
   localStorage.setItem('data', JSON.stringify(storeProduct));
   generateCartItems();
+  totalAmount();
 }
+
+function totalAmount() {
+  if (storeProduct.length !== 0) {
+    let amount = storeProduct
+      .map((x) => {
+        let { item, id } = x;
+        let searchItem = shopData.find((item) => item.id === id) || [];
+        return item * searchItem.price;
+      })
+      .reduce((x, y) => x + y, 0);
+    labelEl.innerHTML = `
+        <h2>Total Bill : $ ${amount}</h2>
+        <button class="checkOut">Checkout</button>
+        <button class="removeAll">remove All</button>
+      `;
+  } else return;
+}
+
+totalAmount();
