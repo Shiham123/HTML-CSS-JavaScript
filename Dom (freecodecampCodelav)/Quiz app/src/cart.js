@@ -21,12 +21,12 @@ function generateCartItems() {
         let searchItem = shopData.find((item) => item.id === id) || [];
         return `
         <div class="cart-item">
-          <img width="309" src="${searchItem.img}" alt="" />
+          <img width="170" src="${searchItem.img}" alt="" />
           <div class="details">
-            <div class="title-price">
-              <h4>
+            <div class="title-price-x">
+              <h4 class="title-price">
                 <p>${searchItem.name}</p>
-                <p>$ ${searchItem.price}</p>
+                <p class="cart-item-price">$ ${searchItem.price}</p>
               </h4>
               <i class="fa-sharp fa-solid fa-circle-xmark"></i>
             </div>
@@ -38,7 +38,7 @@ function generateCartItems() {
       })
       .join(''));
   } else {
-    labelEl.innerHTML = `
+    shoppingCartEl.innerHTML = `
     <h2>Cart is empty</h2>
     <a href="index.html">
       <button class="homeBtn">Back to Home</button>

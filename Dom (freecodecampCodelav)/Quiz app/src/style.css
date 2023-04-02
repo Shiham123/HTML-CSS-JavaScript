@@ -122,7 +122,7 @@ a {
 * ! style the cart html file
 **/
 
-.text-center {
+.shopping-cart {
   text-align: center;
   margin-bottom: 20px;
 }
@@ -148,10 +148,34 @@ a {
 
 .shopping-cart {
   display: grid;
-  grid-template-columns: repeat(1, 320px);
+  grid-template-columns: repeat(1, 550px);
+  justify-content: center;
+  gap: 15px;
 }
 
 .cart-item {
   border: 1px solid var(--black-three);
-  margin: 5px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+.title-price-x {
+  width: 360px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title-price {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cart-item-price {
+  background-color: var(--black-two);
+  color: var(--white-two);
+  padding: 5px 10px;
+  border-radius: 4px;
 }
