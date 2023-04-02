@@ -19,6 +19,7 @@ function generateCartItems() {
       .map((product) => {
         let { id, item } = product;
         let searchItem = shopData.find((item) => item.id === id) || [];
+
         return `
         <div class="cart-item">
           <img width="170" src="${searchItem.img}" alt="" />
@@ -28,10 +29,14 @@ function generateCartItems() {
                 <p>${searchItem.name}</p>
                 <p class="cart-item-price">$ ${searchItem.price}</p>
               </h4>
-              <i class="fa-sharp fa-solid fa-circle-xmark"></i>
+              <i onclick="removeItem(${id})" class="fa-sharp fa-solid fa-circle-xmark"></i>
             </div>
-            <div class="cart-buttons"></div>
-            <h3></h3>
+            <div class="buttons">
+              <i onclick="incrementProduct(${id})" class="fa-solid fa-square-plus"></i>
+              <div id="${id}" class="quantity">${item}</div>
+              <i onclick="decrementProduct(${id})" class="fa-solid fa-square-minus"></i>
+            </div>
+            <h3>$ ${item * searchItem.price}</h3>
           </div>
         </div>
       `;
@@ -48,3 +53,48 @@ function generateCartItems() {
 }
 
 generateCartItems();
+
+function incrementProduct(id) {
+  let selectItem = id;
+  let searchItem = storeProduct.find((item) => item.id === selectItem.id);
+
+  if (searchItem === undefined) {
+    storeProduct.push({
+      id: selectItem.id,
+      item: 1,
+    });
+  } else {
+    searchItem.item += 1;
+  }
+  updateProduct(selectItem.id);
+  generateCartItems();
+  localStorage.setItem('data', JSON.stringify(storeProduct));
+}
+
+function decrementProduct(id) {
+  let selectItem = id;
+  let searchItem = storeProduct.find((item) => item.id === selectItem.id);
+
+  if (searchItem === undefined) return;
+  else if (searchItem.item === 0) return;
+  else {
+    searchItem.item -= 1;
+  }
+  updateProduct(selectItem.id);
+  storeProduct = storeProduct.filter((item) => item.item !== 0);
+  generateCartItems();
+  localStorage.setItem('data', JSON.stringify(storeProduct));
+}
+
+function updateProduct(id) {
+  let searchItem = storeProduct.find((item) => item.id === id);
+  document.getElementById(id).innerHTML = searchItem.item;
+  calculationProduct();
+}
+
+function removeItem(id) {
+  let selectItem = id;
+  storeProduct = storeProduct.filter((item) => item.id !== selectItem.id);
+  localStorage.setItem('data', JSON.stringify(storeProduct));
+  generateCartItems();
+}
