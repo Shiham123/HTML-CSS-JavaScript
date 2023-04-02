@@ -1,4 +1,4 @@
-[
+let shopData = [
   {
     id: 'one',
     name: 'Casual Shirt',

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart page</title>
+    <link rel="stylesheet" href="./src/style.css" />
+    <!-- Font family -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+      rel="stylesheet"
+    />
+
+    <!-- Icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="index.html">
+        <h2>clothing store</h2>
+      </a>
+
+      <a href="cart.html">
+        <div class="cart">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <div class="cartAmount" id="cartAmount">0</div>
+        </div>
+      </a>
+    </div>
+
+    <div id="label" class="text-center"></div>
+    <div class="shopping-cart" id="shopping-cart"></div>
+  </body>
+  <script src="./Data/Data.js"></script>
+  <script src="./src/cart.js"></script>
+</html>
