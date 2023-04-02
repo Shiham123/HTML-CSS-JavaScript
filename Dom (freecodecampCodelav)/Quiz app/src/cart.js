@@ -19,6 +19,7 @@ function generateCartItems() {
       .map((product) => {
         let { id, item } = product;
         let searchItem = shopData.find((item) => item.id === id) || [];
+        let { img, name, price } = searchItem;
 
         return `
         <div class="cart-item">
@@ -27,7 +28,7 @@ function generateCartItems() {
             <div class="title-price-x">
               <h4 class="title-price">
                 <p>${searchItem.name}</p>
-                <p class="cart-item-price">$ ${searchItem.price}</p>
+                <p class="cart-item-price">$ ${price}</p>
               </h4>
               <i onclick="removeItem(${id})" class="fa-sharp fa-solid fa-circle-xmark"></i>
             </div>
@@ -36,7 +37,7 @@ function generateCartItems() {
               <div id="${id}" class="quantity">${item}</div>
               <i onclick="decrementProduct(${id})" class="fa-solid fa-square-minus"></i>
             </div>
-            <h3>$ ${item * searchItem.price}</h3>
+            <h3>$ ${item * price}</h3>
           </div>
         </div>
       `;
@@ -96,9 +97,10 @@ function updateProduct(id) {
 function removeItem(id) {
   let selectItem = id;
   storeProduct = storeProduct.filter((item) => item.id !== selectItem.id);
-  localStorage.setItem('data', JSON.stringify(storeProduct));
   generateCartItems();
   totalAmount();
+  calculationProduct();
+  localStorage.setItem('data', JSON.stringify(storeProduct));
 }
 
 function totalAmount() {
@@ -113,9 +115,16 @@ function totalAmount() {
     labelEl.innerHTML = `
         <h2>Total Bill : $ ${amount}</h2>
         <button class="checkOut">Checkout</button>
-        <button class="removeAll">remove All</button>
+        <button onclick="clearAllItem()" class="removeAll">remove All</button>
       `;
   } else return;
 }
 
 totalAmount();
+
+function clearAllItem() {
+  storeProduct = [];
+  generateCartItems();
+  calculationProduct();
+  localStorage.setItem('data', JSON.stringify(storeProduct));
+}

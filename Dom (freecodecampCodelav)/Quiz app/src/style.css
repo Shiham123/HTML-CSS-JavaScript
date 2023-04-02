@@ -32,6 +32,7 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   background-color: var(--black-one);
   padding: 25px 60px;
   margin-bottom: 30px;
