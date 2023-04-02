@@ -1,79 +1,80 @@
-const shopEl = document.getElementById('shop'),
-  cartAmountEl = document.getElementById('cartAmount');
+let shop = document.getElementById('shop');
 
-let storeProduct = JSON.parse(localStorage.getItem('data')) || [];
+let basket = JSON.parse(localStorage.getItem('data')) || [];
 
-function showProduct() {
-  shopEl.innerHTML = shopData
-    .map((item) => {
-      let { id, name, price, desc, img } = item;
-      let showLocalStorage = storeProduct.find((item) => item.id === id) || [];
+let generateShop = () => {
+  return (shop.innerHTML = shopItemsData
+    .map((x) => {
+      let { id, name, desc, img, price } = x;
+      let search = basket.find((y) => y.id === id) || [];
       return `
-    <div id="product-${id}" class="item">
-    <img width="326" src="${img}" alt="" />
-    <div class="details">
-      <h3>${name}</h3>
-      <p>${desc} ${id}</p>
-
-      <div class="prince-quantity">
-        <h2>$ ${price}</h2>
-        <div class="buttons">
-          <i onclick="incrementProduct(${id})" class="fa-solid fa-square-plus"></i>
-          <div id="${id}" class="quantity">${
-        showLocalStorage.item === undefined ? 0 : showLocalStorage.item
+    <div id=product-id-${id} class="item">
+      <img width="220" src=${img} alt="">
+      <div class="details">
+        <h3>${name}</h3>
+        <p>${desc}</p>
+        <div class="price-quantity">
+          <h2>$ ${price} </h2>
+          <div class="buttons">
+            <i onclick="increment(${id})" class="fa-sharp fa-solid fa-plus"></i>
+            <div id=${id} class="quantity">${
+        search.item === undefined ? 0 : search.item
       }</div>
-          <i onclick="decrementProduct(${id})" class="fa-solid fa-square-minus"></i>
+            <i onclick="decrement(${id})" class="fa-sharp fa-solid fa-minus"></i>
+          </div>
         </div>
       </div>
-    </div>
-  </div>`;
+  </div>
+    `;
     })
-    .join('');
-}
+    .join(''));
+};
 
-showProduct();
+generateShop();
 
-function incrementProduct(id) {
-  let selectItem = id;
-  let searchItem = storeProduct.find((item) => item.id === selectItem.id);
+let increment = (id) => {
+  let selectedItem = id;
+  let search = basket.find((x) => x.id === selectedItem.id);
 
-  if (searchItem === undefined) {
-    storeProduct.push({
-      id: selectItem.id,
+  if (search === undefined) {
+    basket.push({
+      id: selectedItem.id,
       item: 1,
     });
   } else {
-    searchItem.item += 1;
+    search.item += 1;
   }
-  updateProduct(selectItem.id);
-  localStorage.setItem('data', JSON.stringify(storeProduct));
-}
 
-function decrementProduct(id) {
-  let selectItem = id;
-  let searchItem = storeProduct.find((item) => item.id === selectItem.id);
+  console.log(basket);
+  update(selectedItem.id);
+  localStorage.setItem('data', JSON.stringify(basket));
+};
 
-  if (searchItem === undefined) return;
-  else if (searchItem.item === 0) return;
+let decrement = (id) => {
+  let selectedItem = id;
+  let search = basket.find((x) => x.id === selectedItem.id);
+
+  if (search === undefined) return;
+  else if (search.item === 0) return;
   else {
-    searchItem.item -= 1;
+    search.item -= 1;
   }
-  updateProduct(selectItem.id);
-  storeProduct = storeProduct.filter((item) => item.item !== 0);
-  localStorage.setItem('data', JSON.stringify(storeProduct));
-}
 
-function updateProduct(id) {
-  let searchItem = storeProduct.find((item) => item.id === id);
-  document.getElementById(id).innerHTML = searchItem.item;
-  calculationProduct();
-}
+  update(selectedItem.id);
+  basket = basket.filter((x) => x.item !== 0);
+  console.log(basket);
+  localStorage.setItem('data', JSON.stringify(basket));
+};
 
-function calculationProduct() {
-  let searchItem = storeProduct
-    .map((item) => item.item)
-    .reduce((itemOne, itemTwo) => itemOne + itemTwo, 0);
-  cartAmountEl.innerHTML = searchItem;
-}
+let update = (id) => {
+  let search = basket.find((x) => x.id === id);
+  document.getElementById(id).innerHTML = search.item;
+  calculation();
+};
 
-calculationProduct();
+let calculation = () => {
+  let cartIcon = document.getElementById('cartAmount');
+  cartIcon.innerHTML = basket.map((x) => x.item).reduce((x, y) => x + y, 0);
+};
+
+calculation();

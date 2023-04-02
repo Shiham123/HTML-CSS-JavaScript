@@ -1,54 +1,47 @@
-:root {
-  --white-one: #f8f9fa;
-  --white-two: #e9ecef;
-  --white-three: #dee2e6;
-  --white-four: #ced4da;
-  --grey: #adb5bd;
-  --black-one: #212529;
-  --black-two: #343a40;
-  --black-three: #495057;
-  --black-four: #6c757d;
-}
+/**
+* ! Changing default styles of the browser
+**/
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
 }
+
+body {
+  font-family: sans-serif;
+}
+
 i {
   cursor: pointer;
 }
 
 a {
   text-decoration: none;
-  color: var(--white-one);
+  color: white;
 }
+
 /**
-  * ! navbar style component
-  */
+* ! Navbar STyles are here
+**/
 
 .navbar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  background-color: var(--black-one);
+  background-color: #212529;
+  color: white;
   padding: 25px 60px;
   margin-bottom: 30px;
 }
 
-.navbar h2 {
-  color: var(--white-one);
-}
-
 .cart {
-  background-color: var(--white-one);
-  color: var(--black-one);
+  position: relative;
+  background-color: #fff;
+  color: #212529;
   font-size: 30px;
   padding: 5px;
   border-radius: 4px;
-  position: relative;
 }
 
 .cartAmount {
@@ -56,49 +49,53 @@ a {
   top: -15px;
   right: -10px;
   font-size: 16px;
-  background-color: var(--black-three);
-  color: var(--white-three);
-  padding: 5px;
-  border-radius: 8px;
+  background-color: red;
+  color: white;
+  padding: 3px;
+  border-radius: 3px;
 }
 
 /**
-* ! shop styles are here
-*/
+* ! Shop items styles are here
+**/
+
 .shop {
   display: grid;
-  grid-template-columns: repeat(4, 330px);
+  grid-template-columns: repeat(4, 223px);
   gap: 30px;
   justify-content: center;
+  margin-bottom: 50px;
 }
 
 @media (max-width: 1000px) {
   .shop {
-    grid-template-columns: repeat(2, 330px);
+    grid-template-columns: repeat(2, 223px);
   }
 }
 
 @media (max-width: 500px) {
   .shop {
-    grid-template-columns: repeat(1, 330px);
+    grid-template-columns: repeat(1, 223px);
   }
 }
 
 .item {
-  border: 2px solid var(--black-three);
+  border: 2px solid #212529;
   border-radius: 4px;
+}
+.item img {
+  width: 100%;
+  border-radius: 2px 2px 0 0;
 }
 
 .details {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   padding: 10px;
   gap: 10px;
 }
 
-.prince-quantity {
-  margin-top: 2rem;
+.price-quantity {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -107,8 +104,9 @@ a {
 
 .buttons {
   display: flex;
+  flex-direction: row;
   gap: 8px;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .fa-minus {
@@ -120,77 +118,75 @@ a {
 }
 
 /**
-* ! style the cart html file
+* ! style rules for label and some buttons
 **/
 
-.shopping-cart {
-  text-align: center;
-  margin-bottom: 20px;
-}
 .text-center {
   text-align: center;
   margin-bottom: 20px;
 }
 
-.homeBtn,
-.checkOut,
+.HomeBtn,
+.checkout,
 .removeAll {
-  border: 0;
-  background-color: var(--black-one);
-  color: var(--white-one);
-  padding: 5px;
-  border-radius: 4px;
+  background-color: #212529;
+  color: white;
+  border: none;
+  padding: 6px;
+  border-radius: 3px;
   cursor: pointer;
   margin-top: 10px;
 }
 
-.checkOut {
+.checkout {
   background-color: green;
 }
-
 .removeAll {
   background-color: red;
 }
-
 .fa-circle-xmark {
   color: red;
   font-weight: bold;
 }
 
 /**
-* ! style shopping cart
+* ! style rules for shopping-cart
 **/
 
 .shopping-cart {
   display: grid;
-  grid-template-columns: repeat(1, 550px);
+  grid-template-columns: repeat(1, 320px);
   justify-content: center;
   gap: 15px;
 }
 
+/**
+* ! style rules for cart-item
+**/
+
 .cart-item {
-  border: 1px solid var(--black-three);
+  border: 2px solid #212529;
   border-radius: 5px;
   display: flex;
-  align-items: center;
 }
+
 .title-price-x {
-  width: 360px;
+  width: 195px;
   display: flex;
-  gap: 10px;
   align-items: center;
   justify-content: space-between;
+  /* border: 2px solid red; */
 }
 
 .title-price {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
 }
 
 .cart-item-price {
-  background-color: var(--black-two);
-  color: var(--white-two);
-  padding: 5px 10px;
+  background-color: #212529;
+  color: white;
   border-radius: 4px;
+  padding: 3px 6px;
 }
