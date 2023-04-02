@@ -117,3 +117,22 @@ a {
 .fa-plus {
   color: green;
 }
+
+/**
+* ! style the cart html file
+**/
+
+.text-center {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.homeBtn {
+  border: 0;
+  background-color: var(--black-one);
+  color: var(--white-one);
+  padding: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
