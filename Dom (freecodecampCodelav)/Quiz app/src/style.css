@@ -126,7 +126,7 @@ a {
   margin-bottom: 20px;
 }
 
-.HomeBtn,
+.homeBtn,
 .checkout,
 .removeAll {
   background-color: #212529;
@@ -165,14 +165,16 @@ a {
 **/
 
 .cart-item {
+  width: 400px;
   border: 2px solid #212529;
   border-radius: 5px;
   display: flex;
 }
 
 .title-price-x {
-  width: 195px;
+  width: 0px;
   display: flex;
+  margin: 10px 0px;
   align-items: center;
   justify-content: space-between;
   /* border: 2px solid red; */
@@ -181,7 +183,7 @@ a {
 .title-price {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 }
 
 .cart-item-price {
