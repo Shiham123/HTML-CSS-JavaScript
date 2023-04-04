@@ -13,11 +13,12 @@ calculationProduct();
 
 function generateProduct() {
   if (basket.length !== 0) {
-    return (shoppingCartEl.innerHTML = basket.map((x) => {
-      let { id, item } = x;
-      let searchItem = shopItemsData.find((x) => x.id === id) || [];
-      let { img, price, name } = searchItem;
-      return `
+    return (shoppingCartEl.innerHTML = basket
+      .map((x) => {
+        let { id, item } = x;
+        let searchItem = shopItemsData.find((x) => x.id === id);
+        let { img, price, name } = searchItem;
+        return `
       <div class="cart-item">
         <img width="170" src="${img}" alt="" />
         <div class="details">
@@ -33,18 +34,20 @@ function generateProduct() {
             <div id="${id}" class="quantity">${item}</div>
             <i onclick="decrementProduct(${id})" class="fa-solid fa-square-minus"></i>
           </div>
-          <h3>$ ${item * price}</h3>
+          <h3>$ ${price * item}</h3>
         </div>
       </div>
+
       `;
-    }));
+      })
+      .join(''));
   } else {
-    shoppingCartEl.innerHTML = `
+    return (shoppingCartEl.innerHTML = `
     <h2>Cart is empty</h2>
     <a href="index.html">
       <button class="homeBtn">Back to home</button>
     </a>
-    `;
+    `);
   }
 }
 
@@ -94,16 +97,16 @@ function totalAmount() {
     let amount = basket
       .map((x) => {
         let { id, item } = x;
-        let filterData = shopItemsData.find((x) => x.id === id);
-        return filterData.price * item;
+        let searchItem = shopItemsData.find((x) => x.id === id);
+        return searchItem.price * item;
       })
       .reduce((x, y) => x + y, 0);
 
-    return (labelEl.innerHTML = `
-      <h2>Total Bill :$ ${amount}</h2>
-      <button class="checkout" >CheckOut</button>
-      <button onclick="clearCart()" class="removeAll" >Remove Item</button>
-      `);
+    labelEl.innerHTML = `
+    <h2>Total bil :$ ${amount}</h2>
+    <button class="checkout">CheckOut</button>
+    <button class="removeAll">Remove all item</button>
+    `;
   } else return;
 }
 
@@ -113,12 +116,12 @@ function removeItem(id) {
   let selectItem = id;
   basket = basket.filter((x) => x.id !== selectItem.id);
   generateProduct();
-  calculationProduct();
   totalAmount();
+  calculationProduct();
   localStorage.setItem('data', JSON.stringify(basket));
 }
 
-function clearCart() {
+function clearItem() {
   basket = [];
   generateProduct();
   calculationProduct();
