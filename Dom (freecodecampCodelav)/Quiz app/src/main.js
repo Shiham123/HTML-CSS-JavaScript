@@ -1,13 +1,13 @@
 const shopEl = document.getElementById('shop'),
   cartAmountEl = document.getElementById('cartAmount');
 
-let basket = JSON.parse(localStorage.getItem('data')) || [];
+let storeProduct = JSON.parse(localStorage.getItem('data')) || [];
 
 function showProduct() {
   return (shopEl.innerHTML = shopItemsData
-    .map((x) => {
-      let { name, id, price, img, desc } = x;
-      let searchItem = basket.find((x) => x.id === id) || [];
+    .map((product) => {
+      let { name, img, price, id, desc } = product;
+      let updateItem = storeProduct.find((product) => product.id === id) || [];
       return `
     <div id="product-${id}" class="item">
         <img width="326" src="${img}" alt="" />
@@ -20,7 +20,7 @@ function showProduct() {
             <div class="buttons">
               <i onclick="incrementProduct(${id})" class="fa-solid fa-square-plus"></i>
               <div id="${id}" class="quantity">${
-        searchItem.item === undefined ? 0 : searchItem.item
+        updateItem.item === undefined ? 0 : updateItem.item
       }</div>
               <i onclick="decrementProduct(${id})" class="fa-solid fa-square-minus"></i>
             </div>
@@ -36,10 +36,10 @@ showProduct();
 
 function incrementProduct(id) {
   let selectItem = id;
-  let searchItem = basket.find((x) => x.id === selectItem.id);
+  let searchItem = storeProduct.find((product) => product.id === selectItem.id);
 
   if (searchItem === undefined) {
-    basket.push({
+    storeProduct.push({
       id: selectItem.id,
       item: 1,
     });
@@ -47,12 +47,12 @@ function incrementProduct(id) {
     searchItem.item += 1;
   }
   updateProduct(selectItem.id);
-  localStorage.setItem('data', JSON.stringify(basket));
+  localStorage.setItem('data', JSON.stringify(storeProduct));
 }
 
 function decrementProduct(id) {
   let selectItem = id;
-  let searchItem = basket.find((x) => x.id === selectItem.id);
+  let searchItem = storeProduct.find((product) => product.id === selectItem.id);
 
   if (searchItem === undefined) return;
   else if (searchItem.item === 0) return;
@@ -60,19 +60,21 @@ function decrementProduct(id) {
     searchItem.item -= 1;
   }
   updateProduct(selectItem.id);
-  basket = basket.filter((x) => x.item !== 0);
-  localStorage.setItem('data', JSON.stringify(basket));
+  storeProduct = storeProduct.filter((product) => product.item !== 0);
+  localStorage.setItem('data', JSON.stringify(storeProduct));
 }
 
 function updateProduct(id) {
-  let searchItem = basket.find((x) => x.id === id);
+  let searchItem = storeProduct.find((product) => product.id === id);
   document.getElementById(id).innerHTML = searchItem.item;
   calculationProduct();
 }
 
 function calculationProduct() {
-  let searchItem = basket.map((x) => x.item).reduce((x, y) => x + y, 0);
-  cartAmountEl.innerHTML = searchItem;
+  let countAll = storeProduct
+    .map((product) => product.item)
+    .reduce((itemOne, itemTwo) => itemOne + itemTwo, 0);
+  cartAmountEl.innerHTML = countAll;
 }
 
 calculationProduct();
