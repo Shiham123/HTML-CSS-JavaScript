@@ -17,7 +17,7 @@ function generateProduct() {
       .map((x) => {
         let { id, item } = x;
         let searchItem = shopItemsData.find((x) => x.id === id);
-        let { img, price, name } = searchItem;
+        let { img, name, price } = searchItem;
         return `
       <div class="cart-item">
         <img width="170" src="${img}" alt="" />
@@ -34,10 +34,9 @@ function generateProduct() {
             <div id="${id}" class="quantity">${item}</div>
             <i onclick="decrementProduct(${id})" class="fa-solid fa-square-minus"></i>
           </div>
-          <h3>$ ${price * item}</h3>
+          <h3>$ ${item * price}</h3>
         </div>
       </div>
-
       `;
       })
       .join(''));
@@ -103,9 +102,9 @@ function totalAmount() {
       .reduce((x, y) => x + y, 0);
 
     labelEl.innerHTML = `
-    <h2>Total bil :$ ${amount}</h2>
+    <h2>Total Bill :$ ${amount}</h2>
     <button class="checkout">CheckOut</button>
-    <button class="removeAll">Remove all item</button>
+    <button class="removeAll" onclick="clearItem()" >Remove all item</button>
     `;
   } else return;
 }
@@ -116,13 +115,14 @@ function removeItem(id) {
   let selectItem = id;
   basket = basket.filter((x) => x.id !== selectItem.id);
   generateProduct();
-  totalAmount();
   calculationProduct();
+  totalAmount();
   localStorage.setItem('data', JSON.stringify(basket));
 }
 
 function clearItem() {
   basket = [];
+  totalAmount();
   generateProduct();
   calculationProduct();
   localStorage.setItem('data', JSON.stringify(basket));
