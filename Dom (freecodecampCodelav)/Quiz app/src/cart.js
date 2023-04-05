@@ -5,43 +5,42 @@ const shoppingCartEl = document.getElementById('shopping-cart'),
 let storeProduct = JSON.parse(localStorage.getItem('data')) || [];
 
 function calculationProduct() {
-  let countAll = storeProduct
+  let searchItem = storeProduct
     .map((product) => product.item)
-    .reduce((itemOne, itemTwo) => itemOne + itemTwo, 0);
-  cartAmountEl.innerHTML = countAll;
+    .reduce((productOne, productTwo) => productOne + productTwo, 0);
+
+  cartAmountEl.innerHTML = searchItem;
 }
 
 calculationProduct();
 
 function generateProduct() {
   if (storeProduct.length !== 0) {
-    return (shoppingCartEl.innerHTML = storeProduct
-      .map((product) => {
-        let { id, item } = product;
-        let showItem = shopItemsData.find((product) => product.id === id);
-        let { img, name, price } = showItem;
-        return `
+    return (shoppingCartEl.innerHTML = storeProduct.map((product) => {
+      let { id, item } = product;
+      let searchItem = shopItemsData.find((product) => product.id === id);
+      let { name, img, price } = searchItem;
+      return `
       <div class="cart-item">
-      <img width="170" src="${img}" alt="" />
-      <div class="details">
-        <div class="title-price-x">
-          <h4 class="title-price">
-            <p>$ ${price}</p>
-            <p class="cart-item-price">${name}</p>
-          </h4>
-          <i onclick="removeItem(${id})" class="fa-sharp fa-solid fa-circle-xmark"></i>
+        <img width="170" src="${img}" alt="" />
+        <div class="details">
+          <div class="title-price-x">
+            <h4 class="title-price">
+              <p>$ ${price}</p>
+              <p class="cart-item-price">${name}</p>
+            </h4>
+            <i onclick="removeItem(${id})" class="fa-sharp fa-solid fa-circle-xmark"></i>
+          </div>
+          <div class="buttons">
+            <i onclick="incrementProduct(${id})" class="fa-solid fa-square-plus"></i>
+            <div id="${id}" class="quantity">${item}</div>
+            <i onclick="decrementProduct(${id})" class="fa-solid fa-square-minus"></i>
+          </div>
+          <h3>$ ${price * item}</h3>
         </div>
-        <div class="buttons">
-          <i onclick="incrementProduct(${id})" class="fa-solid fa-square-plus"></i>
-          <div id="${id}" class="quantity">${item}</div>
-          <i onclick="decrementProduct(${id})" class="fa-solid fa-square-minus"></i>
-        </div>
-        <h3>$ ${price * item}</h3>
       </div>
-    </div>
       `;
-      })
-      .join(''));
+    }));
   } else {
     return (shoppingCartEl.innerHTML = `
     <h2>Cart is empty</h2>
@@ -90,10 +89,11 @@ function updateProduct(id) {
   let searchItem = storeProduct.find((product) => product.id === id);
   document.getElementById(id).innerHTML = searchItem.item;
   calculationProduct();
-  totalAmount();
+  generateProduct();
+  totalCost();
 }
 
-function totalAmount() {
+function totalCost() {
   if (storeProduct.length !== 0) {
     let amount = storeProduct
       .map((product) => {
@@ -104,27 +104,28 @@ function totalAmount() {
       .reduce((productOne, productTwo) => productOne + productTwo, 0);
 
     labelEl.innerHTML = `
-    <h2>Total bill :$ ${amount}</h2>
-    <button onclick="removeAllItem()" class="removeAll">Remove ALL item</button>
+    <h2>Total bill : $ ${amount}</h2>
     <button class="checkout">Check out</button>
+    <button onclick="removeAllItem()" class="removeAll">remove All item</button>
     `;
   } else return;
 }
 
-totalAmount();
+totalCost();
 
 function removeItem(id) {
   let selectItem = id;
   storeProduct = storeProduct.filter((product) => product.id !== selectItem.id);
   generateProduct();
   calculationProduct();
-  totalAmount();
+  totalCost();
   localStorage.setItem('data', JSON.stringify(storeProduct));
 }
 
 function removeAllItem() {
   storeProduct = [];
   generateProduct();
+  totalCost();
   calculationProduct();
   localStorage.setItem('data', JSON.stringify(storeProduct));
 }

@@ -6,8 +6,10 @@ let storeProduct = JSON.parse(localStorage.getItem('data')) || [];
 function showProduct() {
   return (shopEl.innerHTML = shopItemsData
     .map((product) => {
-      let { name, img, price, id, desc } = product;
-      let updateItem = storeProduct.find((product) => product.id === id) || [];
+      let { id, name, price, desc, img } = product;
+      let updateProduct =
+        storeProduct.find((product) => product.id === id) || [];
+
       return `
     <div id="product-${id}" class="item">
         <img width="326" src="${img}" alt="" />
@@ -20,7 +22,7 @@ function showProduct() {
             <div class="buttons">
               <i onclick="incrementProduct(${id})" class="fa-solid fa-square-plus"></i>
               <div id="${id}" class="quantity">${
-        updateItem.item === undefined ? 0 : updateItem.item
+        updateProduct.item === undefined ? 0 : updateProduct.item
       }</div>
               <i onclick="decrementProduct(${id})" class="fa-solid fa-square-minus"></i>
             </div>
@@ -71,10 +73,11 @@ function updateProduct(id) {
 }
 
 function calculationProduct() {
-  let countAll = storeProduct
+  let searchItem = storeProduct
     .map((product) => product.item)
-    .reduce((itemOne, itemTwo) => itemOne + itemTwo, 0);
-  cartAmountEl.innerHTML = countAll;
+    .reduce((productOne, productTwo) => productOne + productTwo, 0);
+
+  cartAmountEl.innerHTML = searchItem;
 }
 
 calculationProduct();
