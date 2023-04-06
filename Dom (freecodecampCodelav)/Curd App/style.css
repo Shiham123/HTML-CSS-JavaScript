@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Montserrat, sans-serif;
+  text-transform: capitalize;
+}
+.title {
+  margin: 2rem;
+}
+.container {
+  display: flex;
+  gap: 50px;
+  margin: 2rem 2rem;
+  padding: 2rem 2rem;
+  box-shadow: rgba(35, 35, 39, 0.2) 0px 7px 29px 0px;
+}
+
+.posts {
+  width: 400px;
+}
+
+.posts div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0rem;
+}
+
+.options {
+  display: flex;
+  gap: 25px;
+}
+
+i {
+  cursor: pointer;
+}
