@@ -29,10 +29,19 @@ function createPost() {
   <div>
     <p>${data.text}</p>
     <span class="options">
-      <i class="fas fa-edit"></i>
-      <i class="fas fa-trash-alt"></i>
+      <i onclick="editPost(this)" class="fas fa-edit"></i>
+      <i onclick="deletePost(this)" class="fas fa-trash-alt"></i>
     </span>
   </div>
   `;
   inputEl.value = '';
+}
+
+function deletePost(e) {
+  e.parentElement.parentElement.remove();
+}
+
+function editPost(e) {
+  inputEl.value = e.parentElement.previousElementSibling.innerHTML;
+  e.parentElement.parentElement.remove();
 }
