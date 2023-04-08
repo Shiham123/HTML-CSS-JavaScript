@@ -5,10 +5,125 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo app</title>
+    <!-- font family -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic"
+      rel="stylesheet"
+    />
+    <!-- Font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+    />
+    <!-- Bootstrap cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+      integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+      crossorigin="anonymous"
+    />
     <!-- Css file -->
     <link rel="stylesheet" href="style.css" />
-    <!-- Js file -->
-    <script src="main.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <div class="app">
+      <h4 class="mb-3 text-capitalize text-center">todo app</h4>
+      <div
+        id="addNew"
+        class="addNew"
+        data-bs-toggle="modal"
+        data-bs-target="#form"
+      >
+        <span>Add new Task</span>
+        <i class="fas fa-plus"></i>
+      </div>
+
+      <h5 class="text-center text-capitalize my-3">tasks</h5>
+
+      <!-- Modal trigger button -->
+      <!-- <button type="button" class="btn btn-primary btn-lg">Launch</button> -->
+      <form
+        class="modal fade"
+        id="form"
+        tabindex="-1"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        role="dialog"
+        aria-labelledby="modalTitleId"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalTitleId">Add New Task</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">Body</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">Add</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div id="tasks" class="tasks">
+        <div>
+          <span class="fw-bold">Task one</span>
+          <span class="small text-secondary">2022-1-20</span>
+          <p>Learning code</p>
+          <span class="options">
+            <i class="fas fa-edit"></i>
+            <i class="fas fa-trash-alt"></i>
+          </span>
+        </div>
+        <div>
+          <span class="fw-bold">Task two</span>
+          <span class="small text-secondary">2022-1-20</span>
+          <p>Going to gym</p>
+          <span class="options">
+            <i class="fas fa-edit"></i>
+            <i class="fas fa-trash-alt"></i>
+          </span>
+        </div>
+        <div>
+          <span class="fw-bold">Task three</span>
+          <span class="small text-secondary">2022-1-20</span>
+          <p>read the book of ALLAH</p>
+          <span class="options">
+            <i class="fas fa-edit"></i>
+            <i class="fas fa-trash-alt"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js"
+    integrity="sha512-i9cEfJwUwViEPFKdC1enz4ZRGBj8YQo6QByFTF92YXHi7waCqyexvRD75S5NVTsSiTv7rKWqG9Y5eFxmRsOn0A=="
+    crossorigin="anonymous"
+  ></script>
+  <script src="main.js"></script>
+  <script>
+    const myModal = new bootstrap.Modal(
+      document.getElementById('modalId'),
+      options
+    );
+  </script>
 </html>
