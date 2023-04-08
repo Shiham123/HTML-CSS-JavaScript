@@ -3,7 +3,8 @@ const formEl = document.getElementById('form'),
   dateInputEl = document.getElementById('dateInput'),
   textareaInputEl = document.getElementById('textareaInput');
 
-const tasksEl = document.getElementById('tasks');
+const tasksEl = document.getElementById('tasks'),
+  addEl = document.getElementById('add');
 
 const inputMsgEl = document.getElementById('inputMsg'),
   dateMsgEl = document.getElementById('dateMsg'),
@@ -35,6 +36,12 @@ const fromValidation = () => {
     textareaInputEl.value !== ''
   ) {
     acceptData();
+    addEl.setAttribute('data-bs-dismiss', 'modal');
+    addEl.click();
+
+    (() => {
+      addEl.setAttribute('data-bs-dismiss', '');
+    })();
   } else {
     console.log('nothing');
   }
@@ -50,7 +57,7 @@ const acceptData = () => {
 
 const createTasks = () => {
   let { text, date, description } = storeData;
-  return (tasksEl.innerHTML += `
+  tasksEl.innerHTML += `
   <div>
     <span class="fw-bold">${text}</span>
     <span class="small text-secondary">${date}</span>
@@ -60,5 +67,12 @@ const createTasks = () => {
       <i class="fas fa-trash-alt"></i>
     </span>
   </div>
-  `);
+  `;
+  resetForm();
+};
+
+let resetForm = () => {
+  textInputEl.value = '';
+  dateInputEl.value = '';
+  textareaInputEl.value = '';
 };
