@@ -15,7 +15,7 @@ formEl.addEventListener('submit', (e) => {
   fromValidation();
 });
 
-let storeData = {};
+let storeData = [];
 
 const fromValidation = () => {
   textInputEl.value !== ''
@@ -48,32 +48,40 @@ const fromValidation = () => {
 };
 
 const acceptData = () => {
-  storeData['text'] = textInputEl.value;
-  storeData['date'] = dateInputEl.value;
-  storeData['description'] = textareaInputEl.value;
+  storeData.push({
+    text: textInputEl.value,
+    date: dateInputEl.value,
+    description: textareaInputEl.value,
+  });
 
+  localStorage.setItem('data', JSON.stringify(storeData));
   createTasks();
 };
 
 const createTasks = () => {
-  let { text, date, description } = storeData;
-  tasksEl.innerHTML += `
-  <div>
-    <span class="fw-bold">${text}</span>
-    <span class="small text-secondary">${date}</span>
-    <p>${description}</p>
+  tasksEl.innerHTML = '';
+  storeData.map((taskOne, taskTwo) => {
+    let { text, date, description } = taskOne;
+    return (tasksEl.innerHTML += `
+    <div id="${taskTwo}">
+      <span class="fw-bold">${text}</span>
+      <span class="small text-secondary">${date}</span>
+      <p>${description}</p>
 
-    <span class="options">
-      <i onclick="editTask(this)" data-bs-toggle="modal" data-bs-target="#form" class="fas fa-edit"></i>
-      <i onclick="deleteTask(this)" class="fas fa-trash-alt"></i>
-    </span>
-  </div>
-  `;
+      <span class="options">
+        <i onclick="editTask(this)" data-bs-toggle="modal" data-bs-target="#form" class="fas fa-edit"></i>
+        <i onclick="deleteTask(this); createTasks()" class="fas fa-trash-alt"></i>
+      </span>
+    </div>
+    `);
+  });
   resetForm();
 };
 
 const deleteTask = (e) => {
   e.parentElement.parentElement.remove();
+  storeData.splice(e.parentElement.parentElement.id, 1);
+  localStorage.setItem('data', JSON.stringify(storeData));
 };
 
 const editTask = (e) => {
@@ -83,7 +91,7 @@ const editTask = (e) => {
   dateInputEl.value = selectedTask.children[1].innerHTML;
   textareaInputEl.value = selectedTask.children[2].innerHTML;
 
-  selectedTask.remove();
+  deleteTask(e);
 };
 
 const resetForm = () => {
@@ -91,3 +99,8 @@ const resetForm = () => {
   dateInputEl.value = '';
   textareaInputEl.value = '';
 };
+
+(() => {
+  storeData = JSON.parse(localStorage.getItem('data')) || [];
+  createTasks();
+})();
