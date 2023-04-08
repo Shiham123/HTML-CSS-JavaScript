@@ -3,6 +3,8 @@ const formEl = document.getElementById('form'),
   dateInputEl = document.getElementById('dateInput'),
   textareaInputEl = document.getElementById('textareaInput');
 
+const tasksEl = document.getElementById('tasks');
+
 const inputMsgEl = document.getElementById('inputMsg'),
   dateMsgEl = document.getElementById('dateMsg'),
   descMsgEl = document.getElementById('descMsg');
@@ -42,5 +44,21 @@ const acceptData = () => {
   storeData['text'] = textInputEl.value;
   storeData['date'] = dateInputEl.value;
   storeData['description'] = textareaInputEl.value;
-  console.log(storeData);
+
+  createTasks();
+};
+
+const createTasks = () => {
+  let { text, date, description } = storeData;
+  return (tasksEl.innerHTML += `
+  <div>
+    <span class="fw-bold">${text}</span>
+    <span class="small text-secondary">${date}</span>
+    <p>${description}</p>
+    <span class="options">
+      <i class="fas fa-edit"></i>
+      <i class="fas fa-trash-alt"></i>
+    </span>
+  </div>
+  `);
 };
