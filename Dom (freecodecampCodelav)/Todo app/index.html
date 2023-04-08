@@ -72,12 +72,15 @@
               <p class="text-capitalize">task title</p>
 
               <input class="form-control" type="text" name="" id="textInput" />
+              <div id="inputMsg" class="msg"></div>
               <br />
               <p class="text-capitalize">Due date</p>
 
               <input class="form-control" type="date" name="" id="dateInput" />
+              <div id="dateMsg" class="msg"></div>
               <br />
               <p class="text-capitalize">description</p>
+              <div id="descMsg" class="msg"></div>
 
               <textarea
                 name=""
@@ -139,9 +142,6 @@
   ></script>
   <script src="main.js"></script>
   <script>
-    const myModal = new bootstrap.Modal(
-      document.getElementById('modalId'),
-      options
-    );
+    const myModal = new bootstrap.Modal(document.getElementById('modalId'));
   </script>
 </html>

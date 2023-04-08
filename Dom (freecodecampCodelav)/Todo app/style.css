@@ -59,3 +59,8 @@ body {
 .options i {
   cursor: pointer;
 }
+
+.msg {
+  color: red;
+  text-transform: capitalize;
+}
