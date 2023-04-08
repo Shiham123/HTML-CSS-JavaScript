@@ -55,7 +55,7 @@
         aria-hidden="true"
       >
         <div
-          class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+          class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-static"
           role="document"
         >
           <div class="modal-content">
@@ -68,7 +68,25 @@
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">Body</div>
+            <div class="modal-body">
+              <p class="text-capitalize">task title</p>
+
+              <input class="form-control" type="text" name="" id="textInput" />
+              <br />
+              <p class="text-capitalize">Due date</p>
+
+              <input class="form-control" type="date" name="" id="dateInput" />
+              <br />
+              <p class="text-capitalize">description</p>
+
+              <textarea
+                name=""
+                id="textareaInput"
+                cols="30"
+                rows="5"
+              ></textarea>
+              <br />
+            </div>
             <div class="modal-footer">
               <button
                 type="button"
@@ -77,7 +95,7 @@
               >
                 Close
               </button>
-              <button type="button" class="btn btn-primary">Add</button>
+              <button type="submit" class="btn btn-primary">Add</button>
             </div>
           </div>
         </div>
