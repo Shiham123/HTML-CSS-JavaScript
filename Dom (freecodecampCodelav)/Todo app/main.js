@@ -3,8 +3,8 @@ const formEl = document.getElementById('form'),
   dateInputEl = document.getElementById('dateInput'),
   textareaInputEl = document.getElementById('textareaInput');
 
-const tasksEl = document.getElementById('tasks'),
-  addEl = document.getElementById('add');
+const addEl = document.getElementById('add'),
+  tasksEl = document.getElementById('tasks');
 
 const inputMsgEl = document.getElementById('inputMsg'),
   dateMsgEl = document.getElementById('dateMsg'),
@@ -12,23 +12,23 @@ const inputMsgEl = document.getElementById('inputMsg'),
 
 formEl.addEventListener('submit', (e) => {
   e.preventDefault();
-  fromValidation();
+  formValidation();
 });
 
 let storeData = [];
 
-const fromValidation = () => {
+function formValidation() {
   textInputEl.value !== ''
     ? (inputMsgEl.innerHTML = '')
-    : (inputMsgEl.innerHTML = 'text Cannot be blank');
+    : (inputMsgEl.innerHTML = 'Must provide a input');
 
   dateInputEl.value !== ''
     ? (dateMsgEl.innerHTML = '')
-    : (dateMsgEl.innerHTML = 'date must provide');
+    : (dateMsgEl.innerHTML = 'must provide a date');
 
   textareaInputEl.value !== ''
     ? (descMsgEl.innerHTML = '')
-    : (descMsgEl.innerHTML = 'Description must be added');
+    : (descMsgEl.innerHTML = 'must provide a description');
 
   if (
     textInputEl.value !== '' &&
@@ -45,46 +45,46 @@ const fromValidation = () => {
   } else {
     console.log('nothing');
   }
-};
+}
 
-const acceptData = () => {
+function acceptData() {
   storeData.push({
     text: textInputEl.value,
     date: dateInputEl.value,
-    description: textareaInputEl.value,
+    desc: textareaInputEl.value,
   });
 
   localStorage.setItem('data', JSON.stringify(storeData));
-  createTasks();
-};
+  createTask();
+}
 
-const createTasks = () => {
+function createTask() {
   tasksEl.innerHTML = '';
-  storeData.map((taskOne, taskTwo) => {
-    let { text, date, description } = taskOne;
+  storeData.map((task, index) => {
+    let { text, date, desc } = task;
     return (tasksEl.innerHTML += `
-    <div id="${taskTwo}">
+		<div id=${index}>
       <span class="fw-bold">${text}</span>
       <span class="small text-secondary">${date}</span>
-      <p>${description}</p>
+      <p>${desc}</p>
 
       <span class="options">
         <i onclick="editTask(this)" data-bs-toggle="modal" data-bs-target="#form" class="fas fa-edit"></i>
-        <i onclick="deleteTask(this); createTasks()" class="fas fa-trash-alt"></i>
+        <i onclick="deleteTask(this); createTask()" class="fas fa-trash-alt"></i>
       </span>
     </div>
-    `);
+		`);
   });
   resetForm();
-};
+}
 
-const deleteTask = (e) => {
+function deleteTask(e) {
   e.parentElement.parentElement.remove();
   storeData.splice(e.parentElement.parentElement.id, 1);
   localStorage.setItem('data', JSON.stringify(storeData));
-};
+}
 
-const editTask = (e) => {
+function editTask(e) {
   let selectedTask = e.parentElement.parentElement;
 
   textInputEl.value = selectedTask.children[0].innerHTML;
@@ -92,15 +92,15 @@ const editTask = (e) => {
   textareaInputEl.value = selectedTask.children[2].innerHTML;
 
   deleteTask(e);
-};
+}
 
-const resetForm = () => {
+function resetForm() {
   textInputEl.value = '';
   dateInputEl.value = '';
   textareaInputEl.value = '';
-};
+}
 
 (() => {
   storeData = JSON.parse(localStorage.getItem('data')) || [];
-  createTasks();
+  createTask();
 })();
