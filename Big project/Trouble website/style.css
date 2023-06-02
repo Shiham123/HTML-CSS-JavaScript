@@ -45,6 +45,7 @@
 
 .offers-input {
   position: relative;
+  z-index: 10;
 }
 
 .offers-input::after {
@@ -59,4 +60,15 @@
   opacity: 0.7;
 }
 
-
+.offers-input::before {
+  position: absolute;
+  content: ' ';
+  background-image: url(Img/ellipse-one.png);
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 100px;
+  bottom: -47px;
+  left: 0px;
+  transform: rotate(180deg);
+  z-index: -1;
+}
