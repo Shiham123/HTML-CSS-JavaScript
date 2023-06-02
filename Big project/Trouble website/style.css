@@ -42,3 +42,21 @@
   top: -150px;
   left: -150px;
 }
+
+.offers-input {
+  position: relative;
+}
+
+.offers-input::after {
+  position: absolute;
+  content: ' ';
+  background-image: url(Img/ellipse-two.png);
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 100px;
+  top: -50px;
+  right: 100px;
+  opacity: 0.7;
+}
+
+
