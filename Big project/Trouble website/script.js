@@ -118,3 +118,33 @@ cityLeftIconEl.addEventListener('click', () => {
 function updateCitesSlider() {
   citesEl.style.transform = `translate(${citesCount * 350}px)`;
 }
+
+// ?------------------------------------------------------------
+// ?------------------------------------------------------------
+// ?------------------------------------------------------------
+
+const dynamicDate = document.querySelector('.dynamic-date');
+const currentDate = new Date();
+
+let monthArr = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
+const monthIndex = currentDate.getMonth(),
+  monthName = monthArr[monthIndex];
+
+const date = currentDate.getDate(),
+  year = currentDate.getFullYear();
+
+dynamicDate.innerText = `${monthName} ${date}, ${year}`;
