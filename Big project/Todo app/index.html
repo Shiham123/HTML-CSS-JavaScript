@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo app</title>
+    <!-- Font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+      rel="stylesheet"
+    />
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+    />
+    <!-- bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+      integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+      crossorigin="anonymous"
+    />
+    <!-- Css file -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">
+        <h1>task view</h1>
+        <div
+          class="add-task"
+          id="add-task"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          <div class="input">Add a task</div>
+          <i class="fa-solid fa-thumbtack"></i>
+        </div>
+
+        <form action="" class="form" id="form">
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    Task bar
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <label for="" class="display">Name</label>
+                  <div class="text-msg" id="text-msg"></div>
+                  <input type="text" id="text" class="display" />
+                  <br /><br />
+
+                  <label for="" class="display">Email</label>
+                  <div class="email-msg" id="email-msg"></div>
+                  <input type="email" id="email" class="display" />
+                  <br /><br />
+
+                  <label for="" class="display">Date</label>
+                  <div class="date-msg" id="date-msg"></div>
+                  <input type="date" id="date" class="display" />
+                  <br /><br />
+
+                  <label for="" class="display">Description</label>
+                  <div class="desc-msg" id="desc-msg"></div>
+                  <textarea
+                    id="desc"
+                    cols="30"
+                    rows="5"
+                    class="display"
+                  ></textarea>
+                  <br /><br />
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" id="addTask" class="btn btn-primary">
+                    Add Task
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div class="tasks" id="tasks">
+          <!-- <div class="task">
+            <p>task one</p>
+            <p>2022-12-1</p>
+            <p>Description one</p>
+            <div class="icon">
+              <i class="fa-solid fa-trash-can"></i>
+              <i class="fa-solid fa-file-pen"></i>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </body>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js"
+    integrity="sha512-i9cEfJwUwViEPFKdC1enz4ZRGBj8YQo6QByFTF92YXHi7waCqyexvRD75S5NVTsSiTv7rKWqG9Y5eFxmRsOn0A=="
+    crossorigin="anonymous"
+  ></script>
+  <script src="main.js"></script>
+</html>

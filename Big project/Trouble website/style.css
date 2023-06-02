@@ -1,0 +1,30 @@
+.main-container > .navbar {
+  background-image: url(Img/image.jpg);
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.list-item {
+  display: none !important;
+}
+
+.list-item.active {
+  display: block !important;
+}
+
+.about-slider > .item > .details {
+  position: relative;
+}
+
+.about-slider > .item > .details::before {
+  content: url(Img/quote.png);
+  position: absolute;
+  top: -50px;
+  left: 10;
+  padding: 30px;
+  border-radius: 50%;
+  background-color: white;
+}
+  

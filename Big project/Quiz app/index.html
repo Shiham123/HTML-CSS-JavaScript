@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz app</title>
+    <!-- Font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+    />
+    <!-- Font family -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+      rel="stylesheet"
+    />
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="box-one" id="box-one">
+        <div class="img">
+          <img
+            src="./SVG/undraw_in_no_time_-6-igu.svg"
+            width="400px"
+            height="400px"
+            alt=""
+          />
+        </div>
+        <div class="content">
+          <h1>Quiz App With Fixed Time</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
+            aperiam, numquam minima rem deserunt dolores consectetur veritatis
+            illo iure incidunt sint nihil!
+          </p>
+          <h1>Quiz App With Fixed Time</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, in.
+          </p>
+        </div>
+        <div class="start-page">
+          <button id="start-quiz">start quiz</button>
+        </div>
+      </div>
+
+      <!-- box one end here ---- box two start here -->
+
+      <div class="box-two" id="box-two">
+        <h1>Some Rules of this Quiz</h1>
+        <ol>
+          <li>You will have only 15 seconds per each question.</li>
+          <li>Once you select your answer, it can't be undone.</li>
+          <li>You can't select any option once time goes off.</li>
+          <li>You can't exit from the Quiz while you're playing.</li>
+          <li>You'll get points on the basis of your correct answers.</li>
+        </ol>
+        <div class="button">
+          <button id="exitBtn">Exit</button>
+          <button id="continueBtn">continue</button>
+        </div>
+      </div>
+
+      <!-- box two end and box three start here -->
+      <div class="box-three" id="box-three">
+        <h1>Quiz page</h1>
+        <div class="time-count">
+          <div class="time-left">Time Left</div>
+          <div class="seconds" id="seconds"></div>
+        </div>
+
+        <div class="time-lines" id="timer-lines"></div>
+        <div id="question" class="question">
+          <!-- <h1>What is html stands for?</h1> -->
+        </div>
+        <div class="option" id="option">
+          <!-- <div class="options"></div> -->
+        </div>
+        <div class="total" id="total">
+          <!-- <p>1 of 5</p> -->
+        </div>
+        <div class="button">
+          <button id="nextQuiz">Next quiz</button>
+        </div>
+      </div>
+
+      <div class="box-four" id="box-four">
+        <div class="img">
+          <img
+            src="SVG/undraw_done_checking_re_6vyx.svg"
+            width="450px"
+            height="450px"
+            alt=""
+          />
+        </div>
+        <div class="content" id="result-content">
+          <!-- <h3>Congratulation, your result is 10 out of 10</h3> -->
+        </div>
+        <div class="button">
+          <button id="replyQuiz">Reply Quiz</button>
+          <button id="quitQuiz">Quit Quiz</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="data.js"></script>
+  <script src="main.js"></script>
+</html>

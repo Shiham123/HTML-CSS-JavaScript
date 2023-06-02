@@ -1,0 +1,301 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  height: 800px;
+  width: 500px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/**
+* ? box one start here
+*/
+
+/* .box-one {
+  display: none;
+} */
+
+.box-one > .img {
+  border-bottom: 1px solid black;
+}
+
+.box-one .content h1 {
+  font-size: 20px;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+.box-one .content p {
+  font-size: 15px;
+  padding: 10px;
+  line-height: 1.9;
+}
+
+.start-page button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 170px;
+  height: 70px;
+  border-radius: 60px 0px 15px 0px;
+  background-color: rgba(0, 0, 255, 0.349);
+  color: black;
+  cursor: pointer;
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: 100;
+  line-height: 1.9;
+}
+
+.box-two h1 {
+  font-size: 20px;
+  margin: 0 auto;
+  text-align: center;
+  border-bottom: 1px solid black;
+  margin: 10px 0px;
+  padding: 20px 0px;
+  text-transform: capitalize;
+}
+
+/**
+* ! box one style end here
+* ? box two style start here
+*/
+
+.box-two {
+  display: none;
+}
+
+.box-two ol {
+  margin: 0px 0px 0px 40px;
+  text-transform: capitalize;
+}
+
+.box-two ol li {
+  font-size: 15px;
+  font-weight: 300;
+  padding: 25px 5px;
+  line-height: 2;
+}
+
+.box-two .button button:first-child {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 170px;
+  height: 70px;
+  border-radius: 0px 60px 0px 0px;
+  background-color: rgba(0, 0, 255, 0.349);
+  color: black;
+  cursor: pointer;
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: 100;
+  line-height: 1.9;
+}
+
+.box-two .button button:last-child {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 170px;
+  height: 70px;
+  border-radius: 60px 0px 0px 0px;
+  background-color: rgba(0, 0, 255, 0.349);
+  color: black;
+  cursor: pointer;
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: 100;
+  line-height: 1.9;
+}
+
+/**
+* ! box two style end here
+* ? box three style start here
+*/
+
+.box-three {
+  display: none;
+}
+
+.box-three > h1 {
+  font-size: 20px;
+  margin: 0 auto;
+  text-align: center;
+  border-bottom: 1px solid black;
+  margin: 10px 0px;
+  padding: 20px 0px;
+  text-transform: capitalize;
+}
+
+.box-three .question > h1 {
+  font-size: 20px;
+  margin: 0 auto;
+  text-align: left;
+  padding: 1rem;
+  text-transform: capitalize;
+}
+
+.box-three .option > .options {
+  background-color: rgba(245, 222, 179, 0.521);
+  padding: 20px;
+  margin: 25px;
+  font-weight: 500;
+  font-size: 18px;
+  text-transform: capitalize;
+  box-shadow: rgba(0, 0, 0, 0.13) 0px 5px 15px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+/* .box-three > .option > .options:hover {
+  background-color: rgba(245, 222, 179, 0.712);
+  box-shadow: rgba(0, 0, 0, 0.363) 0px 5px 15px;
+  transform: translate(5px, -5px);
+} */
+
+.box-three > .button > button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 170px;
+  height: 70px;
+  border-radius: 60px 0px 0px 0px;
+  background-color: rgba(0, 0, 255, 0.349);
+  color: black;
+  cursor: pointer;
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: 100;
+  line-height: 1.9;
+}
+
+.box-three .total {
+  padding: 10px;
+  margin: 50px 10px;
+}
+
+.options.correct {
+  color: #155724;
+  background: #113f1c;
+  border: 1px solid #c3e6cb;
+}
+.options.incorrect {
+  color: #721c24;
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+}
+
+.options.disabled {
+  pointer-events: none;
+}
+
+.time-count {
+  position: absolute;
+  top: 11.5%;
+  right: 0;
+  color: rgb(53, 16, 16);
+  background-color: rgba(245, 222, 179, 0.521);
+  display: flex;
+  justify-content: center;
+  border-radius: 12px;
+  padding: 10px 10px;
+  margin: 10px 10px;
+}
+
+.time-count > .seconds {
+  color: rgb(212, 199, 199);
+  background: rgb(133, 64, 64);
+  padding: 0px 10px;
+  border-radius: 8px;
+  margin-left: 10px;
+  font-weight: 500;
+}
+
+.box-three .time-lines {
+  margin-top: -10px;
+  height: 3px;
+  background-color: rgba(5, 5, 182, 0.356);
+}
+
+/**
+* ! box three style end here
+* ? box four style start here
+*/
+
+.box-four {
+  display: none;
+}
+
+.box-four .content {
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-four > .content > h3:first-child {
+  font-size: 20px;
+  font-weight: 300;
+  padding: 1rem 0rem;
+  text-transform: capitalize;
+}
+
+.box-four > .content > h3:last-child {
+  font-size: 15px;
+  font-weight: 500;
+  padding: 1rem 0rem;
+  text-transform: capitalize;
+}
+
+.box-four > .button > button:first-child {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 170px;
+  height: 70px;
+  border-radius: 0px 60px 0px 0px;
+  background-color: rgba(0, 0, 255, 0.349);
+  color: black;
+  cursor: pointer;
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: 100;
+  line-height: 1.9;
+}
+
+.box-four > .button > button:last-child {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 170px;
+  height: 70px;
+  border-radius: 60px 0px 0px 0px;
+  background-color: rgba(0, 0, 255, 0.349);
+  color: black;
+  cursor: pointer;
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: 100;
+  line-height: 1.9;
+}
