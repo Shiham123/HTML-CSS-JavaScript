@@ -27,3 +27,18 @@
   border-radius: 50%;
   background-color: white;
 }
+
+.offers-item > p {
+  position: relative;
+}
+
+.offers-item > p::before {
+  position: absolute;
+  content: ' ';
+  background-image: url(Img/ellipse-one.png);
+  background-repeat: no-repeat;
+  width: 300px;
+  height: 300px;
+  top: -150px;
+  left: -150px;
+}
