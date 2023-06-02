@@ -515,4 +515,48 @@ body {
 .client-section .container .row:nth-child(2) .client-item .client-info p {
   color: var(--text-black-two);
   font: normal normal 400 16px/26px "Poppins";
+}
+
+.footer-section {
+  position: relative;
+  background-color: var(--text-black);
+  padding: 150px 0px;
+}
+.footer-section .container .row {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.footer-section .container .row .footer-item .footer-link {
+  display: flex;
+  flex-direction: column;
+}
+.footer-section .container .row .footer-item .footer-link a {
+  color: var(--text-white);
+  font: normal normal 500 16px/24px "Poppins";
+  text-decoration: none;
+  padding: 10px 0px;
+}
+.footer-section .container .row .footer-item .footer-link a i {
+  background-color: var(--text-white);
+  color: var(--text-black);
+  padding: 10px;
+  border-radius: 12px;
+  margin-right: 20px;
+}
+.footer-section .container .row .footer-item h1 {
+  text-transform: capitalize;
+  color: var(--text-white);
+  font: normal normal 600 20px/30px "Poppins";
+  padding: 20px 0px;
+}
+.footer-section .container .row .footer-item p {
+  color: var(--text-white);
+  font: normal normal 400 16px/28px "Poppins";
+}
+.footer-section .offers-section .container .row {
+  position: absolute;
+  top: -30px;
+  right: 800px;
+  background-color: blue;
 }/*# sourceMappingURL=style.css.map */
