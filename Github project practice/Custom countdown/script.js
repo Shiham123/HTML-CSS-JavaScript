@@ -97,7 +97,6 @@ function restorePreviousCountdown() {
     countDownTitle = savedCountDown.title;
     countDownDate = savedCountDown.date;
     countDownValue = new Date(countDownDate).getTime();
-    console.log(savedCountDown);
     updateDocument();
   }
 }
