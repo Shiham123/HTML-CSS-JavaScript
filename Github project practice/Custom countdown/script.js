@@ -13,6 +13,8 @@ const completeEl = document.getElementById('complete'),
   completeBtnEl = document.getElementById('complete-button');
 
 inputContainerEl.addEventListener('submit', updateCountdown);
+countdownBtnEl.addEventListener('click', resetCountdown);
+completeBtnEl.addEventListener('click', resetCountdown);
 
 let countdownTitle = '',
   countdownDate = '',
@@ -34,6 +36,8 @@ function updateCountdown(event) {
     title: countdownTitle,
     date: countdownDate,
   };
+
+  localStorage.setItem('countdown', JSON.stringify(savedCountdown));
 
   if (countdownDate === '') {
     alert('Please add a date to start the countdown');
@@ -71,3 +75,25 @@ function updateCountdownDocument() {
     }
   }, second);
 }
+
+function resetCountdown() {
+  countdownEl.hidden = true;
+  inputContainerEl.hidden = false;
+  clearInterval(countdownActive);
+  titleEl.value = '';
+  datePickerEl.value = '';
+  localStorage.removeItem('countdown');
+}
+
+function restoreCountdown() {
+  if (localStorage.getItem('countdown')) {
+    inputContainerEl.hidden = true;
+    savedCountdown = JSON.parse(localStorage.getItem('countdown'));
+    countdownTitle = savedCountdown.title;
+    countdownDate = savedCountdown.date;
+    countdownValue = new Date(countdownDate).getTime();
+    updateCountdownDocument();
+  }
+}
+
+restoreCountdown();
