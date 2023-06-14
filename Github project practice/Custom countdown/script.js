@@ -4,9 +4,9 @@ const inputContainerEl = document.getElementById('input-container'),
   datePickerEl = document.getElementById('date-picker');
 
 const countdownEl = document.getElementById('countdown'),
-  countdownTitleEl = document.getElementById('countdown-title'),
   countdownItemEl = document.querySelectorAll('span'),
-  countdownBtnEl = document.getElementById('countdown-button');
+  countdownBtnEl = document.getElementById('countdown-button'),
+  countdownTitleEl = document.getElementById('countdown-title');
 
 const completeEl = document.getElementById('complete'),
   completeInfoEl = document.getElementById('complete-info'),
@@ -24,8 +24,6 @@ let second = 1000,
   day = hour * 24;
 
 inputContainerEl.addEventListener('submit', updateCountdown);
-completeBtnEl.addEventListener('click', resetCountdown);
-countdownBtnEl.addEventListener('click', resetCountdown);
 
 function updateCountdown(event) {
   event.preventDefault();
@@ -37,10 +35,8 @@ function updateCountdown(event) {
     date: countdownDate,
   };
 
-  localStorage.setItem('countdown', JSON.stringify(savedCountdownValue));
-
   if (countdownDate === '') {
-    alert('please add a date');
+    alert('Please add a date');
   } else {
     countdownValue = new Date(countdownDate).getTime();
     updateCountdownDocument();
@@ -49,54 +45,29 @@ function updateCountdown(event) {
 
 function updateCountdownDocument() {
   countdownActive = setInterval(() => {
-    let now = new Date().getTime(),
-      distance = countdownValue - now;
+    const nowDate = new Date().getTime(),
+      distanceDate = countdownValue - nowDate;
 
-    let days = Math.floor(distance / day),
-      hours = Math.floor((distance % day) / hour),
-      minutes = Math.floor((distance % hour) / minute),
-      seconds = Math.floor((distance % minute) / second);
+    let days = Math.floor(distanceDate / day),
+      hours = Math.floor((distanceDate % day) / hour),
+      minutes = Math.floor((distanceDate % hour) / minute),
+      seconds = Math.floor((distanceDate % minute) / second);
 
     inputContainerEl.hidden = true;
 
-    if (distance < 0) {
+    if (distanceDate < 0) {
       countdownEl.hidden = true;
-      clearInterval(countdownActive);
       completeEl.hidden = false;
-      completeInfoEl.textContent = `${countdownTitle} countdown finished on ${countdownDate}`;
+      completeInfoEl.textContent = `${countdownTitle} is starts on ${countdownDate}`;
+      clearInterval(countdownActive);
     } else {
+      completeEl.hidden = true;
+      countdownEl.hidden = false;
       countdownTitleEl.textContent = `${countdownTitle}`;
       countdownItemEl[0].textContent = `${days}`;
       countdownItemEl[1].textContent = `${hours}`;
       countdownItemEl[2].textContent = `${minutes}`;
       countdownItemEl[3].textContent = `${seconds}`;
-      completeEl.hidden = true;
-      countdownEl.hidden = false;
     }
   }, second);
 }
-
-function resetCountdown() {
-  countdownEl.hidden = true;
-  completeEl.hidden = true;
-  inputContainerEl.hidden = false;
-
-  clearInterval(countdownActive);
-  titleEl.value = '';
-  datePickerEl.value = '';
-
-  localStorage.removeItem('countdown');
-}
-
-function restoreCountdown() {
-  if (localStorage.getItem('countdown')) {
-    inputContainerEl.hidden = true;
-    savedCountdownValue = JSON.parse(localStorage.getItem('countdown'));
-    countdownTitle = savedCountdownValue.title;
-    countdownDate = savedCountdownValue.date;
-    countdownValue = new Date(countdownDate).getTime();
-    updateCountdownDocument();
-  }
-}
-
-restoreCountdown();
