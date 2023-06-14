@@ -24,6 +24,8 @@ let second = 1000,
   day = hour * 24;
 
 inputContainerEl.addEventListener('submit', updateCountdown);
+countdownBtnEl.addEventListener('click', resetCountdown);
+completeBtnEl.addEventListener('click', resetCountdown);
 
 function updateCountdown(event) {
   event.preventDefault();
@@ -34,6 +36,8 @@ function updateCountdown(event) {
     title: countdownTitle,
     date: countdownDate,
   };
+
+  localStorage.setItem('countdown', JSON.stringify(savedCountdownValue));
 
   if (countdownDate === '') {
     alert('Please add a date');
@@ -56,18 +60,46 @@ function updateCountdownDocument() {
     inputContainerEl.hidden = true;
 
     if (distanceDate < 0) {
-      countdownEl.hidden = true;
-      completeEl.hidden = false;
       completeInfoEl.textContent = `${countdownTitle} is starts on ${countdownDate}`;
       clearInterval(countdownActive);
+
+      countdownEl.hidden = true;
+      completeEl.hidden = false;
     } else {
-      completeEl.hidden = true;
-      countdownEl.hidden = false;
       countdownTitleEl.textContent = `${countdownTitle}`;
       countdownItemEl[0].textContent = `${days}`;
       countdownItemEl[1].textContent = `${hours}`;
       countdownItemEl[2].textContent = `${minutes}`;
       countdownItemEl[3].textContent = `${seconds}`;
+
+      completeEl.hidden = true;
+      countdownEl.hidden = false;
     }
   }, second);
 }
+
+function resetCountdown() {
+  inputContainerEl.hidden = false;
+  countdownEl.hidden = true;
+  completeEl.hidden = true;
+
+  clearInterval(countdownActive);
+
+  titleEl.value = '';
+  datePickerEl.value = '';
+
+  localStorage.removeItem('countdown');
+}
+
+function restoreCountdownDocument() {
+  if (localStorage.getItem('countdown')) {
+    inputContainerEl.hidden = true;
+    savedCountdownValue = JSON.parse(localStorage.getItem('countdown'));
+    countdownTitle = savedCountdownValue.title;
+    countdownDate = savedCountdownValue.date;
+    countdownValue = new Date(countdownDate).getTime();
+    updateCountdownDocument();
+  }
+}
+
+restoreCountdownDocument();
