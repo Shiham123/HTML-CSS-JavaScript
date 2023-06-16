@@ -16,7 +16,7 @@ const localQuotes = [
     author: 'Johann Wolfgang von Goethe',
   },
   {
-    text: 'Fate is in your hands and no one elses',
+    text: 'Fate is in your hands and no one elses', 
     author: 'Byron Pulsifer',
   },
   {
