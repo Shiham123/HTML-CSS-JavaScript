@@ -20,6 +20,7 @@ function darkMode() {
 
   toggleIconEl.children[0].textContent = 'Dark Mode';
   toggleIconEl.children[1].classList.replace('fa-sun', 'fa-moon');
+  toggleIconEl.children[1].style.transition = '0.4s';
 
   imageMode('dark');
 }
@@ -30,6 +31,7 @@ function lightMode() {
 
   toggleIconEl.children[0].textContent = 'Light Mode';
   toggleIconEl.children[1].classList.replace('fa-moon', 'fa-sun');
+  toggleIconEl.children[1].style.transition = '0.4s';
 
   imageMode('light');
 }
@@ -47,7 +49,6 @@ function switchTheme(event) {
 }
 
 const currentTheme = localStorage.getItem('theme');
-console.log(currentTheme);
 
 if (currentTheme) {
   document.documentElement.setAttribute('data-theme', currentTheme);
