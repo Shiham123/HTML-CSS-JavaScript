@@ -33,7 +33,7 @@ function storeBookmark(event) {
     urlValue = websiteUrlEl.value;
 
   if (urlValue.includes('http://', 'https://')) {
-    urlValue = `https//${urlValue}`;
+    urlValue = `https://${urlValue}`;
   }
 
   if (!validate(nameValue, urlValue)) {
