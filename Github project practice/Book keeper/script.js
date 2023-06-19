@@ -6,9 +6,9 @@ const modalEl = document.getElementById('modal'),
   websiteUrlEl = document.getElementById('website-url'),
   bookmarkContainerEl = document.getElementById('bookmarks-container');
 
-bookmarkFormEl.addEventListener('submit', storeBookmark);
-
 let bookmarks = [];
+
+bookmarkFormEl.addEventListener('submit', storeBookmark);
 
 showModalEl.addEventListener('click', showModal);
 closeModalEl.addEventListener('click', closeModal);
@@ -46,7 +46,9 @@ function storeBookmark(event) {
   };
 
   bookmarks.push(bookmark);
-  localStorage.setItem('bookmark', JSON.stringify(bookmark));
+  localStorage.setItem('bookmark', JSON.stringify(bookmarks));
+
+  bookmarkFormEl.reset();
   fetchBookmarks();
 }
 
@@ -73,7 +75,47 @@ function fetchBookmarks() {
   if (localStorage.getItem('bookmark')) {
     bookmarks = JSON.parse(localStorage.getItem('bookmark'));
   } else {
-    bookmarks = [{ name: 'shiham', url: 'https://www.facebook.com/' }];
+    bookmarks = [
+      { name: 'bruce wayne', url: 'https://www.linkedin.com/in/ymw0331/' },
+    ];
     localStorage.setItem('bookmark', JSON.stringify(bookmarks));
   }
+
+  buildBookmarkDOM();
 }
+
+function buildBookmarkDOM() {
+  bookmarks.forEach((bookmark) => {
+    const { name, url } = bookmark;
+
+    const item = document.createElement('div');
+    item.classList.add('item');
+
+    const closeIcon = document.createElement('i');
+    closeIcon.classList.add('fas', 'fa-times');
+    closeIcon.setAttribute('title', 'delete bookmark');
+    closeIcon.setAttribute('onclick', `deleteBookmark('${url}')`);
+
+    const linkInfo = document.createElement('div');
+    linkInfo.classList.add('name');
+
+    const favicon = document.createElement('img');
+    favicon.setAttribute(
+      'src',
+      `https://s2.googleusercontent.com/s2/favicons?domain=${url}`
+    );
+    favicon.setAttribute('alt', 'Favicon');
+
+    const link = document.createElement('a');
+    link.setAttribute('href', `${url}`);
+    link.setAttribute('target', '_blank');
+    link.textContent = name;
+
+    linkInfo.append(favicon, link);
+    item.append(closeIcon, linkInfo);
+
+    bookmarkContainerEl.appendChild(item);
+  });
+}
+
+fetchBookmarks();
