@@ -1,21 +1,20 @@
 const modalEl = document.getElementById('modal'),
   showModalEl = document.getElementById('show-modal'),
   closeModalEl = document.getElementById('close-modal'),
-  bookmarkFormEl = document.getElementById('bookmark-form'),
   websiteNameEl = document.getElementById('website-name'),
   websiteUrlEl = document.getElementById('website-url'),
-  bookmarkContainerEl = document.getElementById('bookmarks-container');
-
-let bookmarks = [];
-
-bookmarkFormEl.addEventListener('submit', storeBookmark);
+  bookmarkContainerEl = document.getElementById('bookmarks-container'),
+  bookmarkFormEl = document.getElementById('bookmark-form');
 
 showModalEl.addEventListener('click', showModal);
 closeModalEl.addEventListener('click', closeModal);
-
 window.addEventListener('click', (event) => {
-  event.target === modalEl && modalEl.classList.remove('show-modal');
+  event.target === modalEl ? closeModal() : false;
 });
+
+bookmarkFormEl.addEventListener('submit', initialBookmark);
+
+let storeBookmarks = [];
 
 function showModal() {
   modalEl.classList.add('show-modal');
@@ -26,68 +25,56 @@ function closeModal() {
   modalEl.classList.remove('show-modal');
 }
 
-function storeBookmark(event) {
+function initialBookmark(event) {
   event.preventDefault();
 
-  let nameValue = websiteNameEl.value,
-    urlValue = websiteUrlEl.value;
+  let websiteName = websiteNameEl.value,
+    websiteUrl = websiteUrlEl.value;
 
-  if (urlValue.includes('http://', 'https://')) {
-    urlValue = `https://${urlValue}`;
+  if (websiteName.includes('http://', 'https://')) {
+    websiteUrl = `https://${websiteUrl}`;
   }
 
-  if (!validate(nameValue, urlValue)) {
+  if (!validate(websiteName, websiteUrl)) {
     return false;
   }
 
   const bookmark = {
-    name: nameValue,
-    url: urlValue,
+    name: websiteName,
+    url: websiteUrl,
   };
 
-  bookmarks.push(bookmark);
-  localStorage.setItem('bookmark', JSON.stringify(bookmarks));
+  storeBookmarks.push(bookmark);
+  localStorage.setItem('bookmarkItem', JSON.stringify(storeBookmarks));
 
   bookmarkFormEl.reset();
-  fetchBookmarks();
+  closeModal();
+  getBookmarks();
 }
 
-function validate(nameValue, urlValue) {
+function validate(webName, webUrl) {
   const expression =
     /(https)?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/g;
 
   const regex = new RegExp(expression);
 
-  if (!nameValue || !urlValue) {
-    alert('please submit value for both fields');
+  if (!webName || !webUrl) {
+    alert('Please add both field');
     return false;
   }
 
-  if (!urlValue.match(regex)) {
-    alert('please provide a correct website address');
+  if (!webUrl.match(regex)) {
+    alert('please add a valid email');
     return false;
   }
 
   return true;
 }
 
-function fetchBookmarks() {
-  if (localStorage.getItem('bookmark')) {
-    bookmarks = JSON.parse(localStorage.getItem('bookmark'));
-  } else {
-    bookmarks = [
-      { name: 'bruce wayne', url: 'https://www.linkedin.com/in/ymw0331/' },
-    ];
-    localStorage.setItem('bookmark', JSON.stringify(bookmarks));
-  }
-
-  buildBookmarkDOM();
-}
-
-function buildBookmarkDOM() {
+function createBookmark() {
   bookmarkContainerEl.textContent = '';
 
-  bookmarks.forEach((bookmark) => {
+  storeBookmarks.forEach((bookmark) => {
     const { name, url } = bookmark;
 
     const item = document.createElement('div');
@@ -95,7 +82,7 @@ function buildBookmarkDOM() {
 
     const closeIcon = document.createElement('i');
     closeIcon.classList.add('fas', 'fa-times');
-    closeIcon.setAttribute('title', 'delete bookmark');
+    closeIcon.setAttribute('title', 'delete Bookmark');
     closeIcon.setAttribute('onclick', `deleteBookmark('${url}')`);
 
     const linkInfo = document.createElement('div');
@@ -106,7 +93,7 @@ function buildBookmarkDOM() {
       'src',
       `https://s2.googleusercontent.com/s2/favicons?domain=${url}`
     );
-    favicon.setAttribute('alt', 'Favicon');
+    favicon.setAttribute('alt', name);
 
     const link = document.createElement('a');
     link.setAttribute('href', `${url}`);
@@ -120,14 +107,25 @@ function buildBookmarkDOM() {
   });
 }
 
-function deleteBookmark(url) {
-  bookmarks.forEach((bookmark, index) => {
-    if (bookmark.url === url) {
-      bookmarks.splice(index, 1);
-    }
-  });
-  localStorage.setItem('bookmark', JSON.stringify(bookmarks));
-  fetchBookmarks();
+function getBookmarks() {
+  if (localStorage.getItem('bookmarkItem')) {
+    storeBookmarks = JSON.parse(localStorage.getItem('bookmarkItem'));
+  } else {
+    storeBookmarks = [{ name: 'shiham', url: 'http://192.168.0.1/index.html' }];
+    localStorage.setItem('bookmarkItem', JSON.stringify(storeBookmarks));
+  }
+
+  createBookmark();
 }
 
-fetchBookmarks();
+function deleteBookmark(url) {
+  storeBookmarks.forEach((bookmark, index) => {
+    if (bookmark.url === url) {
+      storeBookmarks.splice(index, 1);
+    }
+  });
+  localStorage.setItem('bookmarkItem', JSON.stringify(storeBookmarks));
+  getBookmarks();
+}
+
+getBookmarks();
