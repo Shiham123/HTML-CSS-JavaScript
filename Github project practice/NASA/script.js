@@ -10,3 +10,29 @@ const count = 10,
 
 let resultArray = [],
   favorites = {};
+
+function showContent(page) {
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  loaderEl.classList.add('hidden');
+
+  if (page === 'results') {
+    resultNavEl.classList.remove('hidden');
+    favoritesNavEl.classList.add('hidden');
+  } else {
+    resultNavEl.classList.add('hidden');
+    favoritesNavEl.classList.remove('hidden');
+  }
+}
+
+function createDOMNodes(page) {}
+
+async function getNasaPictures() {
+  loaderEl.classList.remove('hidden');
+  try {
+    const response = await fetch(apiUrl);
+    resultArray = await response.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
+getNasaPictures();
