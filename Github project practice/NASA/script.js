@@ -24,13 +24,30 @@ function showContent(page) {
   }
 }
 
-function createDOMNodes(page) {}
+function createDOMNodes(page) {
+  const currentArray =
+    page === 'results' ? resultArray : Object.values(favorites);
+
+  currentArray.forEach((result) => {
+    console.log(result);
+    const card = document.createElement('div');
+    card.classList.add('card');
+
+    const link = document.createElement('a');
+  });
+}
+
+function updateDOM(page) {
+  createDOMNodes(page);
+  showContent(page);
+}
 
 async function getNasaPictures() {
   loaderEl.classList.remove('hidden');
   try {
     const response = await fetch(apiUrl);
     resultArray = await response.json();
+    updateDOM('results');
   } catch (error) {
     console.log(error);
   }
