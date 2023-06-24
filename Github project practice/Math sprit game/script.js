@@ -70,18 +70,6 @@ function countdownStart() {
 }
 
 function populateGamePage() {
-  const topScorer = document.createElement('div');
-  topScorer.classList.add('height-240');
-
-  const selectedItem = document.createElement('div');
-  selectedItem.classList.add('selected-item');
-
-  itemContainerEl.append(topScorer, selectedItem);
-
-  const bottomSpacer = document.createElement('div');
-  bottomSpacer.classList.add('height-500');
-
-  itemContainerEl.appendChild(bottomSpacer);
   createEquation();
   equationDOM();
 }
