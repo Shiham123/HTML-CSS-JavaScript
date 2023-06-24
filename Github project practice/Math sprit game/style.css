@@ -221,7 +221,8 @@ button:active {
 
 /* Score Page ------------------------- */
 .score-container {
-  height: 600px;
+  margin-top: 150px;
+  height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -234,7 +235,7 @@ button:active {
   display: flex;
   justify-content: center;
   position: relative;
-  top: -30px;
+  top: -90px;
 }
 
 .title {

@@ -1,38 +1,26 @@
-const gamePageEl = document.getElementById('game-page'),
-  scorePageEl = document.getElementById('score-page'),
-  splashPageEl = document.getElementById('splash-page'),
-  countdownPageEl = document.getElementById('countdown-page');
-
-// splash page
 const startFormEl = document.getElementById('start-form'),
   radioContainerEl = document.querySelectorAll('.radio-container'),
   radioInputEl = document.querySelectorAll('input'),
-  bestScoreValueEl = document.querySelectorAll('.best-score-value');
+  splashPageEl = document.getElementById('splash-page'),
+  countdownPageEl = document.getElementById('countdown-page'),
+  countdownEl = document.querySelector('.countdown'),
+  itemContainerEl = document.querySelector('.item-container'),
+  gamePageEl = document.getElementById('game-page');
 
-const countdownEl = document.querySelector('.countdown'),
-  itemContainerEl = document.querySelector('.item-container');
-
-const finalTimeEl = document.querySelector('.final-time'),
-  baseTimeEl = document.querySelector('.base-time'),
-  penaltyTimeEl = document.querySelector('.penalty-time'),
-  playAgainBtnEl = document.querySelector('.play-again');
-
-let questionAmount = 0;
-
-let firstNumber = 0,
+let questionAmount = 0,
+  firstNumber = 0,
   secondNumber = 0,
   equationObject = {},
+  equationArray = [],
   wrongFormat = [];
-
-let equationArray = [];
 
 startFormEl.addEventListener('submit', startQuestionAmount);
 startFormEl.addEventListener('click', () => {
-  radioContainerEl.forEach((radioEl) => {
-    radioEl.classList.remove('selected-label');
+  radioContainerEl.forEach((element) => {
+    element.classList.remove('selected-label');
 
-    if (radioEl.children[1].checked) {
-      radioEl.classList.add('selected-label');
+    if (element.children[1].checked) {
+      element.classList.add('selected-label');
     }
   });
 });
@@ -41,7 +29,7 @@ function startQuestionAmount(event) {
   event.preventDefault();
   questionAmount = getRadioValue();
   if (questionAmount) {
-    showCountdown();
+    showCountDown();
   }
 }
 
@@ -55,12 +43,17 @@ function getRadioValue() {
   return radioValue;
 }
 
-function showCountdown() {
-  countdownPageEl.hidden = false;
+function showCountDown() {
   splashPageEl.hidden = true;
+  countdownPageEl.hidden = false;
   countdownStart();
   populateGamePage();
   setTimeout(showGamePage, 4000);
+}
+
+function showGamePage() {
+  gamePageEl.hidden = false;
+  countdownPageEl.hidden = true;
 }
 
 function countdownStart() {
@@ -77,8 +70,6 @@ function countdownStart() {
 }
 
 function populateGamePage() {
-  itemContainerEl.textContent = '';
-
   const topScorer = document.createElement('div');
   topScorer.classList.add('height-240');
 
@@ -87,19 +78,16 @@ function populateGamePage() {
 
   itemContainerEl.append(topScorer, selectedItem);
 
-  createEquation();
-  equationDOM();
-
   const bottomSpacer = document.createElement('div');
   bottomSpacer.classList.add('height-500');
 
   itemContainerEl.appendChild(bottomSpacer);
+  createEquation();
+  equationDOM();
 }
 
 function createEquation() {
-  const correctEquation = getRandomInt(questionAmount),
-    wrongEquation = questionAmount - correctEquation;
-
+  const correctEquation = getRandomInt(questionAmount);
   for (let i = 0; i < correctEquation; i++) {
     firstNumber = getRandomInt(9);
     secondNumber = getRandomInt(9);
@@ -110,6 +98,7 @@ function createEquation() {
     equationArray.push(equationObject);
   }
 
+  const wrongEquation = questionAmount - correctEquation;
   for (let i = 0; i < wrongEquation; i++) {
     firstNumber = getRandomInt(9);
     secondNumber = getRandomInt(9);
@@ -124,11 +113,10 @@ function createEquation() {
     equationObject = { value: equation, evaluated: 'false' };
     equationArray.push(equationObject);
   }
-  shuffle(equationArray);
 }
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max));
+function getRandomInt(amount) {
+  return Math.floor(Math.random() * Math.floor(amount));
 }
 
 function equationDOM() {
@@ -142,25 +130,4 @@ function equationDOM() {
     item.appendChild(equationText);
     itemContainerEl.appendChild(item);
   });
-}
-
-function showGamePage() {
-  gamePageEl.hidden = false;
-  countdownPageEl.hidden = true;
-}
-
-function shuffle(array) {
-  let currentIndex = array.length,
-    temporaryValue,
-    randomIndex;
-
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-  return array;
 }
