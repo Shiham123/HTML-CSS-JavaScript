@@ -70,8 +70,22 @@ function countdownStart() {
 }
 
 function populateGamePage() {
+  itemContainerEl.textContent = '';
+
+  const topSpacer = document.createElement('div');
+  topSpacer.classList.add('height-240');
+
+  const selectedItem = document.createElement('div');
+  selectedItem.classList.add('selected-item');
+
+  itemContainerEl.append(topSpacer, selectedItem);
+
   createEquation();
   equationDOM();
+
+  const bottomSpacer = document.createElement('div');
+  bottomSpacer.classList.add('height-500');
+  itemContainerEl.appendChild(bottomSpacer);
 }
 
 function createEquation() {
