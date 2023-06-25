@@ -1,9 +1,9 @@
 const startFormEl = document.getElementById('start-form'),
   radioContainerEl = document.querySelectorAll('.radio-container'),
   radioInputEl = document.querySelectorAll('input'),
+  splashPageEl = document.getElementById('splash-page'),
   countdownPageEl = document.getElementById('countdown-page'),
   countdownEl = document.querySelector('.countdown'),
-  splashPageEl = document.getElementById('splash-page'),
   gamePageEl = document.getElementById('game-page'),
   itemContainerEl = document.querySelector('.item-container');
 
@@ -17,10 +17,10 @@ let questionAmount = 0,
 startFormEl.addEventListener('submit', showQuestionAmount);
 startFormEl.addEventListener('click', () => {
   radioContainerEl.forEach((element) => {
-    element.classList.remove('selected-label');
-
     if (element.children[1].checked) {
       element.classList.add('selected-label');
+    } else {
+      element.classList.remove('selected-label');
     }
   });
 });
@@ -29,29 +29,29 @@ function showQuestionAmount(event) {
   event.preventDefault();
   questionAmount = getRadioValue();
   if (questionAmount) {
-    showCountdown();
+    showCountdownPage();
   }
 }
 
 function getRadioValue() {
   let radioValue;
-  radioInputEl.forEach((radio) => {
-    if (radio.checked) {
-      radioValue = radio.value;
+  radioInputEl.forEach((input) => {
+    if (input.checked) {
+      radioValue = input.value;
     }
   });
   return radioValue;
 }
 
-function showCountdown() {
+function showCountdownPage() {
   splashPageEl.hidden = true;
   countdownPageEl.hidden = false;
-  showtimeOut();
+  startCountdown();
   populateGamePage();
   setTimeout(showGamePage, 4000);
 }
 
-function showtimeOut() {
+function startCountdown() {
   countdownEl.textContent = '3';
   setTimeout(() => {
     countdownEl.textContent = '2';
@@ -65,8 +65,8 @@ function showtimeOut() {
 }
 
 function showGamePage() {
-  gamePageEl.hidden = false;
   countdownPageEl.hidden = true;
+  gamePageEl.hidden = false;
 }
 
 function populateGamePage() {
@@ -85,12 +85,12 @@ function populateGamePage() {
 
   const bottomSpacer = document.createElement('div');
   bottomSpacer.classList.add('height-500');
+
   itemContainerEl.appendChild(bottomSpacer);
 }
 
 function createEquation() {
   const correctEquation = getRandomInt(questionAmount);
-
   for (let i = 0; i < correctEquation; i++) {
     firstNumber = getRandomInt(9);
     secondNumber = getRandomInt(9);
@@ -102,14 +102,13 @@ function createEquation() {
   }
 
   const wrongEquation = getRandomInt(questionAmount);
-
   for (let i = 0; i < wrongEquation; i++) {
     firstNumber = getRandomInt(9);
     secondNumber = getRandomInt(9);
     const equationValue = firstNumber * secondNumber;
     wrongFormat[0] = `${firstNumber + 1} x ${secondNumber} = ${equationValue}`;
     wrongFormat[1] = `${firstNumber} x ${secondNumber - 1} = ${equationValue}`;
-    wrongFormat[2] = `${firstNumber} x ${secondNumber} = ${equationValue}`;
+    wrongFormat[2] = `${firstNumber} x ${secondNumber} = ${equationValue - 1}`;
 
     const formatChoice = getRandomInt(2),
       equation = wrongFormat[formatChoice];
