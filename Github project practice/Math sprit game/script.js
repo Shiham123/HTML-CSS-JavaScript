@@ -1,9 +1,9 @@
 const startFormEl = document.getElementById('start-form'),
   radioContainerEl = document.querySelectorAll('.radio-container'),
   radioInputEl = document.querySelectorAll('input'),
-  splashPageEl = document.getElementById('splash-page'),
   countdownPageEl = document.getElementById('countdown-page'),
   countdownEl = document.querySelector('.countdown'),
+  splashPageEl = document.getElementById('splash-page'),
   gamePageEl = document.getElementById('game-page'),
   itemContainerEl = document.querySelector('.item-container');
 
@@ -35,9 +35,9 @@ function showQuestionAmount(event) {
 
 function getRadioValue() {
   let radioValue;
-  radioInputEl.forEach((input) => {
-    if (input.checked) {
-      radioValue = input.value;
+  radioInputEl.forEach((element) => {
+    if (element.checked) {
+      radioValue = element.value;
     }
   });
   return radioValue;
@@ -65,8 +65,8 @@ function startCountdown() {
 }
 
 function showGamePage() {
-  countdownPageEl.hidden = true;
   gamePageEl.hidden = false;
+  countdownPageEl.hidden = true;
 }
 
 function populateGamePage() {
@@ -90,7 +90,7 @@ function populateGamePage() {
 }
 
 function createEquation() {
-  const correctEquation = getRandomInt(questionAmount);
+  const correctEquation = getRandomInt(9);
   for (let i = 0; i < correctEquation; i++) {
     firstNumber = getRandomInt(9);
     secondNumber = getRandomInt(9);
@@ -101,14 +101,14 @@ function createEquation() {
     equationArray.push(equationObject);
   }
 
-  const wrongEquation = getRandomInt(questionAmount);
+  const wrongEquation = getRandomInt(9);
   for (let i = 0; i < wrongEquation; i++) {
     firstNumber = getRandomInt(9);
     secondNumber = getRandomInt(9);
     const equationValue = firstNumber * secondNumber;
-    wrongFormat[0] = `${firstNumber + 1} x ${secondNumber} = ${equationValue}`;
-    wrongFormat[1] = `${firstNumber} x ${secondNumber - 1} = ${equationValue}`;
-    wrongFormat[2] = `${firstNumber} x ${secondNumber} = ${equationValue - 1}`;
+    wrongFormat[0] = `${firstNumber - 1} x ${secondNumber} = ${equationValue}`;
+    wrongFormat[1] = `${firstNumber} x ${secondNumber + 1} = ${equationValue}`;
+    wrongFormat[2] = `${firstNumber} x ${secondNumber} = ${equationValue + 1}`;
 
     const formatChoice = getRandomInt(2),
       equation = wrongFormat[formatChoice];
@@ -123,14 +123,14 @@ function getRandomInt(array) {
 }
 
 function equationDOM() {
-  equationArray.forEach((equation) => {
-    const item = document.createElement('div');
-    item.classList.add('item');
+  equationArray.forEach((item) => {
+    const element = document.createElement('div');
+    element.classList.add('item');
 
     const equationText = document.createElement('h1');
-    equationText.textContent = equation.value;
+    equationText.textContent = item.value;
 
-    item.append(equationText);
-    itemContainerEl.appendChild(item);
+    element.append(equationText);
+    itemContainerEl.appendChild(element);
   });
 }
