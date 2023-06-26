@@ -16,11 +16,13 @@ let questionAmount = 0,
 
 startFormEl.addEventListener('submit', showQuestionAmount);
 startFormEl.addEventListener('click', () => {
-  radioContainerEl.forEach((element) => {
-    if (element.children[1].checked) {
-      element.classList.add('selected-label');
-    } else {
-      element.classList.remove('selected-label');
+  radioContainerEl.forEach((item) => {
+    item.classList.remove('selected-label');
+
+    for (let i = 0; i < item.children.length; i++) {
+      if (item.children[i].checked) {
+        item.classList.add('selected-label');
+      }
     }
   });
 });
@@ -70,8 +72,6 @@ function showGamePage() {
 }
 
 function populateGamePage() {
-  itemContainerEl.textContent = '';
-
   const topSpacer = document.createElement('div');
   topSpacer.classList.add('height-240');
 
@@ -79,18 +79,16 @@ function populateGamePage() {
   selectedItem.classList.add('selected-item');
 
   itemContainerEl.append(topSpacer, selectedItem);
-
   createEquation();
   equationDOM();
 
   const bottomSpacer = document.createElement('div');
   bottomSpacer.classList.add('height-500');
-
   itemContainerEl.appendChild(bottomSpacer);
 }
 
 function createEquation() {
-  const correctEquation = getRandomInt(9);
+  const correctEquation = getRandomInt(questionAmount);
   for (let i = 0; i < correctEquation; i++) {
     firstNumber = getRandomInt(9);
     secondNumber = getRandomInt(9);
@@ -101,14 +99,14 @@ function createEquation() {
     equationArray.push(equationObject);
   }
 
-  const wrongEquation = getRandomInt(9);
+  const wrongEquation = getRandomInt(questionAmount);
   for (let i = 0; i < wrongEquation; i++) {
     firstNumber = getRandomInt(9);
     secondNumber = getRandomInt(9);
     const equationValue = firstNumber * secondNumber;
-    wrongFormat[0] = `${firstNumber - 1} x ${secondNumber} = ${equationValue}`;
-    wrongFormat[1] = `${firstNumber} x ${secondNumber + 1} = ${equationValue}`;
-    wrongFormat[2] = `${firstNumber} x ${secondNumber} = ${equationValue + 1}`;
+    wrongFormat[0] = `${firstNumber + 1} x ${secondNumber} = ${equationValue}`;
+    wrongFormat[1] = `${firstNumber} x ${secondNumber - 1} = ${equationValue}`;
+    wrongFormat[3] = `${firstNumber} x ${secondNumber} = ${equationValue - 1}`;
 
     const formatChoice = getRandomInt(2),
       equation = wrongFormat[formatChoice];
@@ -127,10 +125,10 @@ function equationDOM() {
     const element = document.createElement('div');
     element.classList.add('item');
 
-    const equationText = document.createElement('h1');
-    equationText.textContent = item.value;
+    const elementText = document.createElement('h1');
+    elementText.textContent = item.value;
 
-    element.append(equationText);
+    element.append(elementText);
     itemContainerEl.appendChild(element);
   });
 }
