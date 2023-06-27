@@ -21,15 +21,14 @@ let questionAmount = 0,
   equationArray = [],
   wrongFormat = [];
 
-let timePlayed = 0,
+let valueY = 0,
+  playerGuessArray = [],
+  timePlayed = 0,
   penaltyTime = 0,
   finalTime = 0,
-  timer,
   baseTime = 0,
+  timer,
   finalTimeDisplay = '0.0';
-
-let valueY = 0,
-  playerGuessArray = [];
 
 /*
  * ? previous code start here
@@ -137,6 +136,7 @@ function createEquation() {
     equationObject = { value: equation, evaluated: 'false' };
     equationArray.push(equationObject);
   }
+  shuffle(equationArray);
 }
 
 function getRandomInt(array) {
@@ -160,6 +160,23 @@ function equationDOM() {
  * ? previous code end here
  */
 
+function shuffle(array) {
+  let currentIndex = array.length,
+    temporaryValue,
+    randomIndex;
+
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
 function select(guessNumber) {
   valueY += 80;
   itemContainerEl.scroll(0, valueY);
@@ -173,7 +190,7 @@ function startTimer() {
   timePlayed = 0;
   penaltyTime = 0;
   finalTime = 0;
-  timer = clearInterval(addTime, 100);
+  timer = setInterval(addTime, 100);
   gamePageEl.removeEventListener('click', startTimer);
 }
 
@@ -184,41 +201,33 @@ function addTime() {
 
 function checkTime() {
   console.log(timePlayed);
+
   if (playerGuessArray.length === questionAmount) {
     clearInterval(timer);
-    console.log(playerGuessArray);
 
     equationArray.forEach((equation, index) => {
       if (equation.evaluated === playerGuessArray[index]) {
-        console.log(equation);
       } else {
         penaltyTime += 0.5;
       }
     });
+
     finalTime = timePlayed + penaltyTime;
-    console.log(
-      'time : ',
-      timePlayed,
-      'PenaltyTime',
-      penaltyTime,
-      'final',
-      finalTime
-    );
-    scoresToDOM();
+    console.log('time', timePlayed, 'penalty', penaltyTime, 'final', finalTime);
   }
+  scoreToDOM();
 }
 
-function scoresToDOM() {
+function scoreToDOM() {
   finalTimeDisplay = finalTime.toFixed(1);
   baseTime = timePlayed.toFixed(1);
   penaltyTime = penaltyTime.toFixed(1);
 
-  baseTimeEl.textContent = `Base Time : ${baseTime}s`;
-  penaltyTimeEl.textContent = `Penalty Time : ${penaltyTime}s`;
-  finalTimeEl.textContent = `Final Time : ${finalTime}s`;
+  baseTimeEl.textContent = `Base time : ${baseTime}s`;
+  penaltyTimeEl.textContent = `penalty time : ${penaltyTime}s`;
+  finalTimeEl.textContent = `Final time : ${finalTimeDisplay}s`;
 
   itemContainerEl.scrollTo({ top: 0, behavior: 'instant' });
-
   showScorePage();
 }
 
@@ -226,6 +235,7 @@ function showScorePage() {
   setTimeout(() => {
     playAgainBtnEl.hidden = false;
   }, 1000);
+
   gamePageEl.hidden = true;
   scorePageEl.hidden = false;
 }
