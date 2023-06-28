@@ -258,6 +258,14 @@ button:active {
   color: var(--danger);
 }
 
+.correct-value {
+  color: var(--success);
+}
+
+.wrong-value {
+  color: var(--danger);
+}
+
 /* Media Query: Laptop */
 @media screen and (max-width: 1800px) {
   .game-container {

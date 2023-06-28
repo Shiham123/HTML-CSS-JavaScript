@@ -182,8 +182,9 @@ function shuffle(array) {
   return array;
 }
 
-/*
+/**
  * ? previous code end here
+ * ! next code start here
  */
 
 function select(guessNumber) {
@@ -252,4 +253,4 @@ function showScorePage() {
   scorePageEl.hidden = false;
 }
 
-// ------------ localStorage section -------------------
+// ----------------- localStorage section -------------------
