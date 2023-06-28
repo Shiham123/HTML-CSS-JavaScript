@@ -12,7 +12,9 @@ const bestScoreValueEl = document.querySelectorAll('.best-score-value'),
   baseTimeEl = document.querySelector('.base-time'),
   penaltyTimeEl = document.querySelector('.penalty-time'),
   playAgainBtnEl = document.querySelector('.play-again'),
-  scorePageEl = document.getElementById('score-page');
+  scorePageEl = document.getElementById('score-page'),
+  correctEl = document.querySelector('.correct-value'),
+  wrongEl = document.querySelector('.wrong-value');
 
 let questionAmount = 0,
   firstNumber = 0,
@@ -31,6 +33,9 @@ let valueY = 0,
   finalTimeDisplay = '0.0';
 
 let bestScoreArray = [];
+
+let correctCount = 0,
+  wrongCount = 0;
 
 /*
  * ? previous code start here
@@ -211,9 +216,10 @@ function checkTime() {
 
     equationArray.forEach((equation, index) => {
       if (equation.evaluated === playerGuessArray[index]) {
+        correctCount++;
       } else {
+        wrongCount++;
         penaltyTime += 0.5;
-        console.log(penaltyTime);
       }
     });
 
@@ -231,6 +237,8 @@ function scoreToDOM() {
   baseTimeEl.textContent = `Base Time : ${baseTime}s`;
   penaltyTimeEl.textContent = `Penalty time : ${penaltyTime}s`;
   finalTimeEl.textContent = `Final time : ${finalTimeDisplay}s`;
+  correctEl.textContent = `Correct value : ${correctCount}`;
+  wrongEl.textContent = `Wrong Value : ${wrongCount}`;
 
   itemContainerEl.scrollTo({ top: 0, behavior: 'instant' });
   showScorePage();
