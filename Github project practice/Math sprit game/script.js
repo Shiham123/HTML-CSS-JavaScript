@@ -37,8 +37,9 @@ let bestScoreArray = [];
 let correctCount = 0,
   wrongCount = 0;
 
-/*
- * ? previous code start here
+/**
+ * ! here are start code
+ * ? the code
  */
 
 startFormEl.addEventListener('submit', showQuestionAmount);
