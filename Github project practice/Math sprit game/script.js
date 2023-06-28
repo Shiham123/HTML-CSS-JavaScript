@@ -30,6 +30,8 @@ let valueY = 0,
   timer,
   finalTimeDisplay = '0.0';
 
+let bestScoreArray = [];
+
 /*
  * ? previous code start here
  */
@@ -111,6 +113,7 @@ function populateGamePage() {
 
 function createEquation() {
   const correctEquation = getRandomInt(questionAmount);
+  console.log('correct equation : ', correctEquation);
   for (let i = 0; i < correctEquation; i++) {
     firstNumber = getRandomInt(9);
     secondNumber = getRandomInt(9);
@@ -121,7 +124,8 @@ function createEquation() {
     equationArray.push(equationObject);
   }
 
-  const wrongEquation = getRandomInt(questionAmount);
+  const wrongEquation = questionAmount - correctEquation;
+  console.log('wrong equation : ', wrongEquation);
   for (let i = 0; i < wrongEquation; i++) {
     firstNumber = getRandomInt(9);
     secondNumber = getRandomInt(9);
@@ -156,10 +160,6 @@ function equationDOM() {
   });
 }
 
-/*
- * ? previous code end here
- */
-
 function shuffle(array) {
   let currentIndex = array.length,
     temporaryValue,
@@ -176,6 +176,10 @@ function shuffle(array) {
 
   return array;
 }
+
+/*
+ * ? previous code end here
+ */
 
 function select(guessNumber) {
   valueY += 80;
@@ -202,20 +206,21 @@ function addTime() {
 function checkTime() {
   console.log(timePlayed);
 
-  if (playerGuessArray.length === questionAmount) {
+  if (playerGuessArray.length == questionAmount) {
     clearInterval(timer);
 
     equationArray.forEach((equation, index) => {
       if (equation.evaluated === playerGuessArray[index]) {
       } else {
         penaltyTime += 0.5;
+        console.log(penaltyTime);
       }
     });
 
     finalTime = timePlayed + penaltyTime;
-    console.log('time', timePlayed, 'penalty', penaltyTime, 'final', finalTime);
+    console.log('Time', timePlayed, 'penalty', penaltyTime, 'final', finalTime);
+    scoreToDOM();
   }
-  scoreToDOM();
 }
 
 function scoreToDOM() {
@@ -223,8 +228,8 @@ function scoreToDOM() {
   baseTime = timePlayed.toFixed(1);
   penaltyTime = penaltyTime.toFixed(1);
 
-  baseTimeEl.textContent = `Base time : ${baseTime}s`;
-  penaltyTimeEl.textContent = `penalty time : ${penaltyTime}s`;
+  baseTimeEl.textContent = `Base Time : ${baseTime}s`;
+  penaltyTimeEl.textContent = `Penalty time : ${penaltyTime}s`;
   finalTimeEl.textContent = `Final time : ${finalTimeDisplay}s`;
 
   itemContainerEl.scrollTo({ top: 0, behavior: 'instant' });
@@ -235,7 +240,8 @@ function showScorePage() {
   setTimeout(() => {
     playAgainBtnEl.hidden = false;
   }, 1000);
-
   gamePageEl.hidden = true;
   scorePageEl.hidden = false;
 }
+
+// ------------ localStorage section -------------------
