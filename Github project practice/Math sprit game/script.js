@@ -249,6 +249,8 @@ function scoreToDOM() {
   correctEl.textContent = `Correct value : ${correctValue}`;
   wrongEl.textContent = `Wrong value : ${wrongValue}`;
 
+  updateBestScore();
+  itemContainerEl.scrollTo({ top: 0, behavior: 'instant' });
   showScorePage();
 }
 
@@ -268,3 +270,45 @@ function playAgain() {
 }
 
 // ----------------- localStorage section -------------------
+
+const bestScoreValueEl = document.querySelectorAll('.best-score-value');
+
+let bestScoreArray = [];
+
+function getSavedBestScore() {
+  if (localStorage.getItem('bestScores')) {
+    bestScoreArray = JSON.parse(localStorage.getItem('bestScores'));
+  } else {
+    bestScoreArray = [
+      { question: 10, bestScore: finalTimeDisplay },
+      { question: 25, bestScore: finalTimeDisplay },
+      { question: 50, bestScore: finalTimeDisplay },
+      { question: 99, bestScore: finalTimeDisplay },
+    ];
+    localStorage.setItem('bestScores', JSON.stringify(bestScoreArray));
+  }
+  bestScoreToDOM();
+}
+
+function updateBestScore() {
+  bestScoreArray.forEach((score, index) => {
+    if (questionAmount == score.bestScore) {
+      const savedBestScore = Number(bestScoreArray[index].bestScore);
+
+      if (savedBestScore === 0 || savedBestScore > finalTime) {
+        bestScoreArray[index].bestScore = finalTimeDisplay;
+      }
+    }
+  });
+  bestScoreToDOM();
+  localStorage.setItem('bestScores', JSON.stringify(bestScoreArray));
+}
+
+function bestScoreToDOM() {
+  bestScoreValueEl.forEach((bestScore, index) => {
+    const bestScoreValue = bestScore;
+    bestScoreValue.textContent = `${bestScoreArray[index].bestScore}s`;
+  });
+}
+
+getSavedBestScore();
