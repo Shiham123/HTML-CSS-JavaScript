@@ -173,9 +173,11 @@ const correctEl = document.querySelector('.correct-value'),
   finalTimeEl = document.querySelector('.final-time'),
   baseTimeEl = document.querySelector('.base-time'),
   penaltyTimeEl = document.querySelector('.penalty-time'),
-  scorePageEl = document.getElementById('score-page');
+  scorePageEl = document.getElementById('score-page'),
+  playAgainBtnEl = document.querySelector('.play-again');
 
 gamePageEl.addEventListener('click', startTimer);
+playAgainBtnEl.addEventListener('click', playAgain);
 
 let verticalValue = 0,
   playerGuessArray = [],
@@ -253,6 +255,16 @@ function scoreToDOM() {
 function showScorePage() {
   gamePageEl.hidden = true;
   scorePageEl.hidden = false;
+}
+
+function playAgain() {
+  gamePageEl.addEventListener('click', startTimer);
+  scorePageEl.hidden = true;
+  splashPageEl.hidden = false;
+  equationArray = [];
+  playerGuessArray = [];
+  verticalValue = 0;
+  playAgainBtnEl.hidden = true;
 }
 
 // ----------------- localStorage section -------------------
