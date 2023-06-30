@@ -7,35 +7,12 @@ const startFormEl = document.getElementById('start-form'),
   gamePageEl = document.getElementById('game-page'),
   itemContainerEl = document.querySelector('.item-container');
 
-const bestScoreValueEl = document.querySelectorAll('.best-score-value'),
-  finalTimeEl = document.querySelector('.final-time'),
-  baseTimeEl = document.querySelector('.base-time'),
-  penaltyTimeEl = document.querySelector('.penalty-time'),
-  playAgainBtnEl = document.querySelector('.play-again'),
-  scorePageEl = document.getElementById('score-page'),
-  correctEl = document.querySelector('.correct-value'),
-  wrongEl = document.querySelector('.wrong-value');
-
 let questionAmount = 0,
   firstNumber = 0,
   secondNumber = 0,
   equationObject = {},
   equationArray = [],
   wrongFormat = [];
-
-let valueY = 0,
-  playerGuessArray = [],
-  timePlayed = 0,
-  penaltyTime = 0,
-  finalTime = 0,
-  baseTime = 0,
-  timer,
-  finalTimeDisplay = '0.0';
-
-let bestScoreArray = [];
-
-let correctCount = 0,
-  wrongCount = 0;
 
 /**
  * ! here are start code
@@ -54,8 +31,6 @@ startFormEl.addEventListener('click', () => {
     }
   });
 });
-
-gamePageEl.addEventListener('click', startTimer);
 
 function showQuestionAmount(event) {
   event.preventDefault();
@@ -146,7 +121,7 @@ function createEquation() {
     equationObject = { value: equation, evaluated: 'false' };
     equationArray.push(equationObject);
   }
-  shuffle(equationArray);
+  /* shuffle(equationArray); */
 }
 
 function getRandomInt(array) {
@@ -166,6 +141,8 @@ function equationDOM() {
   });
 }
 
+/*
+
 function shuffle(array) {
   let currentIndex = array.length,
     temporaryValue,
@@ -182,15 +159,41 @@ function shuffle(array) {
 
   return array;
 }
+*/
 
 /**
+ * ? ===============================
  * ? previous code end here
+ * ! ===============================
  * ! next code start here
  */
 
+const correctEl = document.querySelector('.correct-value'),
+  wrongEl = document.querySelector('.wrong-value'),
+  finalTimeEl = document.querySelector('.final-time'),
+  baseTimeEl = document.querySelector('.base-time'),
+  penaltyTimeEl = document.querySelector('.penalty-time'),
+  scorePageEl = document.getElementById('score-page');
+
+gamePageEl.addEventListener('click', startTimer);
+
+let verticalValue = 0,
+  playerGuessArray = [],
+  timePlayed = 0,
+  penaltyTime = 0,
+  finalTime = 0,
+  timer,
+  correctValue = 0,
+  wrongValue = 0,
+  finalTimeDisplay = '0.0',
+  baseTime = 0;
+
 function select(guessNumber) {
-  valueY += 80;
-  itemContainerEl.scroll(0, valueY);
+  verticalValue += 80;
+  itemContainerEl.scrollTo({
+    top: verticalValue,
+    behavior: 'smooth',
+  });
 
   return guessNumber
     ? playerGuessArray.push('true')
@@ -218,15 +221,17 @@ function checkTime() {
 
     equationArray.forEach((equation, index) => {
       if (equation.evaluated === playerGuessArray[index]) {
-        correctCount++;
+        correctValue++;
       } else {
-        wrongCount++;
+        wrongValue++;
         penaltyTime += 0.5;
       }
     });
 
     finalTime = timePlayed + penaltyTime;
-    console.log('Time', timePlayed, 'penalty', penaltyTime, 'final', finalTime);
+    console.log(
+      `Time played : ${timePlayed}, penalty time ${penaltyTime}, final time ${finalTime}`
+    );
     scoreToDOM();
   }
 }
@@ -234,22 +239,18 @@ function checkTime() {
 function scoreToDOM() {
   finalTimeDisplay = finalTime.toFixed(1);
   baseTime = timePlayed.toFixed(1);
-  penaltyTime = penaltyTime.toFixed(1);
+  penaltyTime = timePlayed.toFixed(1);
 
-  baseTimeEl.textContent = `Base Time : ${baseTime}s`;
-  penaltyTimeEl.textContent = `Penalty time : ${penaltyTime}s`;
-  finalTimeEl.textContent = `Final time : ${finalTimeDisplay}s`;
-  correctEl.textContent = `Correct value : ${correctCount}`;
-  wrongEl.textContent = `Wrong Value : ${wrongCount}`;
+  baseTimeEl.textContent = `Base time : ${baseTime}s`;
+  penaltyTimeEl.textContent = `Penalty time : ${penaltyTime}`;
+  finalTimeEl.textContent = `Final time : ${finalTimeDisplay}`;
+  correctEl.textContent = `Correct value : ${correctValue}`;
+  wrongEl.textContent = `Wrong value : ${wrongValue}`;
 
-  itemContainerEl.scrollTo({ top: 0, behavior: 'instant' });
   showScorePage();
 }
 
 function showScorePage() {
-  setTimeout(() => {
-    playAgainBtnEl.hidden = false;
-  }, 1000);
   gamePageEl.hidden = true;
   scorePageEl.hidden = false;
 }
