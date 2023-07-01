@@ -121,7 +121,7 @@ function createEquation() {
     equationObject = { value: equation, evaluated: 'false' };
     equationArray.push(equationObject);
   }
-  /* shuffle(equationArray); */
+  shuffle(equationArray);
 }
 
 function getRandomInt(array) {
@@ -141,8 +141,6 @@ function equationDOM() {
   });
 }
 
-/*
-
 function shuffle(array) {
   let currentIndex = array.length,
     temporaryValue,
@@ -159,7 +157,6 @@ function shuffle(array) {
 
   return array;
 }
-*/
 
 /**
  * ? ===============================
