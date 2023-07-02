@@ -247,6 +247,7 @@ function scoreToDOM() {
   wrongEl.textContent = `Wrong value : ${wrongValue}`;
 
   updateBestScore();
+
   itemContainerEl.scrollTo({ top: 0, behavior: 'instant' });
   showScorePage();
 }
@@ -266,7 +267,11 @@ function playAgain() {
   playAgainBtnEl.hidden = true;
 }
 
-// ----------------- localStorage section -------------------
+/**
+ * ? local storage section
+ * ! start here
+ * ---------------------------
+ */
 
 const bestScoreValueEl = document.querySelectorAll('.best-score-value');
 
@@ -277,10 +282,10 @@ function getSavedBestScore() {
     bestScoreArray = JSON.parse(localStorage.getItem('bestScores'));
   } else {
     bestScoreArray = [
-      { question: 10, bestScore: finalTimeDisplay },
-      { question: 25, bestScore: finalTimeDisplay },
-      { question: 50, bestScore: finalTimeDisplay },
-      { question: 99, bestScore: finalTimeDisplay },
+      { question: 10, bestScores: finalTimeDisplay },
+      { question: 25, bestScores: finalTimeDisplay },
+      { question: 50, bestScores: finalTimeDisplay },
+      { question: 99, bestScores: finalTimeDisplay },
     ];
     localStorage.setItem('bestScores', JSON.stringify(bestScoreArray));
   }
@@ -289,7 +294,7 @@ function getSavedBestScore() {
 
 function updateBestScore() {
   bestScoreArray.forEach((score, index) => {
-    if (questionAmount == score.bestScore) {
+    if (questionAmount == score.question) {
       const savedBestScore = Number(bestScoreArray[index].bestScore);
 
       if (savedBestScore === 0 || savedBestScore > finalTime) {
@@ -297,15 +302,15 @@ function updateBestScore() {
       }
     }
   });
+
   bestScoreToDOM();
   localStorage.setItem('bestScores', JSON.stringify(bestScoreArray));
 }
 
 function bestScoreToDOM() {
   bestScoreValueEl.forEach((bestScore, index) => {
-    const bestScoreValue = bestScore;
-    bestScoreValue.textContent = `${bestScoreArray[index].bestScore}s`;
+    const bestScoreValueEl = bestScore;
+    bestScoreValueEl.textContent = `${bestScoreArray[index].bestScore}`;
   });
 }
-
 getSavedBestScore();
