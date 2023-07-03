@@ -278,8 +278,8 @@ const bestScoreValueEl = document.querySelectorAll('.best-score-value');
 let bestScoreArray = [];
 
 function getSavedBestScore() {
-  if (localStorage.getItem('bestScores')) {
-    bestScoreArray = JSON.parse(localStorage.bestScores);
+  if (localStorage.getItem('bestScore')) {
+    bestScoreArray = JSON.parse(localStorage.bestScore);
   } else {
     bestScoreArray = [
       { question: 10, bestScores: finalTimeDisplay },
@@ -287,7 +287,7 @@ function getSavedBestScore() {
       { question: 50, bestScores: finalTimeDisplay },
       { question: 99, bestScores: finalTimeDisplay },
     ];
-    localStorage.setItem('bestScores', JSON.stringify(bestScoreArray));
+    localStorage.setItem('bestScore', JSON.stringify(bestScoreArray));
   }
   bestScoreToDOM();
 }
@@ -304,7 +304,7 @@ function updateBestScore() {
   });
 
   bestScoreToDOM();
-  localStorage.setItem('bestScores', JSON.stringify(bestScoreArray));
+  localStorage.setItem('bestScore', JSON.stringify(bestScoreArray));
 }
 
 function bestScoreToDOM() {
