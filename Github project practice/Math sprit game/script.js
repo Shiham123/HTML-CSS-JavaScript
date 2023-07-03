@@ -238,7 +238,7 @@ function checkTime() {
 function scoreToDOM() {
   finalTimeDisplay = finalTime.toFixed(1);
   baseTime = timePlayed.toFixed(1);
-  penaltyTime = timePlayed.toFixed(1);
+  penaltyTime = penaltyTime.toFixed(1);
 
   baseTimeEl.textContent = `Base time : ${baseTime}s`;
   penaltyTimeEl.textContent = `Penalty time : ${penaltyTime}`;
