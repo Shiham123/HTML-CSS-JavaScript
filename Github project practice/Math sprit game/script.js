@@ -277,41 +277,42 @@ const bestScoreValueEl = document.querySelectorAll('.best-score-value');
 
 let bestScoreArray = [];
 
-function getSavedBestScore() {
-  if (localStorage.getItem('bestScore')) {
-    bestScoreArray = JSON.parse(localStorage.bestScore);
+function getSavedBestScores() {
+  if (localStorage.getItem('bestScores')) {
+    bestScoreArray = JSON.parse(localStorage.getItem('bestScores'));
   } else {
     bestScoreArray = [
-      { question: 10, bestScores: finalTimeDisplay },
-      { question: 25, bestScores: finalTimeDisplay },
-      { question: 50, bestScores: finalTimeDisplay },
-      { question: 99, bestScores: finalTimeDisplay },
+      { question: 10, bestScore: finalTimeDisplay },
+      { question: 25, bestScore: finalTimeDisplay },
+      { question: 50, bestScore: finalTimeDisplay },
+      { question: 99, bestScore: finalTimeDisplay },
     ];
-    localStorage.setItem('bestScore', JSON.stringify(bestScoreArray));
   }
+
   bestScoreToDOM();
+  localStorage.setItem('bestScores', JSON.stringify(bestScoreArray));
+}
+
+function bestScoreToDOM() {
+  bestScoreValueEl.forEach((score, index) => {
+    const bestScoreValue = score;
+    bestScoreValue.textContent = `${bestScoreArray[index].bestScore}`;
+  });
 }
 
 function updateBestScore() {
   bestScoreArray.forEach((score, index) => {
     if (questionAmount == score.question) {
-      const savedBestScore = Number(bestScoreArray[index].bestScores);
+      const savedBestScore = Number(bestScoreArray[index].bestScore);
 
       if (savedBestScore === 0 || savedBestScore > finalTime) {
-        bestScoreArray[index].bestScores = finalTimeDisplay;
+        bestScoreArray[index].bestScore = finalTimeDisplay;
       }
     }
   });
 
   bestScoreToDOM();
-  localStorage.setItem('bestScore', JSON.stringify(bestScoreArray));
+  localStorage.setItem('bestScores', JSON.stringify(bestScoreArray));
 }
 
-function bestScoreToDOM() {
-  bestScoreValueEl.forEach((bestScore, index) => {
-    const bestScoreValue = bestScore;
-    bestScoreValue.textContent = `${bestScoreArray[index].bestScores}`;
-  });
-}
-
-getSavedBestScore();
+getSavedBestScores();
