@@ -1,25 +1,42 @@
 const startFormEl = document.getElementById('start-form'),
   radioContainerEl = document.querySelectorAll('.radio-container'),
-  radioInputEl = document.querySelectorAll('input'),
+  inputEl = document.querySelectorAll('input'),
+  splashPageEl = document.getElementById('splash-page'),
   countdownPageEl = document.getElementById('countdown-page'),
   countdownEl = document.querySelector('.countdown'),
-  splashPageEl = document.getElementById('splash-page'),
   gamePageEl = document.getElementById('game-page'),
   itemContainerEl = document.querySelector('.item-container');
 
+const correctValueEl = document.querySelector('.correct-value'),
+  wrongValueEl = document.querySelector('.wrong-value'),
+  finalTimeEl = document.querySelector('.final-time'),
+  baseTimeEl = document.querySelector('.base-time'),
+  penaltyTimeEl = document.querySelector('.penalty-time'),
+  scorePageEl = document.getElementById('score-page'),
+  playAgainBtnEl = document.querySelector('.play-again'),
+  bestScoreValueEl = document.querySelectorAll('.best-score-value');
+
 let questionAmount = 0,
-  firstNumber = 0,
-  secondNumber = 0,
   equationObject = {},
   equationArray = [],
+  firstNumber = 0,
+  secondNumber = 0,
   wrongFormat = [];
 
-/**
- * ! here are start code
- * ? the code
- */
+let verticalValue = 0,
+  playerGuessArray = [],
+  timePlayed = 0,
+  penaltyTime = 0,
+  finalTime = 0,
+  timer,
+  correctValue = 0,
+  wrongValue = 0,
+  finalTimeDisplay = '0.0',
+  baseTime = 0;
 
-startFormEl.addEventListener('submit', showQuestionAmount);
+let bestScoreArray = [];
+
+startFormEl.addEventListener('submit', startQuestionAmount);
 startFormEl.addEventListener('click', () => {
   radioContainerEl.forEach((item) => {
     item.classList.remove('selected-label');
@@ -32,33 +49,37 @@ startFormEl.addEventListener('click', () => {
   });
 });
 
-function showQuestionAmount(event) {
+gamePageEl.addEventListener('click', startTimer);
+playAgainBtnEl.addEventListener('click', playAgain);
+
+function startQuestionAmount(event) {
   event.preventDefault();
   questionAmount = getRadioValue();
   if (questionAmount) {
-    showCountdownPage();
+    startCountdownPage();
   }
 }
 
 function getRadioValue() {
   let radioValue;
-  radioInputEl.forEach((element) => {
-    if (element.checked) {
-      radioValue = element.value;
+  inputEl.forEach((item) => {
+    if (item.checked) {
+      radioValue = item.value;
     }
   });
   return radioValue;
 }
 
-function showCountdownPage() {
+function startCountdownPage() {
   splashPageEl.hidden = true;
   countdownPageEl.hidden = false;
-  startCountdown();
+  startCountDown();
   populateGamePage();
+
   setTimeout(showGamePage, 4000);
 }
 
-function startCountdown() {
+function startCountDown() {
   countdownEl.textContent = '3';
   setTimeout(() => {
     countdownEl.textContent = '2';
@@ -72,8 +93,8 @@ function startCountdown() {
 }
 
 function showGamePage() {
-  gamePageEl.hidden = false;
   countdownPageEl.hidden = true;
+  gamePageEl.hidden = false;
 }
 
 function populateGamePage() {
@@ -82,19 +103,21 @@ function populateGamePage() {
 
   const selectedItem = document.createElement('div');
   selectedItem.classList.add('selected-item');
-
   itemContainerEl.append(topSpacer, selectedItem);
+
   createEquation();
-  equationDOM();
+  equationToDOM();
 
   const bottomSpacer = document.createElement('div');
   bottomSpacer.classList.add('height-500');
+
   itemContainerEl.appendChild(bottomSpacer);
 }
 
 function createEquation() {
   const correctEquation = getRandomInt(questionAmount);
-  console.log('correct equation : ', correctEquation);
+  console.log(`Correct equation : ${correctEquation}`);
+
   for (let i = 0; i < correctEquation; i++) {
     firstNumber = getRandomInt(9);
     secondNumber = getRandomInt(9);
@@ -106,14 +129,15 @@ function createEquation() {
   }
 
   const wrongEquation = questionAmount - correctEquation;
-  console.log('wrong equation : ', wrongEquation);
+  console.log(`Wrong equation : ${wrongEquation}`);
+
   for (let i = 0; i < wrongEquation; i++) {
     firstNumber = getRandomInt(9);
     secondNumber = getRandomInt(9);
     const equationValue = firstNumber * secondNumber;
-    wrongFormat[0] = `${firstNumber + 1} x ${secondNumber} = ${equationValue}`;
-    wrongFormat[1] = `${firstNumber} x ${secondNumber - 1} = ${equationValue}`;
-    wrongFormat[3] = `${firstNumber} x ${secondNumber} = ${equationValue - 1}`;
+    wrongFormat[0] = `${firstNumber - 1} x ${secondNumber} = ${equationValue}`;
+    wrongFormat[1] = `${firstNumber} x ${secondNumber + 1} = ${equationValue}`;
+    wrongFormat[2] = `${firstNumber} x ${secondNumber} = ${equationValue - 1}`;
 
     const formatChoice = getRandomInt(2),
       equation = wrongFormat[formatChoice];
@@ -128,64 +152,40 @@ function getRandomInt(array) {
   return Math.floor(Math.random() * Math.floor(array));
 }
 
-function equationDOM() {
+function equationToDOM() {
   equationArray.forEach((item) => {
     const element = document.createElement('div');
     element.classList.add('item');
 
-    const elementText = document.createElement('h1');
-    elementText.textContent = item.value;
+    const itemContent = document.createElement('h1');
+    itemContent.textContent = item.value;
 
-    element.append(elementText);
+    element.append(itemContent);
     itemContainerEl.appendChild(element);
   });
 }
 
 function shuffle(array) {
   let currentIndex = array.length,
-    temporaryValue,
+    temporaryIndex,
     randomIndex;
 
   while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
 
-    temporaryValue = array[currentIndex];
+    temporaryIndex = array[currentIndex];
     array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
+    array[randomIndex] = temporaryIndex;
   }
-
   return array;
 }
 
 /**
- * ? ===============================
- * ? previous code end here
- * ! ===============================
- * ! next code start here
+ * ? =====================
+ * ? section tow
+ * ! section two
  */
-
-const correctEl = document.querySelector('.correct-value'),
-  wrongEl = document.querySelector('.wrong-value'),
-  finalTimeEl = document.querySelector('.final-time'),
-  baseTimeEl = document.querySelector('.base-time'),
-  penaltyTimeEl = document.querySelector('.penalty-time'),
-  scorePageEl = document.getElementById('score-page'),
-  playAgainBtnEl = document.querySelector('.play-again');
-
-gamePageEl.addEventListener('click', startTimer);
-playAgainBtnEl.addEventListener('click', playAgain);
-
-let verticalValue = 0,
-  playerGuessArray = [],
-  timePlayed = 0,
-  penaltyTime = 0,
-  finalTime = 0,
-  timer,
-  correctValue = 0,
-  wrongValue = 0,
-  finalTimeDisplay = '0.0',
-  baseTime = 0;
 
 function select(guessNumber) {
   verticalValue += 80;
@@ -229,7 +229,7 @@ function checkTime() {
 
     finalTime = timePlayed + penaltyTime;
     console.log(
-      `Time played : ${timePlayed}, penalty time ${penaltyTime}, final time ${finalTime}`
+      `Time Played : ${timePlayed}, penalty Time : ${penaltyTime}, Final time : ${finalTime}`
     );
     scoreToDOM();
   }
@@ -240,15 +240,18 @@ function scoreToDOM() {
   baseTime = timePlayed.toFixed(1);
   penaltyTime = penaltyTime.toFixed(1);
 
-  baseTimeEl.textContent = `Base time : ${baseTime}s`;
-  penaltyTimeEl.textContent = `Penalty time : ${penaltyTime}`;
   finalTimeEl.textContent = `Final time : ${finalTimeDisplay}`;
-  correctEl.textContent = `Correct value : ${correctValue}`;
-  wrongEl.textContent = `Wrong value : ${wrongValue}`;
+  penaltyTimeEl.textContent = `Penalty time : ${penaltyTime}`;
+  baseTimeEl.textContent = `Base time : ${baseTime}`;
+  correctValueEl.textContent = `Correct value : ${correctValue}`;
+  wrongValueEl.textContent = `Wrong value : ${wrongValue}`;
 
   updateBestScore();
 
-  itemContainerEl.scrollTo({ top: 0, behavior: 'instant' });
+  itemContainerEl.scrollTo({
+    top: 0,
+    behavior: 'instant',
+  });
   showScorePage();
 }
 
@@ -268,16 +271,11 @@ function playAgain() {
 }
 
 /**
- * ? =============== local storage section
- * ! start here
- * ---------------------------
+ * ! *********************
+ * ! localStorage section
  */
 
-const bestScoreValueEl = document.querySelectorAll('.best-score-value');
-
-let bestScoreArray = [];
-
-function getSavedBestScores() {
+function getSavedBestScore() {
   if (localStorage.getItem('bestScores')) {
     bestScoreArray = JSON.parse(localStorage.getItem('bestScores'));
   } else {
@@ -291,13 +289,6 @@ function getSavedBestScores() {
 
   bestScoreToDOM();
   localStorage.setItem('bestScores', JSON.stringify(bestScoreArray));
-}
-
-function bestScoreToDOM() {
-  bestScoreValueEl.forEach((score, index) => {
-    const bestScoreValue = score;
-    bestScoreValue.textContent = `${bestScoreArray[index].bestScore}`;
-  });
 }
 
 function updateBestScore() {
@@ -315,4 +306,11 @@ function updateBestScore() {
   localStorage.setItem('bestScores', JSON.stringify(bestScoreArray));
 }
 
-getSavedBestScores();
+function bestScoreToDOM() {
+  bestScoreValueEl.forEach((item, index) => {
+    const bestScoreValue = item;
+    bestScoreValue.textContent = `${bestScoreArray[index].bestScore}`;
+  });
+}
+
+getSavedBestScore();
