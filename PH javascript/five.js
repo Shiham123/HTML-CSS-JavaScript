@@ -14,3 +14,4 @@ function isValidPhotoName(photoName, extension) {
 const photo = 'img.jpg';
 const extension = ['.jpg', '.jpeg', '.png', '.gif', '.ico'];
 console.log(isValidPhotoName(photo, extension));
+  
