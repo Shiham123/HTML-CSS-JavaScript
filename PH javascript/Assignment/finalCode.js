@@ -19,7 +19,7 @@ function matchFinder(string1, string2) {
     }
   }
 }
-matchFinder('John Doe', 'ohn');
+matchFinder('John Doe', 'john');
 
 function sortMaker(arr) {
   if (!Array.isArray(arr)) {
@@ -37,7 +37,7 @@ function sortMaker(arr) {
     }
     for (let i = 0; i < arr.length; i++) {
       for (let j = i + 1; j < arr.length; j++) {
-        if (arr[j] < arr[i]) {
+        if (arr[j] > arr[i]) {
           let temp = arr[i];
           arr[i] = arr[j];
           arr[j] = temp;
@@ -47,12 +47,10 @@ function sortMaker(arr) {
     return arr;
   }
 }
-sortMaker([4, 3]);
+const arr = [10, 20];
+sortMaker(arr);
 
 function findAddress(obj) {
-  if (typeof obj !== 'object' || obj === null) {
-    return 'please provide a valid object';
-  }
   let initialStreet = false,
     initialHouse = false,
     initialEarth = false;
@@ -62,7 +60,7 @@ function findAddress(obj) {
   if (obj['house'] !== undefined) {
     initialHouse = true;
   }
-  if (obj['Earth'] !== undefined) {
+  if (obj['society'] !== undefined) {
     initialEarth = true;
   }
 
@@ -78,7 +76,7 @@ function findAddress(obj) {
     houseObj = '__';
   }
   if (initialEarth) {
-    earthObj = obj['Earth'];
+    earthObj = obj['society'];
   } else {
     earthObj = '__';
   }
@@ -86,13 +84,11 @@ function findAddress(obj) {
   return objReturn;
 }
 
-const obj = { street: 10, house: '15A', Earth: 'Perfect' };
+const obj = { street: 10, house: '15A', society: 'Earth Perfect' };
 findAddress(obj);
 
 function canPay(changeArray, totalDue) {
-  if (!Array.isArray(changeArray)) {
-    return 'please provide a an array and a number';
-  } else if (changeArray.length === 0) {
+  if (changeArray.length === 0) {
     return 'array is empty, please provide some value in the array';
   } else {
     let sum = 0;

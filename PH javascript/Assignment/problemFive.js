@@ -1,7 +1,5 @@
 function canPay(changeArray, totalDue) {
-  if (!Array.isArray(changeArray)) {
-    return 'please provide a an array and a number';
-  } else if (changeArray.length === 0) {
+  if (changeArray.length === 0) {
     return 'array is empty, please provide some value in the array';
   } else {
     let sum = 0;

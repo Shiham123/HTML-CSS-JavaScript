@@ -14,7 +14,7 @@ function sortMaker(arr) {
     }
     for (let i = 0; i < arr.length; i++) {
       for (let j = i + 1; j < arr.length; j++) {
-        if (arr[j] < arr[i]) {
+        if (arr[j] > arr[i]) {
           let temp = arr[i];
           arr[i] = arr[j];
           arr[j] = temp;
@@ -24,4 +24,5 @@ function sortMaker(arr) {
     return arr;
   }
 }
-sortMaker([3, 4]);
+const arr = [10, 20];
+sortMaker(arr);

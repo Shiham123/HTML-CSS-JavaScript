@@ -1,7 +1,4 @@
 function findAddress(obj) {
-  if (typeof obj !== 'object' || obj === null) {
-    return 'please provide a valid object';
-  }
   let initialStreet = false,
     initialHouse = false,
     initialEarth = false;
@@ -11,7 +8,7 @@ function findAddress(obj) {
   if (obj['house'] !== undefined) {
     initialHouse = true;
   }
-  if (obj['Earth'] !== undefined) {
+  if (obj['society'] !== undefined) {
     initialEarth = true;
   }
 
@@ -27,7 +24,7 @@ function findAddress(obj) {
     houseObj = '__';
   }
   if (initialEarth) {
-    earthObj = obj['Earth'];
+    earthObj = obj['society'];
   } else {
     earthObj = '__';
   }
@@ -35,5 +32,5 @@ function findAddress(obj) {
   return objReturn;
 }
 
-const obj = { street: 10, house: '15A', Earth: 'Perfect' };
+const obj = { street: 10, house: '15A', society: 'Earth Perfect' };
 findAddress(obj);

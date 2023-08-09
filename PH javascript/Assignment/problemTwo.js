@@ -9,4 +9,4 @@ function matchFinder(string1, string2) {
     }
   }
 }
-matchFinder('John Doe', 'ohn');
+matchFinder('John Doe', 'john');
