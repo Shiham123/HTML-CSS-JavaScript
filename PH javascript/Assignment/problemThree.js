@@ -7,13 +7,11 @@ function sortMaker(arr) {
         return 'Invalid Input';
       }
     }
-
     for (let i = 0; i < arr.length; i++) {
       if (arr[i] === arr[i + 1]) {
         return 'equal';
       }
     }
-
     for (let i = 0; i < arr.length; i++) {
       for (let j = i + 1; j < arr.length; j++) {
         if (arr[j] < arr[i]) {
@@ -26,6 +24,4 @@ function sortMaker(arr) {
     return arr;
   }
 }
-
-sortMaker([3, 1]);
-console.log(sortMaker([1, 0]));
+sortMaker([3, 4]);

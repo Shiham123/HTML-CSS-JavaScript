@@ -6,6 +6,4 @@ function cubeNumber(number) {
     return cube;
   }
 }
-
 cubeNumber(3);
-console.log(cubeNumber(3));
