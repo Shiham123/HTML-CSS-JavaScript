@@ -3,15 +3,45 @@ function findAddress(obj) {
     return 'please provide a valid object';
   }
 
-  const { street, house, Earth } = obj;
+  let initialStreet = false;
+  let initialHouse = false;
+  let initialEarth = false;
 
-  if (!street && !house && !Earth) {
-    return 'please provide a non-empty address object';
+  if (obj['street'] !== undefined) {
+    initialStreet = true;
   }
 
-  const streetObj = street || '__';
-  const houseObj = house || '__';
-  const earthObj = Earth || '__';
+  if (obj['house'] !== undefined) {
+    initialHouse = true;
+  }
+
+  if (obj['Earth'] !== undefined) {
+    initialEarth = true;
+  }
+
+  if (!initialStreet && !initialHouse && !initialEarth) {
+    return 'please provide at least one object';
+  }
+
+  let streetObj, houseObj, earthObj;
+
+  if (initialStreet) {
+    streetObj = obj['street'];
+  } else {
+    streetObj = '__';
+  }
+
+  if (initialHouse) {
+    houseObj = obj['house'];
+  } else {
+    houseObj = '__';
+  }
+
+  if (initialEarth) {
+    earthObj = obj['Earth'];
+  } else {
+    earthObj = '__';
+  }
 
   let objReturn = streetObj + ', ' + houseObj + ', ' + earthObj;
 
@@ -19,5 +49,4 @@ function findAddress(obj) {
 }
 
 const obj = { street: 10, house: '15A', Earth: 'Perfect' };
-findAddress(obj);
 console.log(findAddress(obj));
