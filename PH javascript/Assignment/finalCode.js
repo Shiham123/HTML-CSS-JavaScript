@@ -6,7 +6,6 @@ function cubeNumber(number) {
     return cube;
   }
 }
-cubeNumber(3);
 
 function matchFinder(string1, string2) {
   if (typeof string1 !== 'string' || typeof string2 !== 'string') {
@@ -19,7 +18,6 @@ function matchFinder(string1, string2) {
     }
   }
 }
-matchFinder('John Doe', 'john');
 
 function sortMaker(arr) {
   if (!Array.isArray(arr)) {
@@ -47,8 +45,6 @@ function sortMaker(arr) {
     return arr;
   }
 }
-const arr = [10, 20];
-sortMaker(arr);
 
 function findAddress(obj) {
   let initialStreet = false,
@@ -63,7 +59,6 @@ function findAddress(obj) {
   if (obj['society'] !== undefined) {
     initialEarth = true;
   }
-
   let streetObj, houseObj, earthObj;
   if (initialStreet) {
     streetObj = obj['street'];
@@ -84,9 +79,6 @@ function findAddress(obj) {
   return objReturn;
 }
 
-const obj = { street: 10, house: '15A', society: 'Earth Perfect' };
-findAddress(obj);
-
 function canPay(changeArray, totalDue) {
   if (changeArray.length === 0) {
     return 'array is empty, please provide some value in the array';
@@ -101,4 +93,3 @@ function canPay(changeArray, totalDue) {
     return false;
   }
 }
-canPay([1, 5, 4], 10);

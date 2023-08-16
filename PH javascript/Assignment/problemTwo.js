@@ -10,3 +10,4 @@ function matchFinder(string1, string2) {
   }
 }
 matchFinder('John Doe', 'john');
+console.log(matchFinder('John Doe', 1));
