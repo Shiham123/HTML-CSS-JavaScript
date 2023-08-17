@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- daisy ui and tailwind cdn -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.5.1/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js" defer></script>
+    <title>নামতা অ্যাপ</title>
+  </head>
+  <body class="mx-auto text-center px-5 text-white">
+    <h1 class="text-4xl md:text-5xl xl:text-6xl font-bold my-5 xl:my-10">
+      নামতা অ্যাপ
+    </h1>
+    <label for="input" class="text-sm md:text-base"
+      >যে সংখ্যার নামতা প্রয়োজন, সে সংখ্যা এখানে দিন <br />
+      <input
+        id="input"
+        type="text"
+        placeholder="Enter number..."
+        class="input input-bordered w-full max-w-xs mt-2"
+      />
+    </label>
+    <div class="flex justify-center items-center flex-wrap gap-5 my-5">
+      <button id="generate" class="btn btn-outline btn-success">
+        Generate
+      </button>
+      <button id="reset" class="btn btn-outline btn-info">Reset</button>
+    </div>
+    <div class="overflow-x-auto my-5 w-fit mx-auto">
+      <table class="table border-2 border-gray-600 p-5">
+        <!-- head -->
+        <thead>
+          <!-- <caption colspan="5" class="text-center">Hours</caption> -->
+          <tr>
+            <th
+              colspan="5"
+              class="text-center text-white text-xl md:text-2xl xl:text-4xl"
+            >
+              <span id="title"></span>নামতা
+            </th>
+          </tr>
+        </thead>
+        <tbody id="result"></tbody>
+      </table>
+    </div>
+  </body>
+</html>
